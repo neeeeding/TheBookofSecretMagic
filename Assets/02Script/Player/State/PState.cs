@@ -1,14 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PState
 {
-    protected Player _player;
-    protected PStateMachin _stateMachin;
-    protected int _animationHash;
+    protected Player _player; //ÇÃ·¹ÀÌ¾î
+    protected PStateMachin _stateMachin; //¸Ó½Å
+    protected int _animationHash; //ÇØ½Ã
 
-    public string _animationName;
+    protected PlayerRotate _rotate; //¾îµô ºÁ¾ß´ÂÁö
+
+    public string _animationName; //°Á Áö±Ý ¹ºÁö ¸ð¸£ÀÝ¾Æ.
 
     public PState(string animation,PStateMachin machin,Player player)
     {
@@ -18,14 +18,19 @@ public class PState
         _animationHash = Animator.StringToHash(animation);
     }
 
-    public virtual void Enter()
+    public virtual void Enter(PlayerRotate rotate)
     {
+        _rotate = rotate;
+        int rotateHash = Animator.StringToHash(rotate.ToString());
         _player.Animator.SetBool(_animationHash, true);
+        _player.Animator.SetBool(rotateHash, true);
     }
 
     public virtual void Exit()
     {
+        int rotateHash = Animator.StringToHash(_rotate.ToString());
         _player.Animator.SetBool(_animationHash, false);
+        _player.Animator.SetBool(rotateHash, false);
     }
 
     public virtual void StateUpdate()
@@ -42,4 +47,9 @@ public class PState
 public enum PlayerState
 {
     Idle, Move, Chat, hold
+}
+
+public enum PlayerRotate
+{
+    Front,Back,Left,Right
 }

@@ -8,9 +8,9 @@ public class PIdleState : PState
     {
     }
 
-    public override void Enter()
+    public override void Enter(PlayerRotate rotate)
     {
-        base.Enter();
+        base.Enter(rotate);
         PlayerMobileInput.mousePos += Move;
     }
 
@@ -18,7 +18,10 @@ public class PIdleState : PState
     {
         if (mousePos != Vector2.zero)
         {
-            _stateMachin.ChangeState(PlayerState.Move);
+            _stateMachin.ChangeState(PlayerState.Move,
+                Mathf.Abs(mousePos.x) <= Mathf.Abs(mousePos.y) ?
+                mousePos.y <= 0 ? PlayerRotate.Back : PlayerRotate.Front :
+                mousePos.x <= 0 ? PlayerRotate.Left : PlayerRotate.Right);
         }
     }
 

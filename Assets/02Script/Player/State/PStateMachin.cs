@@ -8,14 +8,14 @@ public class PStateMachin
 
     public PState currentState;
 
-    public void ChangeState(PlayerState state)
+    public void ChangeState(PlayerState state, PlayerRotate rotate)
     {
         if(currentState != null)
         {
             currentState.Exit();
         }
         currentState = PStateD[state];
-        currentState.Enter();
+        currentState.Enter(rotate);
     }
 
     public void AddState(PlayerState state, PState sc)
