@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
         stateMachin.AddState(PlayerState.Idle, new PIdleState("Idle", stateMachin, this));
         stateMachin.AddState(PlayerState.hold, new PHoldState("Hold", stateMachin, this));
 
+        transform.position = Vector2.zero;
         stateMachin.ChangeState(PlayerState.Idle, PlayerRotate.Front);
     }
 

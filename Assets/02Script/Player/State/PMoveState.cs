@@ -21,7 +21,7 @@ public class PMoveState : PState
         base.StateFixedUpdate();
         _player.transform.position = Vector2.Lerp(_player.transform.position, targetPos, speed * Time.deltaTime);
 
-        if(Vector2.Distance(_player.transform.position, targetPos) < 1f)
+        if(Vector2.Distance(_player.transform.position, targetPos) < 0.5f)
         {
             _stateMachin.ChangeState(PlayerState.Idle,_rotate);
         }
@@ -43,9 +43,12 @@ public class PMoveState : PState
     {
         _player.Animator.SetBool(Animator.StringToHash(_rotate.ToString()), false); //일단 끄고
 
-        _rotate = Mathf.Abs(mousePos.x - _player.transform.position.x) <= Mathf.Abs(mousePos.y - _player.transform.position.y) ? //켜기
-               mousePos.y - _player.transform.position.y <= 0 ? PlayerRotate.Back : PlayerRotate.Front :
-               mousePos.x - _player.transform.position.x <= 0 ? PlayerRotate.Left : PlayerRotate.Right;
+        Vector2 minusPos = new Vector2(mousePos.x - _player.transform.position.x , mousePos.y - _player.transform.position.y);
+
+
+        _rotate = Mathf.Abs(minusPos.x) > Mathf.Abs(minusPos.y) ? //켜기
+               minusPos.x <= 0 ? PlayerRotate.Left : PlayerRotate.Right :
+               minusPos.y <= 0 ? PlayerRotate.Back : PlayerRotate.Front;
 
         _player.Animator.SetBool(Animator.StringToHash(_rotate.ToString()), true); //켜기
     }
