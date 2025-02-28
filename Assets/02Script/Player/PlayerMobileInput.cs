@@ -7,11 +7,28 @@ public class PlayerMobileInput : MonoBehaviour
 {
     public static Action<Vector2> mousePos;
 
+    private bool canInput;
+
+    private void Awake()
+    {
+        CanInput();
+    }
+
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && canInput)
         {
             mousePos?.Invoke(Camera.main.ScreenToWorldPoint(Input.mousePosition));
         }
+    }
+
+    public void NoInput()
+    {
+        canInput = false;
+    }
+
+    public void CanInput()
+    {
+        canInput = true;
     }
 }

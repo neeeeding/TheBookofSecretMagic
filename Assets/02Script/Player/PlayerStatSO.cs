@@ -19,7 +19,7 @@ public class PlayerStatSO : ScriptableObject
     [Range(0, 100)]
     public float PotionMagic;
 
-    public int playerMoney; //소지금
+    public int playerCoin; //소지금
 
     public PlayerJob job; //전공
 
@@ -33,7 +33,7 @@ public class PlayerStatSO : ScriptableObject
         copyMagic = 0;
         PotionMagic = 0;
 
-        playerMoney = 5;
+        playerCoin = 5;
 
         job = PlayerJob.none;
     }

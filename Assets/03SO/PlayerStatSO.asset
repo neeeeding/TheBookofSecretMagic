@@ -18,5 +18,5 @@ MonoBehaviour:
   waterMagic: 0
   copyMagic: 0
   PotionMagic: 0
-  playerMoney: 5
+  playerCoin: 5
   job: 6

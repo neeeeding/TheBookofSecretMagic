@@ -23,7 +23,7 @@ public class ItemCard : MonoBehaviour
     public void ResetCount()
     {
         countItme = 0;
-        PlayerPrefs.SetInt(so.name, 0);
+        PlayerPrefs.SetInt($"{so.name}", 0);
     }
 
     private void Awake()
@@ -52,7 +52,7 @@ public class ItemCard : MonoBehaviour
 
     private void HoldItem() //아이템 활성화
     {
-        cardImage.color = Color.white;
+        cardImage.color = new Color(95 / 225f, 95 / 225f, 95 / 225f, 1);
         so.isUse = true;
         useTrue = true;
         currentUseItem = this;
@@ -63,7 +63,7 @@ public class ItemCard : MonoBehaviour
 
     public void HideItem() //아이템 비활성화
     {
-        cardImage.color = new Color(95 / 225f, 95 / 225f, 95 / 225f, 1);
+        cardImage.color = Color.white;
         so.isUse = false;
         useTrue = false;
         currentUseItem = null;
