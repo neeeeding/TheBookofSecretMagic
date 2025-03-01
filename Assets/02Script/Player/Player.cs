@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private string currentState;
+
     private Animator animator;
     public Animator Animator => animator;
 
@@ -18,13 +20,19 @@ public class Player : MonoBehaviour
         stateMachin.AddState(PlayerState.Idle, new PIdleState("Idle", stateMachin, this));
         stateMachin.AddState(PlayerState.hold, new PHoldState("Hold", stateMachin, this));
 
-        transform.position = Vector2.zero;
+        transform.position += Vector3.zero;
         stateMachin.ChangeState(PlayerState.Idle, PlayerRotate.Front);
+    }
+
+    public void ChangeState(PlayerState state)
+    {
+        stateMachin.ChangeState(state, PlayerRotate.Front);
     }
 
     private void Update()
     {
         stateMachin.currentState.StateUpdate();
+        currentState = stateMachin.currentState.ToString();
     }
 
     private void FixedUpdate()

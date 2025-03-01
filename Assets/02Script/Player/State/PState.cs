@@ -8,11 +8,8 @@ public class PState
 
     protected PlayerRotate _rotate; //¾îµô ºÁ¾ß´ÂÁö
 
-    public string _animationName; //°Á Áö±Ý ¹ºÁö ¸ð¸£ÀÝ¾Æ.
-
     public PState(string animation,PStateMachin machin,Player player)
     {
-        _animationName = animation;
         _stateMachin = machin;
         _player = player;
         _animationHash = Animator.StringToHash(animation);
