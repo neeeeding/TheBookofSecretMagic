@@ -17,11 +17,17 @@ public class PlayerStatSO : ScriptableObject
     [Range(0, 100)]
     public float copyMagic;
     [Range(0, 100)]
-    public float PotionMagic;
+    public float potionMagic;
 
     public int playerCoin; //소지금
 
     public PlayerJob job; //전공
+    [Space(50f)]
+    public float year;
+    public float month;
+    public float day;
+    public float hour;
+    public float minute;
 
     [ContextMenu("ResetStat")]
     public void ResetStat()
@@ -31,11 +37,17 @@ public class PlayerStatSO : ScriptableObject
         fireMagic = 0;
         waterMagic = 0;
         copyMagic = 0;
-        PotionMagic = 0;
+        potionMagic = 0;
 
         playerCoin = 5;
 
         job = PlayerJob.none;
+
+        year = 2000;
+        month = 1;
+        day = 1;
+        hour = 1;
+        minute = 0;
     }
 }
 

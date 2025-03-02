@@ -24,6 +24,7 @@ public class ItemCard : MonoBehaviour
     {
         countItme = 0;
         PlayerPrefs.SetInt($"{so.name}", 0);
+        PlayerPrefs.Save();
     }
 
     private void Awake()
