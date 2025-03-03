@@ -5,7 +5,6 @@ using UnityEngine;
 public class PMoveState : PState
 {
     private Vector2 targetPos; //마우스 위치
-    private float speed = 1; //속도
     public PMoveState(string animation, PStateMachin machin, Player player) : base(animation, machin, player)
     {
     }
@@ -19,7 +18,7 @@ public class PMoveState : PState
     public override void StateFixedUpdate() //움직임
     {
         base.StateFixedUpdate();
-        _player.transform.position = Vector2.Lerp(_player.transform.position, targetPos, speed * Time.deltaTime);
+        _player.transform.position = Vector2.Lerp(_player.transform.position, targetPos, GameManager.Instance.PlayerStat.playerSpeed * Time.deltaTime);
 
         if(Vector2.Distance(_player.transform.position, targetPos) < 0.5f)
         {

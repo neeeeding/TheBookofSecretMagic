@@ -17,6 +17,11 @@ MonoBehaviour:
   fireMagic: 0
   waterMagic: 0
   copyMagic: 0
-  PotionMagic: 0
-  playerCoin: 5
-  job: 6
+  potionMagic: 0
+  playerCoin: 0
+  job: 0
+  year: 0
+  month: 0
+  day: 0
+  hour: 0
+  minute: 0

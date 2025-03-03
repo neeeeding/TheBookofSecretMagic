@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,7 +25,11 @@ public class GameManager : Singleton<GameManager>
     {
         Player = gameObject.GetComponent<Player>();
 
-        AwakeDate();
+        PlayerStat.playerSpeed = 1f;
+
+        //AwakeDate();
+
+        StartCoroutine(nowDate());
     }
 
     private void AwakeDate()
@@ -40,7 +45,7 @@ public class GameManager : Singleton<GameManager>
     {
         while (true)
         {
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(10f);
 
             PlayerStat.minute++;
             if (PlayerStat.minute >= 60)
@@ -50,16 +55,41 @@ public class GameManager : Singleton<GameManager>
 
                 if(PlayerStat.hour >= 24)
                 {
-                    PlayerStat.hour = 0;
+                    PlayerStat.hour = 1;
                     PlayerStat.day++;
 
-                    if(PlayerStat.day >= 31)
+                    if(CompareMonth(PlayerStat.day, PlayerStat.month))
                     {
+                        PlayerStat.day = 1;
+                        PlayerStat.month++;
 
+                        if(PlayerStat.month > 12)
+                        {
+                            PlayerStat.year++;
+                        }
                     }
+
                 }
             }
         }
+    }
+
+    private bool CompareMonth(int day, int month)
+    {
+        if (day < 28) return false;
+
+        int[] day31 = { 1, 3, 5, 7, 8, 10, 12 };
+        int[] day30 = { 4, 6, 9, 11};
+
+        if((day > 28 && month == 2) || (day > 30 && Array.Exists(day30, x => x == month)) || (day > 31 && Array.Exists(day31, x => x == month)))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
     }
 }
 

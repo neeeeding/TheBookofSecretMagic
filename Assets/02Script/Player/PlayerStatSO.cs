@@ -21,13 +21,16 @@ public class PlayerStatSO : ScriptableObject
 
     public int playerCoin; //소지금
 
+    public float playerSpeed; //걷는(뛰는 속도)
+
     public PlayerJob job; //전공
+
     [Space(50f)]
-    public float year;
-    public float month;
-    public float day;
-    public float hour;
-    public float minute;
+    public int year;
+    public int month;
+    public int day;
+    public int hour;
+    public int minute;
 
     [ContextMenu("ResetStat")]
     public void ResetStat()
