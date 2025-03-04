@@ -40,7 +40,7 @@ public class ItemCard : MonoBehaviour
         countText = GetComponentInChildren<TextMeshProUGUI>();
         ShowCount();
 
-        StoreManager.OnSellItem += GetItem;
+        Store.OnSellItem += GetItem;
     }
 
     public void ClickCard() //아이템 UI 버튼 클릭 시
@@ -123,6 +123,6 @@ public class ItemCard : MonoBehaviour
 
     private void OnDisable()
     {
-        StoreManager.OnSellItem -= GetItem;
+        Store.OnSellItem -= GetItem;
     }
 }

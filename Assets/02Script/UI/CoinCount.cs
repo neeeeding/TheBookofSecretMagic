@@ -12,7 +12,7 @@ public class CoinCount : MonoBehaviour
     {
         coinText = GetComponentInChildren<TextMeshProUGUI>();
         Text();
-        StoreManager.OnSellItem += Sell;
+        Store.OnSellItem += Sell;
     }
 
     private void Sell(ItemSO obj)
@@ -27,6 +27,6 @@ public class CoinCount : MonoBehaviour
 
     private void OnDisable()
     {
-        StoreManager.OnSellItem -= Sell;
+        Store.OnSellItem -= Sell;
     }
 }

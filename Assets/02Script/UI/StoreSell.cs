@@ -24,17 +24,26 @@ public class StoreSell : MonoBehaviour
 
     public void ClickSell()
     {
-        if (GameManager.Instance.PlayerStat.playerCoin <= so.sellCoin)
+        if (so.category == ItemCategory.coin)
         {
-            GameManager.Instance.PlayerStat.playerCoin -= so.sellCoin;
+            GameManager.Instance.AddCoin(+so.sellCoin);
 
-            so.getItem = true;
-
-            StoreManager.OnSellItem?.Invoke(so);
+            Store.OnSellItem?.Invoke(so);
         }
         else
         {
-            //소지금 부족 안내
+            if (GameManager.Instance.PlayerStat.playerCoin <= so.sellCoin)
+            {
+                GameManager.Instance.AddCoin(-so.sellCoin);
+
+                so.getItem = true;
+
+                Store.OnSellItem?.Invoke(so);
+            }
+            else
+            {
+                //소지금 부족 안내
+            }
         }
     }
 }

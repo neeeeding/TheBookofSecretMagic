@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 825e62b335675af4691e873fe80be4f6
+guid: 8fe4e6be384c92741960596b188a1264
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Theo_front1
+      name: Theo_back1_0
       rect:
         serializedVersion: 2
         x: 22
@@ -131,14 +131,14 @@ TextureImporter:
         width: 20
         height: 55
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0c598d032d2ee834b93ca657bcaaf475
-      internalID: -1370909194
+      spriteID: ddfd10139c2812542b0609fb24013f32
+      internalID: -91578536
       vertices: []
       indices: 
       edges: []
@@ -154,7 +154,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Theo_front1: -1370909194
+      Theo_back1_0: -91578536
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -6,14 +6,8 @@ public class StoreEnter : MonoBehaviour
 {
     [SerializeField] private ButtonClickUI clickUI;
 
-    private void OnTriggerEnter2D(Collider2D collider)
+    public void ClickStore()
     {
-        if(collider.CompareTag("Player"))
-        {
-            collider.transform.position += new Vector3(1, -0.2f);
-            collider.GetComponent<Player>().ChangeState(PlayerState.Idle);
-
-            clickUI.Store(); 
-        }
+        clickUI.Store();
     }
 }

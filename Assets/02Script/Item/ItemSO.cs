@@ -28,12 +28,14 @@ public enum ItemCategory
     chat,
     hate,
     notbad,
+    coin,
+    mouse,
     none
 }
 
 public enum ItemType
 {
-    gift, //아직임
+    none, //없다.
 
     lovePoition, //포션
     staminaPoition,
@@ -65,5 +67,17 @@ public enum ItemType
 
     perfectGlass, //생태계 유리병
 
-    none //없다.
+    coin, //코인
+
+    restyMouse, //커서
+    chrisMouse, //커서
+    theoMouse, //커서
+    noahMouse, //커서
+    niaMouse, //커서
+    villainMouse, //커서
+    harryMouse, //커서
+    danielMouse, //커서
+    pioMouse, //커서
+
+    gift //아직임
 }

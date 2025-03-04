@@ -8,12 +8,15 @@ public class ItemCardManager : MonoBehaviour
     private void Awake()
     {
         ItemCardSetActive();
-        StoreManager.OnSellItem += ActionItemActive;
+        Store.OnSellItem += ActionItemActive;
     }
 
     private void ActionItemActive(ItemSO so)
     {
-        ItemCardSetActive();
+        if(so.category != ItemCategory.mouse && so.category != ItemCategory.coin)
+        {
+            ItemCardSetActive();
+        }
     }
 
     private void ItemCardSetActive()
@@ -29,6 +32,6 @@ public class ItemCardManager : MonoBehaviour
 
     private void OnDisable()
     {
-        StoreManager.OnSellItem -= ActionItemActive;
+        Store.OnSellItem -= ActionItemActive;
     }
 }

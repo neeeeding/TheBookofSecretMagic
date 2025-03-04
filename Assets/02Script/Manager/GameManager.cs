@@ -32,6 +32,13 @@ public class GameManager : Singleton<GameManager>
         StartCoroutine(nowDate());
     }
 
+    public void AddCoin(int num)
+    {
+        PlayerStat.playerCoin += num;
+        //PlayerPrefs.SetInt("Coin", PlayerStat.playerCoin);
+        //PlayerPrefs.Save();
+    }
+
     private void AwakeDate()
     {
         PlayerStat.year = PlayerPrefs.GetInt("Year");
