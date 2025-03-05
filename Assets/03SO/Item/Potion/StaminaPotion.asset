@@ -15,5 +15,7 @@ MonoBehaviour:
   itemName: StaminaPotion
   category: 1
   itemType: 2
+  sellCoin: 5
+  getItem: 0
   isUse: 0
   itemImage: {fileID: 0}

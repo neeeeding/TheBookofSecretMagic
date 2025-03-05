@@ -18,10 +18,22 @@ MonoBehaviour:
   waterMagic: 0
   copyMagic: 0
   potionMagic: 0
-  playerCoin: 0
-  job: 0
-  year: 0
-  month: 0
-  day: 0
-  hour: 0
+  playerCoin: 5
+  playerSpeed: 1
+  job: 6
+  resty: 0
+  chris: 0
+  theo: 0
+  pio: 0
+  noah: 0
+  nia: 0
+  villain: 0
+  harry: 0
+  daniel: 0
+  lastText: "\uB9C8\uC9C0\uB9C9 \uB300\uD654\uAC00 \uC5C6\uC2B5\uB2C8\uB2E4."
+  year: 2000
+  month: 1
+  day: 1
+  hour: 1
   minute: 0
+  allItem: []

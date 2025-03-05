@@ -43,6 +43,11 @@ public class ItemCard : MonoBehaviour
         Store.OnSellItem += GetItem;
     }
 
+    public void SO(ItemSO itemSO)
+    {
+        so = itemSO;
+    }
+
     public void ClickCard() //아이템 UI 버튼 클릭 시
     {
         if (!useTrue) HoldItem();

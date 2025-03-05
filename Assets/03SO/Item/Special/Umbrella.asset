@@ -15,5 +15,7 @@ MonoBehaviour:
   itemName: Umbrella
   category: 3
   itemType: 10
+  sellCoin: 10
+  getItem: 0
   isUse: 0
   itemImage: {fileID: 0}

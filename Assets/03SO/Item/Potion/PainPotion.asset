@@ -15,5 +15,7 @@ MonoBehaviour:
   itemName: PainPotion
   category: 1
   itemType: 3
+  sellCoin: 5
+  getItem: 0
   isUse: 0
   itemImage: {fileID: 0}

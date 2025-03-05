@@ -15,6 +15,7 @@ MonoBehaviour:
   itemName: Box
   category: 4
   itemType: 18
+  sellCoin: 3
   getItem: 1
   isUse: 1
   itemImage: {fileID: 0}

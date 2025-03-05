@@ -15,5 +15,7 @@ MonoBehaviour:
   itemName: Glasses
   category: 5
   itemType: 19
+  sellCoin: 15
+  getItem: 0
   isUse: 0
   itemImage: {fileID: 0}

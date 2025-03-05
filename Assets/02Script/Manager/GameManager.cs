@@ -6,6 +6,7 @@ using UnityEngine;
 public class GameManager : Singleton<GameManager> 
 {
     public PlayerStatSO PlayerStat;
+    public ItemSO[] ItemSO;
 
     public Player Player;
 

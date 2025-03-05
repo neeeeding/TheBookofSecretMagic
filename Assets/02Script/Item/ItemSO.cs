@@ -10,6 +10,8 @@ public class ItemSO : ScriptableObject
     public ItemCategory category; //카테고리
     public ItemType itemType; //아이템 종류
 
+    public int itemCount; //아이템 개수
+
     public int sellCoin; //파는 가격
 
     public bool getItem; //아이템을 얻었는지.
@@ -61,6 +63,7 @@ public enum ItemType
     
     glasses, //속마음을 보는 안경 (올바른 선택지)
     readingGlasses, //돋보기 (선호하는 아이템 2개)
+    emptyGlass, //빈 유리병
 
     worm, //벌레 들
     trashGlass, //실패한 유리병

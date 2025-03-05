@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: TheoMouse
   category: 9
-  itemType: 27
+  itemType: 28
   sellCoin: 0
   getItem: 0
   isUse: 0

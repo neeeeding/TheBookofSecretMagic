@@ -5,10 +5,22 @@ using UnityEngine;
 
 public class ItemCardManager : MonoBehaviour
 {
+    [SerializeField] private ItemSO[] itemSOs;
+    [SerializeField] private GameObject itemCard;
     private void Awake()
     {
         ItemCardSetActive();
         Store.OnSellItem += ActionItemActive;
+        //AddAllItems();
+    }
+
+    private void AddAllItems()
+    {
+        for(int i = 0; i < itemSOs.Length; i++)
+        {
+            GameObject card = Instantiate(itemCard, transform);
+            card.GetComponent<ItemCard>().SO(itemSOs[i]);
+        }
     }
 
     private void ActionItemActive(ItemSO so)

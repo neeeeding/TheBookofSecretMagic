@@ -15,5 +15,7 @@ MonoBehaviour:
   itemName: FryingPan
   category: 3
   itemType: 14
+  sellCoin: 7
+  getItem: 0
   isUse: 0
   itemImage: {fileID: 0}

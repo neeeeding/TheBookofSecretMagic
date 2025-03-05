@@ -15,5 +15,7 @@ MonoBehaviour:
   itemName: Drug
   category: 4
   itemType: 17
+  sellCoin: 999
+  getItem: 0
   isUse: 0
   itemImage: {fileID: 0}

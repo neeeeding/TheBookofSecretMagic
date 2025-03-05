@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: HarryMouse
   category: 9
-  itemType: 31
+  itemType: 32
   sellCoin: 0
   getItem: 0
   isUse: 0

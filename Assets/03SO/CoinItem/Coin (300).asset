@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Coin 300
   category: 8
-  itemType: 24
+  itemType: 25
   sellCoin: 300
   getItem: 0
   isUse: 0

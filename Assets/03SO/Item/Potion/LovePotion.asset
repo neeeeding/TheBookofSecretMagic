@@ -15,5 +15,7 @@ MonoBehaviour:
   itemName: LovePotion
   category: 1
   itemType: 1
+  sellCoin: 15
+  getItem: 0
   isUse: 0
   itemImage: {fileID: 0}

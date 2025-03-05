@@ -15,5 +15,7 @@ MonoBehaviour:
   itemName: ForagingBin
   category: 3
   itemType: 16
+  sellCoin: 13
+  getItem: 0
   isUse: 0
   itemImage: {fileID: 0}

@@ -15,5 +15,7 @@ MonoBehaviour:
   itemName: HotPack
   category: 3
   itemType: 13
+  sellCoin: 5
+  getItem: 0
   isUse: 0
   itemImage: {fileID: 0}

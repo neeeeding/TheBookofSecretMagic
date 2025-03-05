@@ -15,5 +15,7 @@ MonoBehaviour:
   itemName: Broomstick
   category: 3
   itemType: 11
+  sellCoin: 20
+  getItem: 0
   isUse: 0
   itemImage: {fileID: 0}

@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b0d2b966b3f67054aafe02d8f5568df1, type: 3}
-  m_Name: Flower
+  m_Name: EmptyGlass
   m_EditorClassIdentifier: 
-  itemName: Flower
+  itemName: EmptyGlass
   category: 3
-  itemType: 15
-  sellCoin: 15
+  itemType: 21
+  sellCoin: 5
   getItem: 0
   isUse: 0
   itemImage: {fileID: 0}
