@@ -45,7 +45,7 @@ public class Save : MonoBehaviour
         {
             GameObject loadCard = Instantiate(oneLoadCard, content.transform);
             loadCard.GetComponent<LoadCard>().ClcikSave(inputName.text);
-            File.AppendAllText($"{Save.path}/SaveName", $"{inputName.text}\n");
+            File.AppendAllText($"{path}/SaveName", $"{inputName.text}\n");
 
             CloseMessage();
         } //파일명 겹치는거 고려
@@ -61,7 +61,11 @@ public class Save : MonoBehaviour
         for(int i = 0; i < fileNames.Length; i++)
         {
             GameObject loadCard = Instantiate(oneLoadCard, content.transform);
-            loadCard.GetComponent<LoadCard>().ClcikSave(fileNames[i]);
+
+            string data = File.ReadAllText($"{path}/{fileNames[i]}");
+            PlayerStatSC stat = JsonUtility.FromJson<PlayerStatSC>(data);
+
+            loadCard.GetComponent<LoadCard>().AwakeLoadSave(fileNames[i],stat );
         }
     }
 }

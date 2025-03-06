@@ -21,11 +21,18 @@ public class LoadCard : MonoBehaviour
             CardSetting();
         }
     }
+
+    public void AwakeLoadSave(string name, PlayerStatSC saveStat) //전거 다시 로드하기
+    {
+        fileName = name;
+        Setting(saveStat);
+    }
+
     public void ClcikSave(string name) //파일 이름까지 작성한 상태에서 완료 누를 때
     {
         fileName = name;
 
-        Setting();
+        Setting(GameManager.Instance.PlayerStat);
 
         string data = JsonUtility.ToJson(GameManager.Instance.PlayerStat);
 
@@ -35,7 +42,9 @@ public class LoadCard : MonoBehaviour
     public void ClickLoad() //불러오기 누를 때
     {
         string data = File.ReadAllText($"{Save.path}/{fileName}");
-        GameManager.Instance.PlayerStat = JsonUtility.FromJson<PlayerStatSO>(data);
+        PlayerStatSC stat = JsonUtility.FromJson<PlayerStatSC>(data);
+        GameManager.Instance.PlayerStat = stat;
+        GameManager.CoinText?.Invoke();
     }
 
     private void CardSetting() //카드 세팅
@@ -45,9 +54,9 @@ public class LoadCard : MonoBehaviour
         dateText.text = date;
     }
 
-    private void Setting() //첨에 세팅
+    private void Setting(PlayerStatSC saveStat ) //첨에 세팅
     {
-        PlayerStatSO stat = GameManager.Instance.PlayerStat;
+        PlayerStatSC stat = saveStat;
 
         last = stat.lastText;
 

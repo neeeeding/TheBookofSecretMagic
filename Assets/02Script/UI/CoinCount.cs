@@ -12,14 +12,8 @@ public class CoinCount : MonoBehaviour
     {
         coinText = GetComponentInChildren<TextMeshProUGUI>();
         Text();
-        Store.OnSellItem += Sell;
+        GameManager.CoinText += Text;
     }
-
-    private void Sell(ItemSO obj)
-    {
-        Text();
-    }
-
     private void Text()
     {
         coinText.text = GameManager.Instance.PlayerStat.playerCoin.ToString();
@@ -27,6 +21,6 @@ public class CoinCount : MonoBehaviour
 
     private void OnDisable()
     {
-        Store.OnSellItem -= Sell;
+        GameManager.CoinText -= Text;
     }
 }

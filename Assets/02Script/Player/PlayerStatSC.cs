@@ -2,9 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "PlayerStatSO", menuName = "SO/PlayerStatSO")]
-
-public class PlayerStatSO : ScriptableObject
+public class PlayerStatSC
 {
     [Range(0,100)]
     public float backMagic;

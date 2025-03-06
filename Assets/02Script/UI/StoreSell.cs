@@ -29,6 +29,7 @@ public class StoreSell : MonoBehaviour
             GameManager.Instance.AddCoin(+so.sellCoin);
 
             Store.OnSellItem?.Invoke(so);
+            GameManager.CoinText?.Invoke();
         }
         else
         {
@@ -39,6 +40,7 @@ public class StoreSell : MonoBehaviour
                 so.getItem = true;
 
                 Store.OnSellItem?.Invoke(so);
+                GameManager.CoinText?.Invoke();
             }
             else
             {

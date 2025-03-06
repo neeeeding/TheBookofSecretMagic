@@ -5,10 +5,12 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager> 
 {
-    public PlayerStatSO PlayerStat;
+    public PlayerStatSC PlayerStat;
     public ItemSO[] ItemSO;
 
     public Player Player;
+
+    public static Action CoinText;
 
     [ContextMenu("ResetDate")]
     public void ResetDate()
@@ -26,6 +28,9 @@ public class GameManager : Singleton<GameManager>
     {
         Player = gameObject.GetComponent<Player>();
 
+        PlayerStat = new PlayerStatSC();
+        PlayerStat.ResetStat();
+
         PlayerStat.playerSpeed = 1f;
 
         //AwakeDate();
@@ -33,9 +38,15 @@ public class GameManager : Singleton<GameManager>
         StartCoroutine(nowDate());
     }
 
+    private void Update()
+    {
+        print(PlayerStat.playerCoin);
+    }
+
     public void AddCoin(int num)
     {
         PlayerStat.playerCoin += num;
+        GameManager.CoinText?.Invoke();
         //PlayerPrefs.SetInt("Coin", PlayerStat.playerCoin);
         //PlayerPrefs.Save();
     }
