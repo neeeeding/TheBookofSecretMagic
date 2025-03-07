@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ButtonClickUI : MonoBehaviour
+public class UIManager : MonoBehaviour
 {
     [SerializeField] private GameObject chat;
     [Space(10f)]
@@ -37,6 +37,14 @@ public class ButtonClickUI : MonoBehaviour
         InGame();
     }
 
+    private void Update()
+    {
+        if(isProfile || isSetting || isLikeabilityGuide || isLikeItem || isMap || isSetting || isSave || isCoin || isStore)
+        {
+            PlayerMobileInput.Instance.NoInput();
+        }
+    }
+
     public void InGame() //게임으로
     {
         AllHide();
@@ -45,6 +53,7 @@ public class ButtonClickUI : MonoBehaviour
         store.SetActive(false);
         SettingAll();
         Time.timeScale = 1f;
+        PlayerMobileInput.Instance.CanInput();
     }
 
     public void Coin() //코인 상점

@@ -33,8 +33,9 @@ public class StoreSell : MonoBehaviour
         }
         else
         {
-            if (GameManager.Instance.PlayerStat.playerCoin <= so.sellCoin)
+            if (GameManager.Instance.PlayerStat.playerCoin >= so.sellCoin)
             {
+                print("인마");
                 GameManager.Instance.AddCoin(-so.sellCoin);
 
                 so.getItem = true;
@@ -44,6 +45,7 @@ public class StoreSell : MonoBehaviour
             }
             else
             {
+                print("야");
                 //소지금 부족 안내
             }
         }

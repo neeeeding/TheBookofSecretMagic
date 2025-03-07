@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMobileInput : MonoBehaviour
+public class PlayerMobileInput : Singleton<PlayerMobileInput>
 {
     public static Action<Vector2> mousePos;
 
@@ -25,11 +25,13 @@ public class PlayerMobileInput : MonoBehaviour
 
     public void NoInput()
     {
+        print("¸ØÃç");
         canInput = false;
     }
 
     public void CanInput()
     {
+        print("¹Ù·Î°¡º¸ÀÚ");
         canInput = true;
     }
 }

@@ -20,6 +20,7 @@ public class GameManager : Singleton<GameManager>
         PlayerPrefs.SetInt("Day", 1);
         PlayerPrefs.SetInt("Hour", 1);
         PlayerPrefs.SetInt("Minute", 0);
+        PlayerPrefs.SetInt("Coin", 5);
 
         PlayerPrefs.Save();
     }
@@ -33,22 +34,16 @@ public class GameManager : Singleton<GameManager>
 
         PlayerStat.playerSpeed = 1f;
 
-        //AwakeDate();
+        AwakeDate();
 
         StartCoroutine(nowDate());
     }
-
-    private void Update()
-    {
-        print(PlayerStat.playerCoin);
-    }
-
     public void AddCoin(int num)
     {
         PlayerStat.playerCoin += num;
-        GameManager.CoinText?.Invoke();
-        //PlayerPrefs.SetInt("Coin", PlayerStat.playerCoin);
-        //PlayerPrefs.Save();
+        CoinText?.Invoke();
+        PlayerPrefs.SetInt("Coin", PlayerStat.playerCoin);
+        PlayerPrefs.Save();
     }
 
     private void AwakeDate()
@@ -58,6 +53,7 @@ public class GameManager : Singleton<GameManager>
         PlayerStat.day = PlayerPrefs.GetInt("Day");
         PlayerStat.hour = PlayerPrefs.GetInt("Hour");
         PlayerStat.minute = PlayerPrefs.GetInt("Minute");
+        PlayerStat.playerCoin = PlayerPrefs.GetInt("Coin");
     }
 
     private IEnumerator nowDate()
@@ -67,23 +63,28 @@ public class GameManager : Singleton<GameManager>
             yield return new WaitForSeconds(10f);
 
             PlayerStat.minute++;
+            PlayerPrefs.SetInt("Minute", PlayerStat.minute);
             if (PlayerStat.minute >= 60)
             {
+                PlayerPrefs.SetInt("Hour", PlayerStat.hour);
                 PlayerStat.minute = 0;
                 PlayerStat.hour++;
 
                 if(PlayerStat.hour >= 24)
                 {
+                    PlayerPrefs.SetInt("Day", PlayerStat.day);
                     PlayerStat.hour = 1;
                     PlayerStat.day++;
 
                     if(CompareMonth(PlayerStat.day, PlayerStat.month))
                     {
+                        PlayerPrefs.SetInt("Month", PlayerStat.month);
                         PlayerStat.day = 1;
                         PlayerStat.month++;
 
                         if(PlayerStat.month > 12)
                         {
+                            PlayerPrefs.SetInt("Year", PlayerStat.year);
                             PlayerStat.year++;
                         }
                     }
