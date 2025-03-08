@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class ItemHold : MonoBehaviour
 {
-    [SerializeField] private ItemSO so;
+    public ItemSO so;
 
 }

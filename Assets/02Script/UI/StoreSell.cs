@@ -35,17 +35,13 @@ public class StoreSell : MonoBehaviour
         {
             if (GameManager.Instance.PlayerStat.playerCoin >= so.sellCoin)
             {
-                print("인마");
                 GameManager.Instance.AddCoin(-so.sellCoin);
-
-                so.getItem = true;
 
                 Store.OnSellItem?.Invoke(so);
                 GameManager.CoinText?.Invoke();
             }
             else
             {
-                print("야");
                 //소지금 부족 안내
             }
         }

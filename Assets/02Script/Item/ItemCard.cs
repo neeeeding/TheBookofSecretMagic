@@ -8,8 +8,6 @@ public class ItemCard : MonoBehaviour
 {
     [SerializeField] private ItemSO so; //아이템 정보
 
-    [SerializeField] private GameObject itemPrefabs; //실제 아이템
-
     [SerializeField] private int countItme; //아이템 소지 개수
 
     private static ItemCard currentUseItem; //현재 사용중인 아이템
@@ -18,6 +16,11 @@ public class ItemCard : MonoBehaviour
     private TextMeshProUGUI countText; //소지 개수 텍스트
     private Image cardImage; //아이템 이미지
 
+    private ItemHold realItem;
+
+    private int itemCount; //아이템 개수
+    private bool getItem; //아이템을 얻었는지.
+    private bool isUse; //들고 있는중
 
     [ContextMenu("ResetCount")]
     public void ResetCount()
@@ -32,8 +35,6 @@ public class ItemCard : MonoBehaviour
         cardImage = GetComponent<Image>();
         //cardImage.sprite = so.itemImage;
         PlayerPrefs.SetInt(so.name, 1);
-        HideItem();
-        cardImage.color = Color.white;
 
 
         countItme = PlayerPrefs.GetInt(so.name);
@@ -42,45 +43,46 @@ public class ItemCard : MonoBehaviour
 
         Store.OnSellItem += GetItem;
     }
-
-    public void SO(ItemSO itemSO)
+    public void SetCard(ItemSO mySO, ItemHold item)
     {
-        so = itemSO;
+        so = mySO;
+        realItem = item;
+        HideItem();
     }
 
     public void ClickCard() //아이템 UI 버튼 클릭 시
     {
         if (!useTrue) HoldItem();
-        else if (useTrue && !so.isUse) { currentUseItem.HideItem(); HoldItem(); }
-        else if (useTrue && so.isUse) HideItem();
+        else if (useTrue && !isUse) { currentUseItem.HideItem(); HoldItem(); }
+        else if (useTrue && isUse) HideItem();
         else return;
     }
 
     private void HoldItem() //아이템 활성화
     {
         cardImage.color = new Color(95 / 225f, 95 / 225f, 95 / 225f, 1);
-        so.isUse = true;
+        isUse = true;
         useTrue = true;
         currentUseItem = this;
 
-        itemPrefabs.transform.SetParent( GameManager.Instance.Player.transform,false); //플레이어로 부모 변경
-        itemPrefabs.SetActive(true);
+        realItem.gameObject.SetActive(true);
+        realItem.so = so;
     }
 
     public void HideItem() //아이템 비활성화
     {
         cardImage.color = Color.white;
-        so.isUse = false;
+        isUse = false;
         useTrue = false;
         currentUseItem = null;
 
-        itemPrefabs.transform.SetParent(transform, false);
-        itemPrefabs.SetActive(false);
+        realItem.gameObject.SetActive(false);
+        realItem.so = null;
     }
 
     public bool HaveItem() //이미 얻은 아이템 인지
     {
-        return so.getItem;
+        return getItem;
     }
 
     private void HideCard() //카드 숨기기
@@ -108,7 +110,7 @@ public class ItemCard : MonoBehaviour
             PlayerPrefs.SetInt(so.name, --countItme);
             if (countItme < 1)
             {
-                so.getItem = false;
+                getItem = false;
                 HideCard();
                 return;
             }
@@ -120,7 +122,7 @@ public class ItemCard : MonoBehaviour
     {
         if(currentSO == so)
         {
-            so.getItem = true;
+            getItem = true;
             PlayerPrefs.SetInt(so.name, ++countItme);
             ShowCount();
         }

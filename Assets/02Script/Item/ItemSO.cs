@@ -10,12 +10,7 @@ public class ItemSO : ScriptableObject
     public ItemCategory category; //카테고리
     public ItemType itemType; //아이템 종류
 
-    public int itemCount; //아이템 개수
-
     public int sellCoin; //파는 가격
-
-    public bool getItem; //아이템을 얻었는지.
-    public bool isUse; //들고 있는중
 
     public Sprite itemImage; //생긴거
 }

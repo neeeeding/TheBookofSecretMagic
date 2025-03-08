@@ -5,13 +5,14 @@ using UnityEngine;
 
 public class ItemCardManager : MonoBehaviour
 {
-    [SerializeField] private ItemSO[] itemSOs;
-    [SerializeField] private GameObject itemCard;
+    [SerializeField] private ItemSO[] itemSOs; //들기가 가능한 아이템
+    [SerializeField] private GameObject itemCard; //아이템 카드
+    [SerializeField] private ItemHold item; //아이템
     private void Awake()
     {
         ItemCardSetActive();
         Store.OnSellItem += ActionItemActive;
-        //AddAllItems();
+        AddAllItems();
     }
 
     private void AddAllItems()
@@ -19,7 +20,8 @@ public class ItemCardManager : MonoBehaviour
         for(int i = 0; i < itemSOs.Length; i++)
         {
             GameObject card = Instantiate(itemCard, transform);
-            card.GetComponent<ItemCard>().SO(itemSOs[i]);
+            ItemCard cardSc = card.GetComponent<ItemCard>();
+            cardSc.SetCard(itemSOs[i], item);
         }
     }
 

@@ -25,13 +25,11 @@ public class PlayerMobileInput : Singleton<PlayerMobileInput>
 
     public void NoInput()
     {
-        print("¸ØÃç");
         canInput = false;
     }
 
     public void CanInput()
     {
-        print("¹Ù·Î°¡º¸ÀÚ");
         canInput = true;
     }
 }
