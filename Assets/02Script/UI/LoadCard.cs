@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using TMPro;
+using System;
 
 public class LoadCard : MonoBehaviour
 {
+    public static Action OnLoad;
+
     private string fileName;
     private string last;
     private string date;
@@ -44,6 +47,7 @@ public class LoadCard : MonoBehaviour
         string data = File.ReadAllText($"{Save.path}/{fileName}");
         PlayerStatSC stat = JsonUtility.FromJson<PlayerStatSC>(data);
         GameManager.Instance.PlayerStat = stat;
+        OnLoad?.Invoke();
         GameManager.CoinText?.Invoke();
     }
 

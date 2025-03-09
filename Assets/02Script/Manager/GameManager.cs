@@ -1,4 +1,5 @@
 using System;
+using System.Reflection;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,13 +7,13 @@ using UnityEngine;
 public class GameManager : Singleton<GameManager> 
 {
     public PlayerStatSC PlayerStat;
-
     public Player Player;
+    public Dictionary<ItemType, int> Items = new Dictionary<ItemType, int>();
 
-    public static Action CoinText;
+    public static Action CoinText;  //코인 수 갱신 (텍스트)
 
     [ContextMenu("ResetDate")]
-    public void ResetDate()
+    public void ResetDate() //초기화 하기
     {
         PlayerPrefs.SetInt("Year", 1);
         PlayerPrefs.SetInt("Month", 1);
@@ -33,11 +34,13 @@ public class GameManager : Singleton<GameManager>
 
         PlayerStat.playerSpeed = 1f;
 
-        AwakeDate();
+        AwakeData();
+
+        LoadCard.OnLoad += AddItems;
 
         StartCoroutine(nowDate());
     }
-    public void AddCoin(int num)
+    public void AddCoin(int num) //코인 수
     {
         PlayerStat.playerCoin += num;
         CoinText?.Invoke();
@@ -45,7 +48,24 @@ public class GameManager : Singleton<GameManager>
         PlayerPrefs.Save();
     }
 
-    private void AwakeDate()
+    public void AddItemCount(ItemCategory category,ItemType type,int num) //얻은, 잃은 아이템 수들
+    {
+        Items[type] += num;
+
+        //변수 찾기
+        string itemName = type.ToString();
+        if(category != ItemCategory.mouse)
+        {
+            itemName += "Count";
+        }
+        FieldInfo field = PlayerStat.GetType().GetField(itemName, BindingFlags.Public | BindingFlags.Instance);
+        if (field != null && field.FieldType == typeof(int))
+        {
+            field.SetValue(PlayerStat, Items[type]);
+        }
+    }
+
+    private void AwakeData() //값 세팅
     {
         PlayerStat.year = PlayerPrefs.GetInt("Year");
         PlayerStat.month = PlayerPrefs.GetInt("Month");
@@ -53,9 +73,57 @@ public class GameManager : Singleton<GameManager>
         PlayerStat.hour = PlayerPrefs.GetInt("Hour");
         PlayerStat.minute = PlayerPrefs.GetInt("Minute");
         PlayerStat.playerCoin = PlayerPrefs.GetInt("Coin");
+
+        AddItems();
     }
 
-    private IEnumerator nowDate()
+    private void AddItems()
+    {
+        Items.Clear();
+
+        Items.Add(ItemType.lovePoition, PlayerStat.lovePoitionCount);
+        Items.Add(ItemType.staminaPoition, PlayerStat.staminaPoitionCount);
+        Items.Add(ItemType.painPoition, PlayerStat.painPoitionConut);
+
+        Items.Add(ItemType.blackbook, PlayerStat.blackbookCount);
+        Items.Add(ItemType.healbook, PlayerStat.healbookCount);
+        Items.Add(ItemType.firebook, PlayerStat.firebookCount);
+        Items.Add(ItemType.waterbook, PlayerStat.waterbookCount);
+        Items.Add(ItemType.copybook, PlayerStat.copybookCount);
+        Items.Add(ItemType.potionbook, PlayerStat.potionbookCount);
+
+        Items.Add(ItemType.umbrella, PlayerStat.umbrellaCount);
+        Items.Add(ItemType.broomstick, PlayerStat.broomstickCount);
+        Items.Add(ItemType.fan, PlayerStat.fanCount);
+        Items.Add(ItemType.hotPack, PlayerStat.hotPackCount);
+        Items.Add(ItemType.fryingPan, PlayerStat.fryingPanCount);
+        Items.Add(ItemType.flower, PlayerStat.flowerCount);
+        Items.Add(ItemType.foragingBin, PlayerStat.foragingBinCount);
+
+        Items.Add(ItemType.drug, PlayerStat.drugCount);
+        Items.Add(ItemType.box, PlayerStat.boxCount);
+        Items.Add(ItemType.glasses, PlayerStat.glassesCount);
+        Items.Add(ItemType.readingGlasses, PlayerStat.readingGlassesCount);
+        Items.Add(ItemType.emptyGlass, PlayerStat.emptyGlassCount);
+
+        Items.Add(ItemType.worm, PlayerStat.wormCount);
+        Items.Add(ItemType.trashGlass, PlayerStat.trashGlassCount);
+        Items.Add(ItemType.perfectGlass, PlayerStat.perfectGlassCount);
+
+        Items.Add(ItemType.restyMouse, PlayerStat.restyMouse);
+        Items.Add(ItemType.chrisMouse, PlayerStat.chrisMouse);
+        Items.Add(ItemType.theoMouse, PlayerStat.theoMouse);
+        Items.Add(ItemType.noahMouse, PlayerStat.noahMouse);
+        Items.Add(ItemType.niaMouse, PlayerStat.niaMouse);
+        Items.Add(ItemType.villainMouse, PlayerStat.villainMouse);
+        Items.Add(ItemType.harryMouse, PlayerStat.harryMouse);
+        Items.Add(ItemType.danielMouse, PlayerStat.danielMouse);
+        Items.Add(ItemType.pioMouse, PlayerStat.pioMouse);
+
+        Items.Add(ItemType.gift, PlayerStat.giftCount);
+    }
+
+    private IEnumerator nowDate() //시간세는거
     {
         while (true)
         {
@@ -93,7 +161,7 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    private bool CompareMonth(int day, int month)
+    private bool CompareMonth(int day, int month) //월 계산
     {
         if (day < 28) return false;
 
@@ -109,6 +177,11 @@ public class GameManager : Singleton<GameManager>
             return false;
         }
 
+    }
+
+    private void OnDisable()
+    {
+        LoadCard.OnLoad -= AddItems;
     }
 }
 

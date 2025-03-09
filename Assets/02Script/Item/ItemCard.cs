@@ -37,9 +37,8 @@ public class ItemCard : MonoBehaviour
         PlayerPrefs.SetInt(so.name, 1);
 
 
-        countItme = PlayerPrefs.GetInt(so.name);
+        //countItme = PlayerPrefs.GetInt(so.name);
         countText = GetComponentInChildren<TextMeshProUGUI>();
-        ShowCount();
 
         Store.OnSellItem += GetItem;
     }
@@ -48,6 +47,14 @@ public class ItemCard : MonoBehaviour
         so = mySO;
         realItem = item;
         HideItem();
+
+        getItem = GameManager.Instance.Items[mySO.itemType] <= 0 ? false : true;
+        countItme = GameManager.Instance.Items[mySO.itemType];
+        ShowCount();
+        if (!getItem)
+        {
+            HideCard();
+        }
     }
 
     public void ClickCard() //아이템 UI 버튼 클릭 시
@@ -80,8 +87,9 @@ public class ItemCard : MonoBehaviour
         realItem.so = null;
     }
 
-    public bool HaveItem() //이미 얻은 아이템 인지
+    public bool HaveItem(ItemSO currentSO) //이미 얻은 아이템 인지
     {
+        GetItem(currentSO);
         return getItem;
     }
 
@@ -107,7 +115,9 @@ public class ItemCard : MonoBehaviour
     {
         if(currentSO == so)
         {
-            PlayerPrefs.SetInt(so.name, --countItme);
+            GameManager.Instance.AddItemCount(so.category, so.itemType, -1);
+            countItme = GameManager.Instance.Items[currentSO.itemType];
+            //PlayerPrefs.SetInt(so.name, --countItme);
             if (countItme < 1)
             {
                 getItem = false;
@@ -122,8 +132,10 @@ public class ItemCard : MonoBehaviour
     {
         if(currentSO == so)
         {
+            GameManager.Instance.AddItemCount(so.category, so.itemType, 1);
+            countItme = GameManager.Instance.Items[currentSO.itemType];
             getItem = true;
-            PlayerPrefs.SetInt(so.name, ++countItme);
+            //PlayerPrefs.SetInt(so.name, ++countItme);
             ShowCount();
         }
     }

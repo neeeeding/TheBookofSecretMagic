@@ -10,7 +10,6 @@ public class ItemCardManager : MonoBehaviour
     [SerializeField] private ItemHold item; //æ∆¿Ã≈€
     private void Awake()
     {
-        ItemCardSetActive();
         Store.OnSellItem += ActionItemActive;
         AddAllItems();
     }
@@ -29,17 +28,12 @@ public class ItemCardManager : MonoBehaviour
     {
         if(so.category != ItemCategory.mouse && so.category != ItemCategory.coin)
         {
-            ItemCardSetActive();
-        }
-    }
-
-    private void ItemCardSetActive()
-    {
-        foreach (Transform card in gameObject.transform)
-        {
-            if (card.TryGetComponent(out ItemCard cardSc))
+            foreach (Transform card in gameObject.transform)
             {
-                card.gameObject.SetActive(cardSc.HaveItem());
+                if (card.TryGetComponent(out ItemCard cardSc))
+                {
+                    card.gameObject.SetActive(cardSc.HaveItem(so));
+                }
             }
         }
     }

@@ -53,7 +53,50 @@ public class PlayerStatSC
     public int hour;
     public int minute;
 
-    public ItemSO[] allItem;
+
+
+    public int lovePoitionCount; //포션
+    public int staminaPoitionCount;
+    public int painPoitionConut;
+
+    public int blackbookCount; //책
+    public int healbookCount;
+    public int firebookCount;
+    public int waterbookCount;
+    public int copybookCount;
+    public int potionbookCount;
+
+    public int umbrellaCount; //우산
+    public int broomstickCount; //빗자루 (순간이동 아이템)
+    public int fanCount; //부채
+    public int hotPackCount; //핫팩
+    public int fryingPanCount; //후라이팬
+    public int flowerCount; //꽃다발 (연애)
+    public int foragingBinCount; //곤충 채집통
+
+    public int drugCount; //마약
+    public int boxCount; //상자
+
+    public int glassesCount; //속마음을 보는 안경 (올바른 선택지)
+    public int readingGlassesCount; //돋보기 (선호하는 아이템 2개)
+    public int emptyGlassCount; //빈 유리병
+
+    public int wormCount; //벌레 들
+    public int trashGlassCount; //실패한 유리병
+
+    public int perfectGlassCount; //생태계 유리병
+
+    public int restyMouse; //커서
+    public int chrisMouse; //커서
+    public int theoMouse; //커서
+    public int noahMouse; //커서
+    public int niaMouse; //커서
+    public int villainMouse; //커서
+    public int harryMouse; //커서
+    public int danielMouse; //커서
+    public int pioMouse; //커서
+
+    public int giftCount; //아직임
 
     [ContextMenu("ResetStat")]
     public void ResetStat()
