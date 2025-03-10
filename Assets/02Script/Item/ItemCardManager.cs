@@ -10,7 +10,8 @@ public class ItemCardManager : MonoBehaviour
     [SerializeField] private ItemHold item; //æ∆¿Ã≈€
     private void Awake()
     {
-        Store.OnSellItem += ActionItemActive;
+        Store.OnSellItem += GetItem;
+        LoadCard.OnLoad += LoadItem;
         AddAllItems();
     }
 
@@ -24,7 +25,22 @@ public class ItemCardManager : MonoBehaviour
         }
     }
 
-    private void ActionItemActive(ItemSO so)
+    private void LoadItem()
+    {
+        for(int i = 0; i< itemSOs.Length; i++)
+        {
+            ItemSO so = itemSOs[i];
+            ActionItemActive(so,false);
+
+        }
+    }
+
+    private void GetItem(ItemSO so)
+    {
+
+    }
+
+    private void ActionItemActive(ItemSO so, bool b)
     {
         if(so.category != ItemCategory.mouse && so.category != ItemCategory.coin)
         {
@@ -40,6 +56,7 @@ public class ItemCardManager : MonoBehaviour
 
     private void OnDisable()
     {
-        Store.OnSellItem -= ActionItemActive;
+        Store.OnSellItem -= GetItem;
+        LoadCard.OnLoad -= LoadItem;
     }
 }

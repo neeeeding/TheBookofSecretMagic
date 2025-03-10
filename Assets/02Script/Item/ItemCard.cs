@@ -40,7 +40,6 @@ public class ItemCard : MonoBehaviour
         //countItme = PlayerPrefs.GetInt(so.name);
         countText = GetComponentInChildren<TextMeshProUGUI>();
 
-        Store.OnSellItem += GetItem;
     }
     public void SetCard(ItemSO mySO, ItemHold item)
     {
@@ -90,6 +89,7 @@ public class ItemCard : MonoBehaviour
     public bool HaveItem(ItemSO currentSO) //이미 얻은 아이템 인지
     {
         GetItem(currentSO);
+        UseItme(currentSO);
         return getItem;
     }
 
@@ -138,10 +138,5 @@ public class ItemCard : MonoBehaviour
             //PlayerPrefs.SetInt(so.name, ++countItme);
             ShowCount();
         }
-    }
-
-    private void OnDisable()
-    {
-        Store.OnSellItem -= GetItem;
     }
 }

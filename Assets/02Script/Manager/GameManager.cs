@@ -77,7 +77,7 @@ public class GameManager : Singleton<GameManager>
         AddItems();
     }
 
-    private void AddItems()
+    private void AddItems()//아이템 전부 추가
     {
         Items.Clear();
 

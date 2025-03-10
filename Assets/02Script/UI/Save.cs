@@ -18,6 +18,7 @@ public class Save : MonoBehaviour
     private void Awake()
     {
         path = Application.persistentDataPath + "/Save";
+        print(path);
 
         if (!Directory.Exists(path))
         {
