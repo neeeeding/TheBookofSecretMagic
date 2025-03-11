@@ -86,10 +86,11 @@ public class ItemCard : MonoBehaviour
         realItem.so = null;
     }
 
-    public bool HaveItem(ItemSO currentSO) //이미 얻은 아이템 인지
+    public bool HaveItem(ItemSO currentSO, bool b) //이미 얻은 아이템 인지
     {
         GetItem(currentSO);
-        UseItme(currentSO);
+        if(b)
+            UseItme(currentSO);
         return getItem;
     }
 

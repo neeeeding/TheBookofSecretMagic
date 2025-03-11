@@ -30,14 +30,14 @@ public class ItemCardManager : MonoBehaviour
         for(int i = 0; i< itemSOs.Length; i++)
         {
             ItemSO so = itemSOs[i];
-            ActionItemActive(so,false);
+            ActionItemActive(so,true);
 
         }
     }
 
     private void GetItem(ItemSO so)
     {
-
+        ActionItemActive(so, false);
     }
 
     private void ActionItemActive(ItemSO so, bool b)
@@ -48,7 +48,7 @@ public class ItemCardManager : MonoBehaviour
             {
                 if (card.TryGetComponent(out ItemCard cardSc))
                 {
-                    card.gameObject.SetActive(cardSc.HaveItem(so));
+                    card.gameObject.SetActive(cardSc.HaveItem(so,b));
                 }
             }
         }

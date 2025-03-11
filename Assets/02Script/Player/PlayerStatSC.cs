@@ -57,7 +57,7 @@ public class PlayerStatSC
 
     public int lovePoitionCount; //Æ÷¼Ç
     public int staminaPoitionCount;
-    public int painPoitionConut;
+    public int painPoitionCount;
 
     public int blackbookCount; //Ã¥
     public int healbookCount;
