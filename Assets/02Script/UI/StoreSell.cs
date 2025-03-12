@@ -39,10 +39,11 @@ public class StoreSell : MonoBehaviour
 
                 Store.OnSellItem?.Invoke(so);
                 GameManager.CoinText?.Invoke();
+                print("안목이 좋은걸? 그거 꽤 힘들게 얻었다고~");
             }
             else
             {
-                //소지금 부족 안내
+                print("어이구 손님, 돈이 부족한 모양인데?");
             }
         }
     }
