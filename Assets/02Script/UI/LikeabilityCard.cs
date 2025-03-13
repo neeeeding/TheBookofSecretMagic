@@ -13,9 +13,27 @@ public class LikeabilityCard : MonoBehaviour
     [SerializeField]private TMP_InputField memo; //메모
     private int loveValue; //호감도 (수)
 
+    private void Awake()
+    {
+        LoveUp(0);
+    }
+
     public void Click()
     {
         UIManager.Instance.LiKeItme();
+    }
+
+    public void InputText()
+    {
+        string value = memo.text;
+        PlayerPrefs.SetString(characterName.ToString(), value);
+    }
+
+    private void LoveUp(int value)
+    {
+        loveValue = value;
+        valueText.text = $"{loveValue} / 100 ";
+        valueSlider.value = loveValue / 100;
     }
 }
 
