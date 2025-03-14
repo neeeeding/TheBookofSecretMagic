@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI;
+using System.IO;
+using System.Reflection;
 
 public class LikeabilityCard : MonoBehaviour
 {
@@ -13,9 +16,11 @@ public class LikeabilityCard : MonoBehaviour
     [SerializeField]private TMP_InputField memo; //메모
     private int loveValue; //호감도 (수)
 
-    private void Awake()
+    private void Start()
     {
-        LoveUp(0);
+        memo.text = PlayerPrefs.GetString($"{characterName}Memo");
+        SaveMyLoveValue(false);
+        LoadCard.OnLoad += LoadData;
     }
 
     public void Click()
@@ -26,14 +31,52 @@ public class LikeabilityCard : MonoBehaviour
     public void InputText()
     {
         string value = memo.text;
-        PlayerPrefs.SetString(characterName.ToString(), value);
+        PlayerPrefs.SetString($"{characterName}Memo", value);
+        PlayerPrefs.Save();
     }
 
+    [ContextMenu("LoveLove")]
+    private void LoveLove()
+    {
+        LoveUp(10);
+    }
     private void LoveUp(int value)
     {
-        loveValue = value;
+        loveValue += value;
         valueText.text = $"{loveValue} / 100 ";
-        valueSlider.value = loveValue / 100;
+        valueSlider.value = loveValue;
+        PlayerPrefs.SetInt($"{characterName}Love", loveValue);
+        PlayerPrefs.Save();
+        SaveMyLoveValue(true);
+    }
+
+    private void LoadData()
+    {
+        SaveMyLoveValue(false);
+    }
+
+    private void SaveMyLoveValue(bool set)
+    {
+        FieldInfo field = GameManager.Instance.PlayerStat.GetType().GetField(characterName.ToString(), BindingFlags.Public | BindingFlags.Instance);
+        if(field != null && field.FieldType == typeof(int))
+        {
+            if(set)
+            {
+                field.SetValue(GameManager.Instance.PlayerStat, loveValue); //플레이어에게 저장해주기
+            }
+            else
+            {
+                PlayerPrefs.SetInt($"{characterName}Love", ((int)field.GetValue(GameManager.Instance.PlayerStat))); //값 저장하기. (실상은 불러오기)
+                PlayerPrefs.Save();
+                loveValue = PlayerPrefs.GetInt($"{characterName}Love");
+                LoveUp(0);
+            }
+        }
+    }
+
+    private void OnDisable()
+    {
+        LoadCard.OnLoad += LoadData;
     }
 }
 

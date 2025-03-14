@@ -3,6 +3,7 @@ using System.Reflection;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor.U2D.Aseprite;
 
 public class GameManager : Singleton<GameManager> 
 {
@@ -15,6 +16,8 @@ public class GameManager : Singleton<GameManager>
     [ContextMenu("ResetDate")]
     public void ResetDate() //초기화 하기
     {
+       //PlayerPrefs.DeleteAll();
+
         PlayerPrefs.SetInt("Year", 1);
         PlayerPrefs.SetInt("Month", 1);
         PlayerPrefs.SetInt("Day", 1);
@@ -27,9 +30,9 @@ public class GameManager : Singleton<GameManager>
 
     private void Awake()
     {
+        PlayerStat = new PlayerStatSC();
         Player = gameObject.GetComponent<Player>();
 
-        PlayerStat = new PlayerStatSC();
         PlayerStat.ResetStat();
 
         PlayerStat.playerSpeed = 1f;
@@ -50,7 +53,10 @@ public class GameManager : Singleton<GameManager>
         PlayerPrefs.SetInt("Minute", PlayerStat.minute);
         PlayerPrefs.SetInt("Coin", PlayerStat.playerCoin);
 
+        //호감도는 LikeabilityCard에서 해줌.
+
         AddItems(true);
+        PlayerPrefs.Save();
     }
     public void AddCoin(int num) //코인 수
     {
@@ -81,6 +87,9 @@ public class GameManager : Singleton<GameManager>
         PlayerStat.hour = PlayerPrefs.GetInt("Hour");
         PlayerStat.minute = PlayerPrefs.GetInt("Minute");
         PlayerStat.playerCoin = PlayerPrefs.GetInt("Coin");
+        PlayerStat.pio = PlayerPrefs.GetInt($"{CharacterName.pio}Love");
+
+
 
         AddItems(false);
     }
