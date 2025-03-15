@@ -87,7 +87,15 @@ public class GameManager : Singleton<GameManager>
         PlayerStat.hour = PlayerPrefs.GetInt("Hour");
         PlayerStat.minute = PlayerPrefs.GetInt("Minute");
         PlayerStat.playerCoin = PlayerPrefs.GetInt("Coin");
+        PlayerStat.resty = PlayerPrefs.GetInt($"{CharacterName.resty}Love");
+        PlayerStat.chris = PlayerPrefs.GetInt($"{CharacterName.chris}Love");
+        PlayerStat.theo = PlayerPrefs.GetInt($"{CharacterName.theo}Love");
         PlayerStat.pio = PlayerPrefs.GetInt($"{CharacterName.pio}Love");
+        PlayerStat.noah = PlayerPrefs.GetInt($"{CharacterName.noah}Love");
+        PlayerStat.nia = PlayerPrefs.GetInt($"{CharacterName.nia}Love");
+        PlayerStat.villain = PlayerPrefs.GetInt($"{CharacterName.villain}Love");
+        PlayerStat.harry = PlayerPrefs.GetInt($"{CharacterName.harry}Love");
+        PlayerStat.daniel = PlayerPrefs.GetInt($"{CharacterName.danie}Love");
 
 
 

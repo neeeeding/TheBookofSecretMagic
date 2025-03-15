@@ -889,7 +889,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6577663956220418827}
         m_TargetAssemblyTypeName: LoadCard, Assembly-CSharp
-        m_MethodName: DeleteMe
+        m_MethodName: ClcikDeleteBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

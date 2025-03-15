@@ -8,6 +8,7 @@ using System;
 public class LoadCard : MonoBehaviour
 {
     public static Action OnLoad;
+    public static Action<LoadCard> OnDelete;
 
     private string fileName;
     private string last;
@@ -69,6 +70,11 @@ public class LoadCard : MonoBehaviour
         date = $"{stat.month} / {stat.day}\n{(pm ? "오후" : "오전")} {(pm ? stat.hour - 12 : stat.hour)} : {stat.minute}";
 
         CardSetting();
+    }
+
+    public void ClcikDeleteBtn()
+    {
+        OnDelete?.Invoke(this);
     }
 
     public void DeleteMe() //파일 삭제
