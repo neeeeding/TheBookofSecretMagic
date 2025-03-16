@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StoreEnter : MonoBehaviour
 {
-    [SerializeField] private UIManager clickUI;
+    [SerializeField] private UISettingManager clickUI;
 
     public void ClickStore()
     {

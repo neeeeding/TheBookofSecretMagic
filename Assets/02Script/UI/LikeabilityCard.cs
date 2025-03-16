@@ -25,7 +25,7 @@ public class LikeabilityCard : MonoBehaviour
 
     public void Click()
     {
-        UIManager.Instance.LiKeItme();
+        UISettingManager.Instance.LiKeItme();
     }
 
     public void InputText()
