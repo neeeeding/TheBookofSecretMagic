@@ -8,10 +8,22 @@ public class ItemCardManager : MonoBehaviour
     [SerializeField] private ItemSO[] itemSOs; //들기가 가능한 아이템
     [SerializeField] private GameObject itemCard; //아이템 카드
     [SerializeField] private ItemHold item; //아이템
+
+    private static List<ItemSO> items; //비활성화 하는 애 때문에
+
     private void Awake()
     {
-        Store.OnSellItem += GetItem;
+        GameManager.OnStart += GameStart;
+    }
+
+    private void OnEnable()
+    {
         LoadCard.OnLoad += LoadItem;
+        Store.OnSellItem += GetItem;
+    }
+
+    private void GameStart()
+    {
         AddAllItems();
     }
 
@@ -19,6 +31,7 @@ public class ItemCardManager : MonoBehaviour
     {
         for(int i = 0; i < itemSOs.Length; i++)
         {
+            items.Add(itemSOs[i]);
             GameObject card = Instantiate(itemCard, transform);
             ItemCard cardSc = card.GetComponent<ItemCard>();
             cardSc.SetCard(itemSOs[i], item);
@@ -29,7 +42,7 @@ public class ItemCardManager : MonoBehaviour
     {
         for(int i = 0; i< itemSOs.Length; i++)
         {
-            ItemSO so = itemSOs[i];
+            ItemSO so = items[i];
             ActionItemActive(so,true);
 
         }
@@ -56,6 +69,7 @@ public class ItemCardManager : MonoBehaviour
 
     private void OnDisable()
     {
+        GameManager.OnStart -= GameStart;
         Store.OnSellItem -= GetItem;
         LoadCard.OnLoad -= LoadItem;
     }

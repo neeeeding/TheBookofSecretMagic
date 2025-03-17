@@ -5,13 +5,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor.U2D.Aseprite;
 
-public class GameManager : Singleton<GameManager> 
+public class GameManager : Singleton<GameManager>
 {
+    public static Action CoinText;  //코인 수 갱신 (텍스트)
+    public static Action OnStart; //모든 초기화 완료 후
+
     public PlayerStatSC PlayerStat;
     public Player Player;
     public Dictionary<ItemType, int> Items = new Dictionary<ItemType, int>();
-
-    public static Action CoinText;  //코인 수 갱신 (텍스트)
 
     [ContextMenu("ResetDate")]
     public void ResetDate() //초기화 하기
@@ -40,8 +41,14 @@ public class GameManager : Singleton<GameManager>
         AwakeData();
 
         LoadCard.OnLoad += LoadData;
-
+        
+        OnStart?.Invoke();
         StartCoroutine(nowDate());
+    }
+
+    private void Start()
+    {
+        OnStart?.Invoke();
     }
 
     private void LoadData() //로드하기

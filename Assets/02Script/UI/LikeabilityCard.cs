@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using static UnityEngine.Rendering.DebugUI;
 using System.IO;
 using System.Reflection;
+using System;
 
 public class LikeabilityCard : MonoBehaviour
 {
@@ -19,8 +20,13 @@ public class LikeabilityCard : MonoBehaviour
     private void Start()
     {
         memo.text = PlayerPrefs.GetString($"{characterName}Memo");
-        SaveMyLoveValue(false);
+        GameManager.OnStart += GameStart;
         LoadCard.OnLoad += LoadData;
+    }
+
+    private void GameStart()
+    {
+        SaveMyLoveValue(false);
     }
 
     public void Click()
@@ -76,6 +82,7 @@ public class LikeabilityCard : MonoBehaviour
 
     private void OnDisable()
     {
+        GameManager.OnStart -= GameStart;
         LoadCard.OnLoad += LoadData;
     }
 }

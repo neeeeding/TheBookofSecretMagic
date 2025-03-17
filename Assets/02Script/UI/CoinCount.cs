@@ -12,8 +12,14 @@ public class CoinCount : MonoBehaviour
     {
         coinText = GetComponentInChildren<TextMeshProUGUI>();
         Text();
+        GameManager.OnStart += GameStart;
+    }
+
+    private void GameStart()
+    {
         GameManager.CoinText += Text;
     }
+
     private void Text()
     {
         coinText.text = GameManager.Instance.PlayerStat.playerCoin.ToString();
@@ -21,6 +27,7 @@ public class CoinCount : MonoBehaviour
 
     private void OnDisable()
     {
+        GameManager.OnStart -= GameStart;
         GameManager.CoinText -= Text;
     }
 }
