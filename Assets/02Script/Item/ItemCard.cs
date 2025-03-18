@@ -39,9 +39,14 @@ public class ItemCard : MonoBehaviour
 
         //countItme = PlayerPrefs.GetInt(so.name);
         countText = GetComponentInChildren<TextMeshProUGUI>();
-
     }
-    public void SetCard(ItemSO mySO, ItemHold item)
+
+    private void OnEnable()
+    {
+        LoadCard.OnLoad += HideItem;
+    }
+
+    public void SetCard(ItemSO mySO, ItemHold item) //카드 정보 정해주기 (세팅 로드)
     {
         so = mySO;
         realItem = item;
@@ -139,5 +144,10 @@ public class ItemCard : MonoBehaviour
             //PlayerPrefs.SetInt(so.name, ++countItme);
             ShowCount();
         }
+    }
+
+    private void OnDisable()
+    {
+        LoadCard.OnLoad -= HideCard;
     }
 }
