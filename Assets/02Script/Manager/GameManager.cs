@@ -13,6 +13,7 @@ public class GameManager : Singleton<GameManager>
     public PlayerStatSC PlayerStat;
     public Player Player;
     public Dictionary<ItemType, int> Items = new Dictionary<ItemType, int>();
+    public bool isStart;
 
     [ContextMenu("ResetDate")]
     public void ResetDate() //초기화 하기
@@ -31,6 +32,7 @@ public class GameManager : Singleton<GameManager>
 
     private void Awake()
     {
+        isStart = false;
         PlayerStat = new PlayerStatSC();
         Player = gameObject.GetComponent<Player>();
 
@@ -41,14 +43,14 @@ public class GameManager : Singleton<GameManager>
         AwakeData();
 
         LoadCard.OnLoad += LoadData;
-        
-        OnStart?.Invoke();
+
         StartCoroutine(nowDate());
     }
 
     private void Start()
     {
         OnStart?.Invoke();
+        isStart = true;
     }
 
     private void LoadData() //로드하기
