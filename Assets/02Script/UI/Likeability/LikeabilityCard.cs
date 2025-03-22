@@ -86,16 +86,3 @@ public class LikeabilityCard : MonoBehaviour
         LoadCard.OnLoad += LoadData;
     }
 }
-
-public enum CharacterName
-{
-    resty,
-    chris,
-    theo,
-    noah,
-    nia,
-    villain,
-    harry,
-    danie,
-    pio
-}
