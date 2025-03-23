@@ -4,10 +4,34 @@ using UnityEngine;
 
 public class StoreEnter : MonoBehaviour
 {
-    [SerializeField] private UISettingManager clickUI;
+    private bool isStore;
+
+    private void Awake()
+    {
+        isStore = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            isStore = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            isStore = false;
+        }
+    }
 
     public void ClickStore()
     {
-        clickUI.Store();
+        if(isStore)
+        {
+            UISettingManager.Instance.Store();
+        }
     }
 }
