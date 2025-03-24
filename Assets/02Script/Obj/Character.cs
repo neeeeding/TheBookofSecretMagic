@@ -39,7 +39,7 @@ public class Character : MonoBehaviour
     {
         if (isChat)
         {
-            UISettingManager.Instance.Store();
+            UISettingManager.Instance.Chat();
         }
     }
 }

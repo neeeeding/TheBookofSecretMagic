@@ -39,7 +39,7 @@ public class UISettingManager : Singleton<UISettingManager>
 
     private void Update()
     {
-        if(isProfile || isSetting || isLikeabilityGuide || isLikeItem || isMap || isSetting || isSave || isCoin || isStore)
+        if ((isProfile || isSetting || isLikeabilityGuide || isLikeItem || isMap || isSetting || isSave || isCoin || isStore || isChat)&&PlayerMobileInput.Instance.CheckCanInput())
         {
             PlayerMobileInput.Instance.NoInput();
         }

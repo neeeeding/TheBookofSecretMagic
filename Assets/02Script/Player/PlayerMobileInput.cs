@@ -32,4 +32,9 @@ public class PlayerMobileInput : Singleton<PlayerMobileInput>
     {
         canInput = true;
     }
+
+    public bool CheckCanInput()
+    {
+        return canInput;
+    }
 }
