@@ -25,6 +25,7 @@ public class PlayerMobileInput : Singleton<PlayerMobileInput>
 
     public void NoInput()
     {
+        print("n");
         canInput = false;
     }
 

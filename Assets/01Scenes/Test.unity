@@ -4588,7 +4588,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 412723072}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1566133848}
+        m_TargetAssemblyTypeName: ChatBtn, Assembly-CSharp
+        m_MethodName: HideBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &412723072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7231,6 +7243,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1860815791}
   - {fileID: 772799789}
   - {fileID: 412723070}
   - {fileID: 1757820116}
@@ -9085,11 +9098,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1411302413}
+  - {fileID: 1566133846}
   - {fileID: 69054669}
   - {fileID: 575223704}
-  - {fileID: 2041707106}
-  - {fileID: 1566133846}
   - {fileID: 1186806791}
+  - {fileID: 2041707106}
   - {fileID: 660714039}
   - {fileID: 350848277}
   - {fileID: 964962046}
@@ -9112,6 +9125,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5beb4c1268970d947b57ac3bcb024ffc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inGame:
+  - {fileID: 1411302412}
+  - {fileID: 2041707105}
   chat: {fileID: 1566133847}
   store: {fileID: 69054668}
   coin: {fileID: 575223703}
@@ -9443,7 +9459,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 772799791}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1566133848}
+        m_TargetAssemblyTypeName: ChatBtn, Assembly-CSharp
+        m_MethodName: SkipBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &772799791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9784,7 +9812,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.0000076293945}
+  m_AnchoredPosition: {x: 0, y: 0.000015258789}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &794540643
@@ -14216,6 +14244,7 @@ GameObject:
   - component: {fileID: 1226920324}
   - component: {fileID: 1226920326}
   - component: {fileID: 1226920325}
+  - component: {fileID: 1226920327}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -14280,6 +14309,62 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1226920323}
   m_CullTransparentMesh: 1
+--- !u!114 &1226920327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226920323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1226920325}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1566133848}
+        m_TargetAssemblyTypeName: ChatBtn, Assembly-CSharp
+        m_MethodName: ShowBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1227548871
 GameObject:
   m_ObjectHideFlags: 0
@@ -18842,6 +18927,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1566133846}
   - component: {fileID: 1566133847}
+  - component: {fileID: 1566133848}
   m_Layer: 5
   m_Name: Chat
   m_TagString: Untagged
@@ -18862,7 +18948,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1226920324}
-  - {fileID: 1860815791}
   - {fileID: 1992790334}
   m_Father: {fileID: 729196524}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -18887,6 +18972,21 @@ MonoBehaviour:
   characterImage: {fileID: 1198504692}
   characterLoveGauge: {fileID: 362996726}
   characterLoveText: {fileID: 455278920}
+--- !u!114 &1566133848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1566133845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d57f5978feb61544591df9c0c64b7192, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chatObj: {fileID: 1992790333}
+  inGame:
+  - {fileID: 660714038}
 --- !u!1 &1568299105
 GameObject:
   m_ObjectHideFlags: 0
@@ -19305,9 +19405,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 729196525}
-        m_TargetAssemblyTypeName: UISettingManager, Assembly-CSharp
-        m_MethodName: Save
+      - m_Target: {fileID: 1566133848}
+        m_TargetAssemblyTypeName: ChatBtn, Assembly-CSharp
+        m_MethodName: LoadBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -26679,7 +26779,7 @@ GameObject:
   - component: {fileID: 1687112184}
   - component: {fileID: 1687112183}
   - component: {fileID: 1687112182}
-  - component: {fileID: 1687112186}
+  - component: {fileID: 1687112185}
   m_Layer: 0
   m_Name: cc
   m_TagString: Untagged
@@ -26789,7 +26889,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2110118600}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1687112186
+--- !u!114 &1687112185
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -27678,9 +27778,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 729196525}
-        m_TargetAssemblyTypeName: UISettingManager, Assembly-CSharp
-        m_MethodName: Save
+      - m_Target: {fileID: 1566133848}
+        m_TargetAssemblyTypeName: ChatBtn, Assembly-CSharp
+        m_MethodName: SaveBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -28101,11 +28201,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1566133846}
+  m_Father: {fileID: 621493110}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -233.5, y: 0}
+  m_AnchoredPosition: {x: -284.5, y: 656.1776}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1860815792
@@ -28152,13 +28252,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 1566133848}
+        m_TargetAssemblyTypeName: ChatBtn, Assembly-CSharp
+        m_MethodName: Likeability
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

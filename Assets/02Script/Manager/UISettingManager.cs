@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class UISettingManager : Singleton<UISettingManager>
 {
+    [SerializeField] private GameObject[] inGame;
+    [Space(10f)]
     [SerializeField] private ChatSetting chat;
     [Space(10f)]
     [SerializeField] private GameObject store;
@@ -21,7 +23,7 @@ public class UISettingManager : Singleton<UISettingManager>
     [Space(10f)]
     [SerializeField] private GameObject backBtn;
 
-    private bool isChat;
+    private bool isChat; // !isInGame
     private bool isStore;
     private bool isCoin;
     private bool isProfile;
@@ -147,6 +149,10 @@ public class UISettingManager : Singleton<UISettingManager>
 
         coin.SetActive(isCoin);
         chat.gameObject.SetActive(isChat);
+        foreach (GameObject obj in inGame)
+        {
+            obj.SetActive(!isChat);
+        }
         store.SetActive(isStore);
 
         bool all = isProfile || isSetting || isLikeabilityGuide || isLikeItem || isMap || isSetting || isSave;

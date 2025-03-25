@@ -34,6 +34,7 @@ public class Character : MonoBehaviour
 
     public void ClickCharacter()
     {
+        print("d");
         if (isChat)
         {
             OnChat?.Invoke(characterSO);

@@ -18,21 +18,16 @@ public class LikeabilityCard : MonoBehaviour
     [SerializeField]private TMP_InputField memo; //메모
     private int loveValue; //호감도 (수)
 
-    private void Start()
+    private void Awake()
     {
         //characterImage.sprite = character.characterImage;
         memo.text = PlayerPrefs.GetString($"{character.characterName}Memo");
-        GameManager.OnStart += GameStart;
+        GameManager.OnStart += LoadData;
     }
 
     private void OnEnable()
     {
         LoadCard.OnLoad += LoadData;
-    }
-
-    private void GameStart()
-    {
-        SaveMyLoveValue(false);
     }
 
     public void Click()
@@ -64,6 +59,7 @@ public class LikeabilityCard : MonoBehaviour
 
     private void LoadData()
     {
+        print("d");
         SaveMyLoveValue(false);
     }
 
@@ -88,7 +84,7 @@ public class LikeabilityCard : MonoBehaviour
 
     private void OnDisable()
     {
-        GameManager.OnStart -= GameStart;
+        GameManager.OnStart -= LoadData;
         LoadCard.OnLoad += LoadData;
     }
 }

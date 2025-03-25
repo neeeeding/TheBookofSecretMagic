@@ -1002,7 +1002,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uD53C\uC624"
+  m_text: "\uB808\uC2A4\uD2F0"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c987bd24d3b742d46a6a8bd18822633a, type: 2}
   m_sharedMaterial: {fileID: -7869641110087825125, guid: c987bd24d3b742d46a6a8bd18822633a, type: 2}
@@ -1472,7 +1472,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4a5e4e017de12a42b8298bc500677dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterName: 8
+  character: {fileID: 0}
+  characterImage: {fileID: 5850160159305215498}
   valueText: {fileID: 9154346138102169297}
   valueSlider: {fileID: 2568020204350059734}
   memo: {fileID: 290008615794874558}
