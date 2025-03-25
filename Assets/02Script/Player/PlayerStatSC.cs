@@ -132,7 +132,3 @@ public class PlayerStatSC
     }
 }
 
-public enum PlayerJob
-{
-    back, heal, fire, water, copy, potion, none
-}

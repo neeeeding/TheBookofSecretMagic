@@ -10,8 +10,9 @@ using System;
 
 public class LikeabilityCard : MonoBehaviour
 {
-    [SerializeField] private CharacterName characterName; //대상 이름
+    [SerializeField] private CharacterSO character; //대상 정보
 
+    [SerializeField] private Image characterImage;
     [SerializeField] private TextMeshProUGUI valueText; //호감도 표시 텍스트
     [SerializeField] private Slider valueSlider; //호감도 슬라이더
     [SerializeField]private TMP_InputField memo; //메모
@@ -19,8 +20,13 @@ public class LikeabilityCard : MonoBehaviour
 
     private void Start()
     {
-        memo.text = PlayerPrefs.GetString($"{characterName}Memo");
+        //characterImage.sprite = character.characterImage;
+        memo.text = PlayerPrefs.GetString($"{character.characterName}Memo");
         GameManager.OnStart += GameStart;
+    }
+
+    private void OnEnable()
+    {
         LoadCard.OnLoad += LoadData;
     }
 
@@ -37,7 +43,7 @@ public class LikeabilityCard : MonoBehaviour
     public void InputText()
     {
         string value = memo.text;
-        PlayerPrefs.SetString($"{characterName}Memo", value);
+        PlayerPrefs.SetString($"{character.characterName}Memo", value);
         PlayerPrefs.Save();
     }
 
@@ -51,7 +57,7 @@ public class LikeabilityCard : MonoBehaviour
         loveValue += value;
         valueText.text = $"{loveValue} / 100 ";
         valueSlider.value = loveValue;
-        PlayerPrefs.SetInt($"{characterName}Love", loveValue);
+        PlayerPrefs.SetInt($"{character.characterName}Love", loveValue);
         PlayerPrefs.Save();
         SaveMyLoveValue(true);
     }
@@ -63,7 +69,7 @@ public class LikeabilityCard : MonoBehaviour
 
     private void SaveMyLoveValue(bool set)
     {
-        FieldInfo field = GameManager.Instance.PlayerStat.GetType().GetField(characterName.ToString(), BindingFlags.Public | BindingFlags.Instance);
+        FieldInfo field = GameManager.Instance.PlayerStat.GetType().GetField(character.characterName.ToString(), BindingFlags.Public | BindingFlags.Instance);
         if(field != null && field.FieldType == typeof(int))
         {
             if(set)
@@ -72,9 +78,9 @@ public class LikeabilityCard : MonoBehaviour
             }
             else
             {
-                PlayerPrefs.SetInt($"{characterName}Love", ((int)field.GetValue(GameManager.Instance.PlayerStat))); //값 저장하기. (실상은 불러오기)
+                PlayerPrefs.SetInt($"{character.characterName}Love", ((int)field.GetValue(GameManager.Instance.PlayerStat))); //값 저장하기. (실상은 불러오기)
                 PlayerPrefs.Save();
-                loveValue = PlayerPrefs.GetInt($"{characterName}Love");
+                loveValue = GameManager.Instance.CharacterLoveValue(character.characterName);
                 LoveUp(0);
             }
         }

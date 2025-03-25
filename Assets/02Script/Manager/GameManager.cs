@@ -67,6 +67,34 @@ public class GameManager : Singleton<GameManager>
         AddItems(true);
         PlayerPrefs.Save();
     }
+
+    public int CharacterLoveValue(CharacterName character)
+    {
+        switch (character)
+        {
+            case CharacterName.resty:
+                return PlayerStat.resty;
+            case CharacterName.chris:
+                return PlayerStat.chris;
+            case CharacterName.theo:
+                return PlayerStat.theo;
+            case CharacterName.noah:
+                return PlayerStat.noah;
+            case CharacterName.nia:
+                return PlayerStat.nia;
+            case CharacterName.villain:
+                return PlayerStat.villain;
+            case CharacterName.harry:
+                return PlayerStat.harry;
+            case CharacterName.daniel:
+                return PlayerStat.daniel;
+            case CharacterName.pio:
+                return PlayerStat.pio;
+            default:
+                return 0;
+        }
+    }
+
     public void AddCoin(int num) //ÄÚÀÎ ¼ö
     {
         PlayerStat.playerCoin += num;
@@ -104,7 +132,7 @@ public class GameManager : Singleton<GameManager>
         PlayerStat.nia = PlayerPrefs.GetInt($"{CharacterName.nia}Love");
         PlayerStat.villain = PlayerPrefs.GetInt($"{CharacterName.villain}Love");
         PlayerStat.harry = PlayerPrefs.GetInt($"{CharacterName.harry}Love");
-        PlayerStat.daniel = PlayerPrefs.GetInt($"{CharacterName.danie}Love");
+        PlayerStat.daniel = PlayerPrefs.GetInt($"{CharacterName.daniel}Love");
 
 
 

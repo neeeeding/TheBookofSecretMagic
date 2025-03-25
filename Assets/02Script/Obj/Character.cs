@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,13 +6,9 @@ using UnityEngine.SocialPlatforms;
 
 public class Character : MonoBehaviour
 {
+    public static Action<CharacterSO> OnChat;
     [SerializeField] private CharacterSO characterSO;
-    private int love;
     private bool isChat;
-
-    private void MyLove()
-    {
-    }
 
 
     private void Awake()
@@ -39,7 +36,7 @@ public class Character : MonoBehaviour
     {
         if (isChat)
         {
-            UISettingManager.Instance.Chat();
+            OnChat?.Invoke(characterSO);
         }
     }
 }

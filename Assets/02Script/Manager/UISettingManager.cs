@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UISettingManager : Singleton<UISettingManager>
 {
-    [SerializeField] private GameObject chat;
+    [SerializeField] private ChatSetting chat;
     [Space(10f)]
     [SerializeField] private GameObject store;
     [Space(10f)]
@@ -33,8 +33,18 @@ public class UISettingManager : Singleton<UISettingManager>
 
     private void Awake()
     {
-        AllHide();
+        isChat = false;
         InGame();
+    }
+
+    private void OnEnable()
+    {
+        Character.OnChat += Chat;
+    }
+
+    private void OnDisable()
+    {
+        Character.OnChat -= Chat;
     }
 
     private void Update()
@@ -48,12 +58,17 @@ public class UISettingManager : Singleton<UISettingManager>
     public void InGame() //게임으로
     {
         AllHide();
-        chat.SetActive(false);
-        coin.SetActive(false);
-        store.SetActive(false);
         SettingAll();
         Time.timeScale = 1f;
         PlayerMobileInput.Instance.CanInput();
+    }
+
+    public void CloseChat() //채팅 닫기
+    {
+        AllHide();
+        isChat = false;
+        SettingAll();
+        chat.CurrentCharacter(null);
     }
 
     public void Coin() //코인 상점
@@ -70,11 +85,12 @@ public class UISettingManager : Singleton<UISettingManager>
         SettingAll();
     }
 
-    public void Chat() //채팅
+    public void Chat(CharacterSO so) //채팅
     {
         AllHide();
         isChat = true;
         SettingAll();
+        chat.CurrentCharacter(so);
     }
 
     public void Profile() //프로필
@@ -130,7 +146,7 @@ public class UISettingManager : Singleton<UISettingManager>
         save.SetActive(isSave);
 
         coin.SetActive(isCoin);
-        chat.SetActive(isChat);
+        chat.gameObject.SetActive(isChat);
         store.SetActive(isStore);
 
         bool all = isProfile || isSetting || isLikeabilityGuide || isLikeItem || isMap || isSetting || isSave;
@@ -143,7 +159,7 @@ public class UISettingManager : Singleton<UISettingManager>
     private void AllHide() //전부 숨기기
     {
         isCoin = false;
-        isChat = false;
+        //isChat = false;
         isStore = false;
         isProfile = false;
         isLikeItem = false;

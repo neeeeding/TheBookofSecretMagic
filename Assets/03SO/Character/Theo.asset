@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aebb4da6425cae49aa1ecafda4429de, type: 3}
   m_Name: Theo
   m_EditorClassIdentifier: 
-  name: 2
+  characterName: 4
+  characterJob: 1
+  characterImage: {fileID: 0}
