@@ -70,7 +70,7 @@ public class UISettingManager : Singleton<UISettingManager>
         AllHide();
         isChat = false;
         SettingAll();
-        chat.CurrentCharacter(null);
+        chat.CurrentCharacter(null,null);
     }
 
     public void Coin() //코인 상점
@@ -87,12 +87,12 @@ public class UISettingManager : Singleton<UISettingManager>
         SettingAll();
     }
 
-    public void Chat(CharacterSO so) //채팅
+    public void Chat(CharacterSO so, Character character) //채팅
     {
         AllHide();
         isChat = true;
         SettingAll();
-        chat.CurrentCharacter(so);
+        chat.CurrentCharacter(so, character);
     }
 
     public void Profile() //프로필

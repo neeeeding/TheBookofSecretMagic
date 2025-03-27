@@ -1473,6 +1473,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 0}
+  characterName: {fileID: 7045133562877178728}
   characterImage: {fileID: 5850160159305215498}
   valueText: {fileID: 9154346138102169297}
   valueSlider: {fileID: 2568020204350059734}

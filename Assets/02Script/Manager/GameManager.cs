@@ -68,7 +68,7 @@ public class GameManager : Singleton<GameManager>
         PlayerPrefs.Save();
     }
 
-    public int CharacterLoveValue(CharacterName character)
+    public int CharacterLoveValue(CharacterName character) //호감도 값 반환
     {
         switch (character)
         {

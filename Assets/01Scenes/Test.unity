@@ -10837,6 +10837,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterSO: {fileID: 11400000, guid: 4aba3809a35a8cf4ebb752ad2847268a, type: 2}
+  chapter: 0
+  finallNum: 0
 --- !u!58 &894962463
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -13772,9 +13774,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 1215562335
+  m_SortingLayer: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: 78951648, guid: cedbde902cf4c864a8139d8850bccea1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -19192,6 +19194,7 @@ GameObject:
   - component: {fileID: 1566133846}
   - component: {fileID: 1566133847}
   - component: {fileID: 1566133848}
+  - component: {fileID: 1566133849}
   m_Layer: 5
   m_Name: Chat
   m_TagString: Untagged
@@ -19232,6 +19235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 650e670f6f05ed241801a68889b578a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myDialog: {fileID: 0}
   characterName: {fileID: 1529721261}
   characterImage: {fileID: 1198504692}
   characterLoveGauge: {fileID: 362996726}
@@ -19251,6 +19255,18 @@ MonoBehaviour:
   chatObj: {fileID: 1992790333}
   inGame:
   - {fileID: 660714038}
+--- !u!114 &1566133849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1566133845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06b8b975ff3de934ba7ddeb7c6859722, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1568299105
 GameObject:
   m_ObjectHideFlags: 0

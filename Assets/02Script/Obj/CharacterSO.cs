@@ -7,10 +7,13 @@ using UnityEngine;
 public class CharacterSO : ScriptableObject
 {
     public CharacterName characterName;
-
+    [Space(10f)]
     public PlayerJob characterJob;
-
+    [Space(15f)]
     public Sprite characterImage;
+    [Space(20f)]
+    [Header("Dialog")]
+    public TextAsset[] characterDialog;
 }
 
 public enum CharacterName

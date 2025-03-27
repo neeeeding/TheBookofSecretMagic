@@ -12,6 +12,7 @@ public class LikeabilityCard : MonoBehaviour
 {
     [SerializeField] private CharacterSO character; //대상 정보
 
+    [SerializeField] private TextMeshProUGUI characterName; //대상 이름
     [SerializeField] private Image characterImage;
     [SerializeField] private TextMeshProUGUI valueText; //호감도 표시 텍스트
     [SerializeField] private Slider valueSlider; //호감도 슬라이더
@@ -20,6 +21,7 @@ public class LikeabilityCard : MonoBehaviour
 
     private void Awake()
     {
+        characterName.text = ChatSetting.Name<CharacterName>(character.characterName);
         //characterImage.sprite = character.characterImage;
         memo.text = PlayerPrefs.GetString($"{character.characterName}Memo");
         GameManager.OnStart += LoadData;
@@ -28,6 +30,7 @@ public class LikeabilityCard : MonoBehaviour
     private void OnEnable()
     {
         LoadCard.OnLoad += LoadData;
+        LoadData(); // 로드를 위해...
     }
 
     public void Click()
@@ -59,7 +62,6 @@ public class LikeabilityCard : MonoBehaviour
 
     private void LoadData()
     {
-        print("d");
         SaveMyLoveValue(false);
     }
 
