@@ -3762,6 +3762,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
+  Item: {fileID: 0}
   isStart: 0
 --- !u!1 &327934283
 GameObject:
@@ -6129,7 +6130,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab70fc45c90fe5647bc38897d9a20be3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  so: {fileID: 11400000, guid: b4bcf4f98e7c7864d9b4e97734d469dc, type: 2}
 --- !u!1 &520133728
 GameObject:
   m_ObjectHideFlags: 0
@@ -9128,7 +9128,7 @@ MonoBehaviour:
   inGame:
   - {fileID: 1411302412}
   - {fileID: 2041707105}
-  chat: {fileID: 1566133847}
+  chat: {fileID: 1566133849}
   store: {fileID: 69054668}
   coin: {fileID: 575223703}
   profile: {fileID: 1324085983}
@@ -19235,7 +19235,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 650e670f6f05ed241801a68889b578a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myDialog: {fileID: 0}
   characterName: {fileID: 1529721261}
   characterImage: {fileID: 1198504692}
   characterLoveGauge: {fileID: 362996726}
@@ -19267,6 +19266,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06b8b975ff3de934ba7ddeb7c6859722, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  setting: {fileID: 1566133847}
+  dialogText: {fileID: 73437864}
 --- !u!1 &1568299105
 GameObject:
   m_ObjectHideFlags: 0

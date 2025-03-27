@@ -6,24 +6,27 @@ using System;
 
 public class ChatSetting : MonoBehaviour
 {
-    [SerializeField] private Dialog myDialog;
-
     [SerializeField] private TextMeshProUGUI characterName; //이름
     [SerializeField] private Image characterImage; //사진
     [SerializeField] private Slider characterLoveGauge; //러브 게이지
     [SerializeField] private TextMeshProUGUI characterLoveText; //러브 게이지
 
-    private Character character;
-    private CharacterSO currentSO; //정보
-
-    public void CurrentCharacter(CharacterSO current, Character character) //첫 세팅
+    public void CurrentCharacter(CharacterSO current) //첫 세팅
     {
-        currentSO = current;
-        this.character = character;
         characterName.text = Name(current.characterName);
         //characterImage.sprite = character.characterImage;
-        characterLoveGauge.value = GameManager.Instance.CharacterLoveValue(currentSO.characterName);
-        characterLoveText.text = GameManager.Instance.CharacterLoveValue(currentSO.characterName).ToString();
+       if(current.characterName != CharacterName.me)
+        {
+            characterLoveGauge.gameObject.SetActive(true);
+            characterLoveText.gameObject.SetActive(true);
+            characterLoveGauge.value = GameManager.Instance.CharacterLoveValue(current.characterName);
+            characterLoveText.text = GameManager.Instance.CharacterLoveValue(current.characterName).ToString();
+        }
+        else
+        {
+            characterLoveGauge.gameObject.SetActive(false);
+            characterLoveText.gameObject.SetActive(false);
+        }
     }
 
     public static string Name<T>(T wantName)

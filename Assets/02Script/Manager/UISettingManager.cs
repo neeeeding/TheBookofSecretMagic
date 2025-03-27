@@ -6,7 +6,7 @@ public class UISettingManager : Singleton<UISettingManager>
 {
     [SerializeField] private GameObject[] inGame;
     [Space(10f)]
-    [SerializeField] private ChatSetting chat;
+    [SerializeField] private Dialog chat;
     [Space(10f)]
     [SerializeField] private GameObject store;
     [Space(10f)]
@@ -70,7 +70,7 @@ public class UISettingManager : Singleton<UISettingManager>
         AllHide();
         isChat = false;
         SettingAll();
-        chat.CurrentCharacter(null,null);
+        chat.DialogSetting(null,null);
     }
 
     public void Coin() //코인 상점
@@ -92,7 +92,7 @@ public class UISettingManager : Singleton<UISettingManager>
         AllHide();
         isChat = true;
         SettingAll();
-        chat.CurrentCharacter(so, character);
+        chat.DialogSetting(so, character);
     }
 
     public void Profile() //프로필

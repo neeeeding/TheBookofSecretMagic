@@ -6,7 +6,7 @@ using UnityEngine.SocialPlatforms;
 
 public class Character : MonoBehaviour
 {
-    //현재 memo, love, dialog 있음
+    //현재 memo, love, dialogfinallName, dialogchapter 있음
     public static Action<CharacterSO,Character> OnChat;
 
     [SerializeField] private CharacterSO characterSO;
@@ -18,7 +18,7 @@ public class Character : MonoBehaviour
     [ContextMenu("ResetAll")]
     private void R()
     {
-        finallNum = 0;
+        finallNum = 1;
         PlayerPrefs.SetInt($"{path}finallNum", finallNum);
         chapter = 0;
         PlayerPrefs.SetInt($"{path}chapter", chapter);
@@ -74,6 +74,7 @@ public class Character : MonoBehaviour
         {
             OnChat?.Invoke(characterSO,this);
             chapter++;
+            finallNum = 1;
             PlayerPrefs.SetInt($"{path}chapter", chapter);
             PlayerPrefs.Save();
         }

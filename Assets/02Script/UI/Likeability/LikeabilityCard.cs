@@ -21,7 +21,7 @@ public class LikeabilityCard : MonoBehaviour
 
     private void Awake()
     {
-        characterName.text = ChatSetting.Name<CharacterName>(character.characterName);
+        characterName.text = ChatSetting.Name(character.characterName);
         //characterImage.sprite = character.characterImage;
         memo.text = PlayerPrefs.GetString($"{character.characterName}Memo");
         GameManager.OnStart += LoadData;

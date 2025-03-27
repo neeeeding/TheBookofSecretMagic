@@ -15,3 +15,5 @@ MonoBehaviour:
   characterName: 3
   characterJob: 1
   characterImage: {fileID: 0}
+  characterDialog:
+  - {fileID: 4900000, guid: a79aad81f436e2c4eaa3b19d05d53c66, type: 3}

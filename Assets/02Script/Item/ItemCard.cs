@@ -77,7 +77,7 @@ public class ItemCard : MonoBehaviour
         currentUseItem = this;
 
         realItem.gameObject.SetActive(true);
-        realItem.so = so;
+        realItem.Setting(so, this);
     }
 
     public void HideItem() //아이템 비활성화
@@ -88,7 +88,7 @@ public class ItemCard : MonoBehaviour
         currentUseItem = null;
 
         realItem.gameObject.SetActive(false);
-        realItem.so = null;
+        realItem.Setting(null,null);
     }
 
     public bool HaveItem(ItemSO currentSO, bool b) //이미 얻은 아이템 인지

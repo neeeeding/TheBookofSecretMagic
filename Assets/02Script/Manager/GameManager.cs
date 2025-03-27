@@ -9,11 +9,16 @@ public class GameManager : Singleton<GameManager>
 {
     public static Action CoinText;  //코인 수 갱신 (텍스트)
     public static Action OnStart; //모든 초기화 완료 후
-
+    [Header("Setting")]
     public PlayerStatSC PlayerStat;
     public Player Player;
-    public Dictionary<ItemType, int> Items = new Dictionary<ItemType, int>();
+    [Space(20f)]
+    public ItemHold Item;
+    [Space(10f)]
     public bool isStart;
+    [Space(50f)]
+    [Header("Item")]
+    public Dictionary<ItemType, int> Items = new Dictionary<ItemType, int>();
 
     [ContextMenu("ResetDate")]
     public void ResetDate() //초기화 하기

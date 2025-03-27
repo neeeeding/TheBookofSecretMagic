@@ -4,6 +4,17 @@ using UnityEngine;
 
 public class ItemHold : MonoBehaviour
 {
-    public ItemSO so;
+    private ItemSO so;
+    private ItemCard card;
+    
+    public void Setting(ItemSO currentSO, ItemCard currentCard)
+    {
+        so = currentSO;
+        card = currentCard;
+    }
 
+    private void UseItem()
+    {
+        card.HideItem();
+    }
 }
