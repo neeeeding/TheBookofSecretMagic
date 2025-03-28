@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: TrashGlass
   m_EditorClassIdentifier: 
   itemName: TrashGlass
-  category: 6
-  itemType: 23
+  category: 6000
+  itemType: 6002
   sellCoin: 999
-  getItem: 0
-  isUse: 0
   itemImage: {fileID: 0}

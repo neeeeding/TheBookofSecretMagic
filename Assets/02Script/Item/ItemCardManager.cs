@@ -32,12 +32,12 @@ public class ItemCardManager : MonoBehaviour
         }
     }
 
-    private void GameStart()
+    private void GameStart() //스타트
     {
         AddAllItems();
     }
 
-    private void AddAllItems()
+    private void AddAllItems() //모든 아이템들 로드 (추가)
     {
         isSetting = true;
         for(int i = 0; i < itemSOs.Length; i++)
@@ -49,7 +49,7 @@ public class ItemCardManager : MonoBehaviour
         }
     }
 
-    private void LoadItem()
+    private void LoadItem() //로드
     {
         for(int i = 0; i< itemSOs.Length; i++)
         {
@@ -59,20 +59,20 @@ public class ItemCardManager : MonoBehaviour
         }
     }
 
-    private void GetItem(ItemSO so)
+    private void GetItem(ItemSO so) //얻은 아이템
     {
         ActionItemActive(so, false);
     }
 
     private void ActionItemActive(ItemSO so, bool b)
     {
-        if(so.category != ItemCategory.mouse && so.category != ItemCategory.coin)
+        if(so.category != ItemCategory.mouse && so.category != ItemCategory.coin) //코인이나 마우스 아닌 것들 만
         {
             foreach (Transform card in gameObject.transform)
             {
                 if (card.TryGetComponent(out ItemCard cardSc))
                 {
-                    card.gameObject.SetActive(cardSc.HaveItem(so,b));
+                    card.gameObject.SetActive(cardSc.HaveItem(so,b)); //얻은 아이템에 따라 카드 활성화
                 }
             }
         }

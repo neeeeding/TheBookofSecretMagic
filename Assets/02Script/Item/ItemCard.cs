@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System;
 
 public class ItemCard : MonoBehaviour
 {
+    public static Action<ItemSO> OnHoldItem; //들고 있는 아이템 전해주기
+
     [SerializeField] private ItemSO so; //아이템 정보
 
     [SerializeField] private int countItme; //아이템 소지 개수
@@ -78,6 +81,7 @@ public class ItemCard : MonoBehaviour
 
         realItem.gameObject.SetActive(true);
         realItem.Setting(so, this);
+        OnHoldItem?.Invoke(so);
     }
 
     public void HideItem() //아이템 비활성화
@@ -89,6 +93,7 @@ public class ItemCard : MonoBehaviour
 
         realItem.gameObject.SetActive(false);
         realItem.Setting(null,null);
+        OnHoldItem?.Invoke(null);
     }
 
     public bool HaveItem(ItemSO currentSO, bool b) //이미 얻은 아이템 인지

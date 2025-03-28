@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: ReadingGlasses
   m_EditorClassIdentifier: 
   itemName: ReadingGlasses
-  category: 5
-  itemType: 20
+  category: 5000
+  itemType: 5002
   sellCoin: 10
-  getItem: 0
-  isUse: 0
   itemImage: {fileID: 0}

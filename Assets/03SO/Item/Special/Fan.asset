@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: Fan
   m_EditorClassIdentifier: 
   itemName: Fan
-  category: 3
-  itemType: 12
+  category: 3000
+  itemType: 3003
   sellCoin: 10
-  getItem: 0
-  isUse: 0
   itemImage: {fileID: 0}

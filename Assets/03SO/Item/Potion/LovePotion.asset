@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: LovePotion
   m_EditorClassIdentifier: 
   itemName: LovePotion
-  category: 1
-  itemType: 1
+  category: 1000
+  itemType: 1001
   sellCoin: 15
-  getItem: 0
-  isUse: 0
   itemImage: {fileID: 0}

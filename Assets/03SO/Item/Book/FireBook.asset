@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FireBook
   m_EditorClassIdentifier: 
   itemName: Fire Book
-  category: 2
-  itemType: 6
-  isUse: 0
+  category: 2000
+  itemType: 2003
+  sellCoin: 0
   itemImage: {fileID: 0}

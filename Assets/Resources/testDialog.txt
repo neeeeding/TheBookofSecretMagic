@@ -1,6 +1,0 @@
-Chapter,Num,Text,Player,Position,OtherPosition
-0,1,안녕 네가 주인공이니?,pio,left,right
-0,2,응` 내가 주인공이야. 네 이름은 뭐야?,me,ritght,left
-0,3,어… 내가 왜 알려줘야해? 말해주기 싫은데?,pio,left,right
-0,4,그나저나 자리나 비켜줘.,pio,left,right
-0,5,너 때문에 못 지나가 잖아. (눈치가 없는 건가?),pio,left,right

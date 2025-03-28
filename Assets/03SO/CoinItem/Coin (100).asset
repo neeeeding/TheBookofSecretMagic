@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: Coin (100)
   m_EditorClassIdentifier: 
   itemName: Coin 100
-  category: 8
-  itemType: 25
+  category: 9000
+  itemType: 9001
   sellCoin: 100
-  getItem: 0
-  isUse: 0
   itemImage: {fileID: 0}

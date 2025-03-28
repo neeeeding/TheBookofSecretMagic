@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: Box
   m_EditorClassIdentifier: 
   itemName: Box
-  category: 4
-  itemType: 18
+  category: 4000
+  itemType: 4002
   sellCoin: 3
-  getItem: 1
-  isUse: 1
   itemImage: {fileID: 0}

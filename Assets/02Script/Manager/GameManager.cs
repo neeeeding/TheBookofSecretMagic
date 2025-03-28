@@ -10,10 +10,10 @@ public class GameManager : Singleton<GameManager>
     public static Action CoinText;  //코인 수 갱신 (텍스트)
     public static Action OnStart; //모든 초기화 완료 후
     [Header("Setting")]
-    public PlayerStatSC PlayerStat;
-    public Player Player;
+    public PlayerStatSC PlayerStat; //플레이어 정보
+    public Player Player; //플레이어 (state 조정 해줌(?))
     [Space(20f)]
-    public ItemHold Item;
+    public ItemSO Item; //들고 있는 아이템?
     [Space(10f)]
     public bool isStart;
     [Space(50f)]
@@ -48,6 +48,7 @@ public class GameManager : Singleton<GameManager>
         AwakeData();
 
         LoadCard.OnLoad += LoadData;
+        ItemCard.OnHoldItem += hold => Item = hold;
 
         StartCoroutine(nowDate());
     }

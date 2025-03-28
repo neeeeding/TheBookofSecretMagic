@@ -73,7 +73,7 @@ public class Character : MonoBehaviour
         if (isChat)
         {
             OnChat?.Invoke(characterSO,this);
-            chapter++;
+            //chapter++;
             finallNum = 1;
             PlayerPrefs.SetInt($"{path}chapter", chapter);
             PlayerPrefs.Save();

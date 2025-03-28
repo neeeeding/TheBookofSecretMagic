@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: Flower
   m_EditorClassIdentifier: 
   itemName: Flower
-  category: 3
-  itemType: 15
+  category: 3000
+  itemType: 3006
   sellCoin: 15
-  getItem: 0
-  isUse: 0
   itemImage: {fileID: 0}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PotionBook
   m_EditorClassIdentifier: 
   itemName: PotionBook
-  category: 2
-  itemType: 9
-  isUse: 0
+  category: 2000
+  itemType: 2006
+  sellCoin: 0
   itemImage: {fileID: 0}

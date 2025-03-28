@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: PainPotion
   m_EditorClassIdentifier: 
   itemName: PainPotion
-  category: 1
-  itemType: 3
+  category: 1000
+  itemType: 1003
   sellCoin: 5
-  getItem: 0
-  isUse: 0
   itemImage: {fileID: 0}

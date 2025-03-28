@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: Drug
   m_EditorClassIdentifier: 
   itemName: Drug
-  category: 4
-  itemType: 17
+  category: 4000
+  itemType: 4001
   sellCoin: 999
-  getItem: 0
-  isUse: 0
   itemImage: {fileID: 0}

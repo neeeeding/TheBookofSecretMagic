@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: PioMouse
   m_EditorClassIdentifier: 
   itemName: PioMouse
-  category: 9
-  itemType: 34
+  category: 10000
+  itemType: 10003
   sellCoin: 0
-  getItem: 0
-  isUse: 0
   itemImage: {fileID: 0}

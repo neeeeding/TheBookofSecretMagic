@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: Umbrella
   m_EditorClassIdentifier: 
   itemName: Umbrella
-  category: 3
-  itemType: 10
+  category: 3000
+  itemType: 3004
   sellCoin: 10
-  getItem: 0
-  isUse: 0
   itemImage: {fileID: 0}

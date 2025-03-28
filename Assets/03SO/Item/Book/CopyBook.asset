@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CopyBook
   m_EditorClassIdentifier: 
   itemName: CopyBook
-  category: 2
-  itemType: 8
-  isUse: 0
+  category: 2000
+  itemType: 2005
+  sellCoin: 0
   itemImage: {fileID: 0}

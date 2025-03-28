@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WaterBook
   m_EditorClassIdentifier: 
   itemName: WaterBook
-  category: 2
-  itemType: 7
-  isUse: 0
+  category: 2000
+  itemType: 2004
+  sellCoin: 0
   itemImage: {fileID: 0}

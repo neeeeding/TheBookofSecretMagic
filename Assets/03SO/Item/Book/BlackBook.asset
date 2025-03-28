@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BlackBook
   m_EditorClassIdentifier: 
   itemName: Black Book
-  category: 2
-  itemType: 4
-  isUse: 0
+  category: 2000
+  itemType: 2001
+  sellCoin: 0
   itemImage: {fileID: 0}

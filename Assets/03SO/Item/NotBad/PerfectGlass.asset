@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: PerfectGlass
   m_EditorClassIdentifier: 
   itemName: PerfectGlass
-  category: 7
-  itemType: 24
+  category: 7000
+  itemType: 7001
   sellCoin: 999
-  getItem: 0
-  isUse: 0
   itemImage: {fileID: 0}

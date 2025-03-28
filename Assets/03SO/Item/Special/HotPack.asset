@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: HotPack
   m_EditorClassIdentifier: 
   itemName: HotPack
-  category: 3
-  itemType: 13
+  category: 3000
+  itemType: 3004
   sellCoin: 5
-  getItem: 0
-  isUse: 0
   itemImage: {fileID: 0}

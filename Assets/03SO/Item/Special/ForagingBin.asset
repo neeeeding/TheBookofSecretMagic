@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: ForagingBin
   m_EditorClassIdentifier: 
   itemName: ForagingBin
-  category: 3
-  itemType: 16
+  category: 3000
+  itemType: 3007
   sellCoin: 13
-  getItem: 0
-  isUse: 0
   itemImage: {fileID: 0}

@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: VillianMouse
   m_EditorClassIdentifier: 
   itemName: VillianMouse
-  category: 9
-  itemType: 31
+  category: 10000
+  itemType: 10007
   sellCoin: 0
-  getItem: 0
-  isUse: 0
   itemImage: {fileID: 0}

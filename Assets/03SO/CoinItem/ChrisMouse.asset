@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: ChrisMouse
   m_EditorClassIdentifier: 
   itemName: ChrisMouse
-  category: 9
-  itemType: 27
+  category: 10000
+  itemType: 10002
   sellCoin: 0
-  getItem: 0
-  isUse: 0
   itemImage: {fileID: 0}

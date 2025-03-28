@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: FryingPan
   m_EditorClassIdentifier: 
   itemName: FryingPan
-  category: 3
-  itemType: 14
+  category: 3000
+  itemType: 3005
   sellCoin: 7
-  getItem: 0
-  isUse: 0
   itemImage: {fileID: 0}

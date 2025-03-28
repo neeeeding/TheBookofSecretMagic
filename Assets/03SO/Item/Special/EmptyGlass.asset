@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: EmptyGlass
   m_EditorClassIdentifier: 
   itemName: EmptyGlass
-  category: 3
-  itemType: 21
+  category: 3000
+  itemType: 3008
   sellCoin: 5
-  getItem: 0
-  isUse: 0
   itemImage: {fileID: 0}

@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: NiaMouse
   m_EditorClassIdentifier: 
   itemName: NiaMouse
-  category: 9
-  itemType: 30
+  category: 10000
+  itemType: 10006
   sellCoin: 0
-  getItem: 0
-  isUse: 0
   itemImage: {fileID: 0}

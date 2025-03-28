@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: Worm
   m_EditorClassIdentifier: 
   itemName: Worm
-  category: 6
-  itemType: 22
+  category: 6000
+  itemType: 6001
   sellCoin: 999
-  getItem: 0
-  isUse: 0
   itemImage: {fileID: 0}
