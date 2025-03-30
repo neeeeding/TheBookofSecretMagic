@@ -22,6 +22,12 @@ public class Dialog : MonoBehaviour
 
     private Character currentCharacter; //다음 대화임을 알려주려고
     private CharacterSO currentSO; //정보
+
+    public void ClickNext()
+    {
+        UISettingManager.Instance.CloseChat();
+    }
+
     public void DialogSetting(CharacterSO so, Character character) //세팅 해주기
     {
         currentCharacter = character;
