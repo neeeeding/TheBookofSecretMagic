@@ -34,9 +34,9 @@ public enum ItemType //종류
 {
     none = 0, //없다.
 
-    lovePoition = 1001, //포션
-    staminaPoition = 1002,
-    painPoition = 1003,
+    lovePotion = 1001, //포션
+    staminaPotion = 1002,
+    painPotion = 1003,
 
     blackbook = 2001, //책
     healbook = 2002,

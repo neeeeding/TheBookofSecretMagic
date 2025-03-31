@@ -7,6 +7,8 @@ using UnityEngine;
 
 public class Dialog : MonoBehaviour
 {
+    public static Action OnGame; //채팅 끝나면
+
     [Header("Component")]
     [SerializeField] private ChatSetting setting; //세팅 해주는 거
     [SerializeField] private TextMeshProUGUI dialogText; //대화
@@ -17,16 +19,11 @@ public class Dialog : MonoBehaviour
     [SerializeField] private Dictionary<DialogPosition, Vector2> characterPosition; //위치 지정
 
     private List<Dictionary<string,object>> dialog; //csv 대화
-    private int currentChapter; //현재 챕터
-    private int currentNum; //현재 번호
+    [SerializeField]private int currentChapter; //현재 챕터
+    [SerializeField]private int currentNum; //현재 번호
 
     private Character currentCharacter; //다음 대화임을 알려주려고
     private CharacterSO currentSO; //정보
-
-    public void ClickNext()
-    {
-        UISettingManager.Instance.CloseChat();
-    }
 
     public void DialogSetting(CharacterSO so, Character character) //세팅 해주기
     {
@@ -36,36 +33,63 @@ public class Dialog : MonoBehaviour
         currentChapter = nums[0];
         currentNum = nums[1];
         GetDialog();
+        DoChat();
     }
 
-    private void GetDialog() //대화 얻기. (List)
+    public void ClickNext() //다음으로
+    {
+        if( DoChat())
+        {
+            UISettingManager.Instance.CloseChat();
+            OnGame?.Invoke();
+        }
+    }
+
+    private void GetDialog() //대화 (챕터 번호) 얻기. (List)
     {
         TextAsset currentDialog = currentSO.characterDialog[0];
         dialog = CSVReader.Read(currentDialog);
         IsHoldItem();
     }
 
-    private void IsHoldItem() //들고 있는 아이템
+    private void IsHoldItem() //들고 있는 아이템 있다면
     {
         ItemSO so = GameManager.Instance.Item;
         if (so != null)
         {
             for(int i = 0; i< dialog.Count - 1; i++)
             {
-                print($"{dialog[i][DialogType.Item.ToString()]}");
-                print($"{so.itemType.ToString()}");
                 if (dialog[i][DialogType.Item.ToString()].ToString() == so.itemType.ToString()) //대화의 아이템 창과 들고 있는 아이템 찾기
                 {
-                    print("ㅇ");
+                    currentChapter = (int)dialog[i][DialogType.Chapter.ToString()];
+                    GameManager.Instance.AddItemCount(so.category, so.itemType, -1);
+                    break;
                 }
             }
         }
     }
 
-    private void DoChat(int dialogNum) //대화를 위한 배열 돌기
+    private bool DoChat() //대화를 위한 배열 돌기
     {
+        bool getOut = true;
         setting.CurrentCharacter(currentSO);
-        dialogText.text = $"{dialog[0][DialogType.Text.ToString()]}";
+        int currentChat = 0;
+        for(int i = 0; i < dialog.Count - 1; i++)
+        {
+            if (dialog[i][DialogType.Chapter.ToString()].ToString() == currentChapter.ToString() && dialog[i][DialogType.Num.ToString()].ToString() == currentNum.ToString()) //챕터랑 번호가 같으면
+            {
+                currentChat = i;
+                getOut = false;
+                break;
+            }
+            else
+            {
+                getOut = true;
+            }
+        }
+        dialogText.text = dialog[currentChat][DialogType.Text.ToString()].ToString();
+        currentNum++;
+        return getOut;
     }
 
     private T GetEnum<T>(/*out*/ T wantEnum, string value) where T : struct, Enum //enum 얻는거

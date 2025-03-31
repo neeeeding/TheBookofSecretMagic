@@ -68,13 +68,18 @@ public class Character : MonoBehaviour
         }
     }
 
+    public void NextChapter() //다음 챕터로 설정 해주기
+    {
+        chapter++;
+    }
+
     public void ClickCharacter() //대화 하기 (클릭)
     {
         if (isChat)
         {
+            finallNum = 1;
             OnChat?.Invoke(characterSO,this);
             //chapter++;
-            finallNum = 1;
             PlayerPrefs.SetInt($"{path}chapter", chapter);
             PlayerPrefs.Save();
         }

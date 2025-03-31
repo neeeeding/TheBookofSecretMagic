@@ -47,6 +47,7 @@ public class ItemCard : MonoBehaviour
     private void OnEnable()
     {
         LoadCard.OnLoad += HideItem;
+        Dialog.OnGame += HideItem;
     }
 
     public void SetCard(ItemSO mySO, ItemHold item) //카드 정보 정해주기 (세팅 로드)
@@ -122,7 +123,7 @@ public class ItemCard : MonoBehaviour
         }
     }
 
-    private void UseItme(ItemSO currentSO) //아이템을 사용함
+    private void UseItme(ItemSO currentSO) //아이템을 사용함 (잃음)
     {
         if(currentSO == so)
         {
@@ -153,6 +154,7 @@ public class ItemCard : MonoBehaviour
 
     private void OnDisable()
     {
-        LoadCard.OnLoad -= HideCard;
+        LoadCard.OnLoad -= HideItem;
+        Dialog.OnGame -= HideItem;
     }
 }

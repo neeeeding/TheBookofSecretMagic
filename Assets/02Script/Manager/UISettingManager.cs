@@ -70,7 +70,8 @@ public class UISettingManager : Singleton<UISettingManager>
         AllHide();
         isChat = false;
         SettingAll();
-        chat.DialogSetting(null,null);
+        InGame();
+        //chat.DialogSetting(null,null);
     }
 
     public void Coin() //코인 상점

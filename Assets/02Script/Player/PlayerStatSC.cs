@@ -55,9 +55,9 @@ public class PlayerStatSC
 
 
 
-    public int lovePoitionCount; //포션
-    public int staminaPoitionCount;
-    public int painPoitionCount;
+    public int lovePotionCount; //포션
+    public int staminaPotionCount;
+    public int painPotionCount;
 
     public int blackbookCount; //책
     public int healbookCount;

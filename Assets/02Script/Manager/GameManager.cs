@@ -23,7 +23,7 @@ public class GameManager : Singleton<GameManager>
     [ContextMenu("ResetDate")]
     public void ResetDate() //초기화 하기
     {
-       //PlayerPrefs.DeleteAll();
+       PlayerPrefs.DeleteAll();
 
         PlayerPrefs.SetInt("Year", 1);
         PlayerPrefs.SetInt("Month", 1);
