@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor.U2D.Aseprite;
+using UnityEngine.TextCore.Text;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -72,6 +73,17 @@ public class GameManager : Singleton<GameManager>
 
         AddItems(true);
         PlayerPrefs.Save();
+    }
+
+    public void SetLove(CharacterSO character, int love) //정보 넣고 해당 호감도 스탯에서의 이름 찾아서 전해주기
+    {
+        FieldInfo field = PlayerStat.GetType().GetField(character.characterName.ToString(), BindingFlags.Public | BindingFlags.Instance);
+        if (field != null && field.FieldType == typeof(int))
+        {
+            field.SetValue(PlayerStat, (int)field.GetValue(PlayerStat) + love); //저장해주기
+            PlayerPrefs.SetInt($"{character.characterName}Love", (int)field.GetValue(PlayerStat)); //값 저장하기. (실상은 불러오기)
+            PlayerPrefs.Save();
+        }
     }
 
     public int CharacterLoveValue(CharacterName character) //호감도 값 반환
