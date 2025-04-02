@@ -71,6 +71,16 @@ public class Dialog : MonoBehaviour
         }
     }
 
+    private void ClickSkip()
+    {
+        int nextNum = (int)dialog[currentChat][DialogType.SkipNum.ToString()] - 1;
+        currentChat += nextNum - currentNum == 0 ?
+            +1 : nextNum - currentNum; //다음 번호 정해주기. (마지막이 본인이면 1추가로 나가게 해버리기.(대화 자체는 줄어버림.(???)))
+        currentNum = nextNum + 1;
+        DoChat();
+    }
+
+
     private void SelectChat(int selectNum) //선택된 선택지가 있을 시 (대화 계속 진행)
     {
         currentChat += selectNum - currentNum; //선택된 번호로 바꿔주기
@@ -198,11 +208,13 @@ public class Dialog : MonoBehaviour
     private void OnEnable()
     {
         SelectBtn.OnSelect += SelectChat;
+        ChatBtn.OnSkipChat += ClickSkip;
     }
 
     private void OnDisable()
     {
         SelectBtn.OnSelect -= SelectChat;
+        ChatBtn.OnSkipChat -= ClickSkip;
     }
     #endregion
 }

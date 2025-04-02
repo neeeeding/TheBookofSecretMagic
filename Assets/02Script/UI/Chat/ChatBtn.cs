@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ChatBtn : MonoBehaviour
 {
+    public static Action OnSkipChat;
+
     [SerializeField] private GameObject chatObj;
     [SerializeField] private GameObject[] inGame;
 
@@ -19,7 +22,7 @@ public class ChatBtn : MonoBehaviour
 
     public void SkipBtn() //스킵
     {
-
+        OnSkipChat?.Invoke();
     }
 
     public void HideBtn() //비활성화 버튼
