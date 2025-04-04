@@ -2,6 +2,8 @@ using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 using TMPro;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
@@ -71,7 +73,7 @@ public class Dialog : MonoBehaviour
         }
     }
 
-    private void ClickSkip()
+    private void ClickSkip() //스킵 버튼 눌렀을 때
     {
         int nextNum = (int)dialog[currentChat][DialogType.SkipNum.ToString()] - 1;
         currentChat += nextNum - currentNum == 0 ?
@@ -80,6 +82,24 @@ public class Dialog : MonoBehaviour
         DoChat();
     }
 
+    private void RenewalText(string final) // 마지막 텍스트 갱신
+    {
+        GameManager.Instance.PlayerStat.lastText = $"{ ChatSetting.Name(currentSO.characterName)} : {final}"; //마지막 텍스트
+
+        //해당 캐릭터 갱신
+        FieldInfo field = GameManager.Instance.FindCharacterLastText(currentSO.characterName);
+
+        //저장할 위치 (이름)
+        string path = $"{currentSO.characterName}Dialog";
+
+        if (field != null)
+        {
+            field.SetValue(GameManager.Instance.PlayerStat,new int[] { currentChapter,currentNum});
+            PlayerPrefs.SetInt($"{path}chapter", currentChapter);
+            PlayerPrefs.SetInt($"{path}finallNum", currentNum);
+            PlayerPrefs.Save();
+        }
+    }
 
     private void SelectChat(int selectNum) //선택된 선택지가 있을 시 (대화 계속 진행)
     {
@@ -138,6 +158,7 @@ public class Dialog : MonoBehaviour
                 +1 : nextNum - currentNum; //다음 번호 정해주기. (마지막이 본인이면 1추가로 나가게 해버리기.(대화 자체는 줄어버림.(???)))
             currentNum = nextNum + 1;
         }
+        RenewalText(chatText); //마지막 텍스트 갱신
         return getOut;
     }
 

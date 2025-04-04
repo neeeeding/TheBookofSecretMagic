@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
 
@@ -15,29 +16,27 @@ public class Character : MonoBehaviour
     private string path;
     private bool isChat;
 
-    [ContextMenu("ResetAll")]
-    private void R()
-    {
-        finallNum = 1;
-        PlayerPrefs.SetInt($"{path}finallNum", finallNum);
-        chapter = 0;
-        PlayerPrefs.SetInt($"{path}chapter", chapter);
-        PlayerPrefs.Save();
-    }
-
-
     private void Awake()
     {
         isChat = false;
         path = $"{characterSO.characterName}Dialog";
         finallNum = PlayerPrefs.GetInt($"{path}finallNum");
         chapter = PlayerPrefs.GetInt($"{path}chapter");
-
     }
 
     public void Load() //로드 될 때
     {
+        FieldInfo field = GameManager.Instance.FindCharacterLastText(characterSO.characterName);
 
+        if (field != null)
+        {
+            int[] chapterNum = (int[])field.GetValue(GameManager.Instance.PlayerStat);
+            finallNum = chapterNum[0];
+            chapter = chapterNum[1];
+            PlayerPrefs.SetInt($"{path}chapter", chapter);
+            PlayerPrefs.SetInt($"{path}finallNum", finallNum);
+            PlayerPrefs.Save();
+        }
     }
 
     public void NextDialog() //대화가 진행 될 때마다
@@ -83,5 +82,15 @@ public class Character : MonoBehaviour
             PlayerPrefs.SetInt($"{path}chapter", chapter);
             PlayerPrefs.Save();
         }
+    }
+
+    private void OnEnable()
+    {
+        LoadCard.OnLoad += Load;
+    }
+
+    private void OnDisable()
+    {
+        LoadCard.OnLoad -= Load;
     }
 }

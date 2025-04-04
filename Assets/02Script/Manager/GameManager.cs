@@ -60,6 +60,16 @@ public class GameManager : Singleton<GameManager>
         isStart = true;
     }
 
+    public FieldInfo FindCharacterLastText(CharacterName character) //마지막 텍스트 그거 반환
+    {
+        FieldInfo field = PlayerStat.GetType().GetField($"{character}LastText", BindingFlags.Public | BindingFlags.Instance);
+        if(field != null && field.FieldType == typeof(int[]))
+        {
+            return field;
+        }
+        return null;
+    }
+
     private void LoadData() //로드하기
     {
         PlayerPrefs.SetInt("Year", PlayerStat.year);
@@ -88,29 +98,19 @@ public class GameManager : Singleton<GameManager>
 
     public int CharacterLoveValue(CharacterName character) //호감도 값 반환
     {
-        switch (character)
+        return character switch
         {
-            case CharacterName.resty:
-                return PlayerStat.resty;
-            case CharacterName.chris:
-                return PlayerStat.chris;
-            case CharacterName.theo:
-                return PlayerStat.theo;
-            case CharacterName.noah:
-                return PlayerStat.noah;
-            case CharacterName.nia:
-                return PlayerStat.nia;
-            case CharacterName.villain:
-                return PlayerStat.villain;
-            case CharacterName.harry:
-                return PlayerStat.harry;
-            case CharacterName.daniel:
-                return PlayerStat.daniel;
-            case CharacterName.pio:
-                return PlayerStat.pio;
-            default:
-                return 0;
-        }
+            CharacterName.resty => PlayerStat.resty,
+            CharacterName.chris => PlayerStat.chris,
+            CharacterName.theo => PlayerStat.theo,
+            CharacterName.noah => PlayerStat.noah,
+            CharacterName.nia => PlayerStat.nia,
+            CharacterName.villain => PlayerStat.villain,
+            CharacterName.harry => PlayerStat.harry,
+            CharacterName.daniel => PlayerStat.daniel,
+            CharacterName.pio => PlayerStat.pio,
+            _=> 0
+        };
     }
 
     public void AddCoin(int num) //코인 수
@@ -157,7 +157,7 @@ public class GameManager : Singleton<GameManager>
         AddItems(false);
     }
 
-    private FieldInfo GetField(ItemCategory category, ItemType type) //필드 찾기(stat에서)
+    private FieldInfo GetField(ItemCategory category, ItemType type) //아이템변수들을 필드 찾기(stat에서)
     {
         string itemName = type.ToString();
         if(category != ItemCategory.mouse)

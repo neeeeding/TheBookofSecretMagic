@@ -45,11 +45,6 @@ public class LikeabilityCard : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    [ContextMenu("LoveLove")]
-    private void LoveLove()
-    {
-        LoveUp(10);
-    }
     private void LoveUp(int value)
     {
         loveValue += value;

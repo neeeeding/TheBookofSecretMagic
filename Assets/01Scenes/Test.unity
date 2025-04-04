@@ -15247,11 +15247,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 305690e53378d344ba9db20c2302b9c0, type: 2}
   - {fileID: 11400000, guid: 24314d6258cefed479a10843e1d171ae, type: 2}
   - {fileID: 11400000, guid: 1f0d0df21b5dcea4b930f834e8b0fd27, type: 2}
-  - {fileID: 11400000, guid: 0e4bae7e88ce81344b29a426379a4924, type: 2}
-  - {fileID: 11400000, guid: f41a98511af5f3c46bc87cab4f375b38, type: 2}
-  - {fileID: 11400000, guid: 0e4bae7e88ce81344b29a426379a4924, type: 2}
-  - {fileID: 11400000, guid: f41a98511af5f3c46bc87cab4f375b38, type: 2}
-  - {fileID: 11400000, guid: 99e1dd581bcde7b4b88e9f4e0893a2dc, type: 2}
   - {fileID: 11400000, guid: 1d52780523a903c4b922c55913a56045, type: 2}
   - {fileID: 11400000, guid: 3226ad827b124a340a9ba62c0c2460c2, type: 2}
   - {fileID: 11400000, guid: 12be812275bfda242ba955ee9eda1531, type: 2}
@@ -19332,6 +19327,7 @@ MonoBehaviour:
   chatObj: {fileID: 1992790333}
   inGame:
   - {fileID: 660714038}
+  - {fileID: 1186806790}
 --- !u!114 &1566133849
 MonoBehaviour:
   m_ObjectHideFlags: 0

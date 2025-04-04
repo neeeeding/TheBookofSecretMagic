@@ -45,6 +45,15 @@ public class PlayerStatSC
 
     [Space(50f)]
     public string lastText; //마지막 대화
+    public int[] restyLastText = new int[2]; // 레스티
+    public int[] chrisLastText = new int[2]; // 크리스
+    public int[] theoLastText = new int[2]; // 테오
+    public int[] pioLastText = new int[2]; // 피오
+    public int[] noahLastText = new int[2]; // 노아
+    public int[] niaLastText = new int[2]; // 니아
+    public int[] villainLastText = new int[2]; // 빌런
+    public int[] harryLastText = new int[2]; // 해리
+    public int[] danielLastText = new int[2]; // 다니엘
 
     [Space(50f)]
     public int year;
