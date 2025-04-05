@@ -39,9 +39,9 @@ public class Character : MonoBehaviour
         }
     }
 
-    public void NextDialog() //대화가 진행 될 때마다
+    public void NextDialog(int i) //대화가 진행 될 때마다
     {
-        finallNum++;
+        finallNum = i;
         PlayerPrefs.SetInt($"{path}finallNum", finallNum);
         PlayerPrefs.Save();
     }
@@ -69,7 +69,11 @@ public class Character : MonoBehaviour
 
     public void NextChapter() //다음 챕터로 설정 해주기
     {
+        finallNum = 1;
         chapter++;
+        PlayerPrefs.SetInt($"{path}chapter", chapter);
+        PlayerPrefs.SetInt($"{path}finallNum", finallNum);
+        PlayerPrefs.Save();
     }
 
     public void ClickCharacter() //대화 하기 (클릭)
@@ -78,9 +82,6 @@ public class Character : MonoBehaviour
         {
             finallNum = 1;
             OnChat?.Invoke(characterSO,this);
-            //chapter++;
-            PlayerPrefs.SetInt($"{path}chapter", chapter);
-            PlayerPrefs.Save();
         }
     }
 

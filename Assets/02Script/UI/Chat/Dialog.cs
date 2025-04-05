@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 using TextAsset = UnityEngine.TextAsset;
@@ -31,8 +32,11 @@ public class Dialog : MonoBehaviour
     private Character currentCharacter; //다음 대화임을 알려주려고
     private CharacterSO currentSO; //정보
 
+    private bool holdItem; //true : 아이템 들고 있음, false : 아이템 없음
+
     public void DialogSetting(CharacterSO so, Character character) //세팅 해주기
     {
+        holdItem = false;
         currentCharacter = character;
         currentSO = so;
         int[] nums = character.CurrentDialog();
@@ -67,9 +71,12 @@ public class Dialog : MonoBehaviour
         {
             if (DoChat())
             {
+                currentCharacter.NextChapter();
                 UISettingManager.Instance.CloseChat();
                 OnGame?.Invoke();
             }
+            else
+                currentCharacter.NextDialog(currentNum);
         }
     }
 
@@ -121,6 +128,7 @@ public class Dialog : MonoBehaviour
         ItemSO so = GameManager.Instance.Item;
         if (so != null)
         {
+            holdItem = true;
             for(int i = 0; i< dialog.Count - 1; i++)
             {
                 if (dialog[i][DialogType.Item.ToString()].ToString() == so.itemType.ToString()) //대화의 아이템 창과 들고 있는 아이템 찾기

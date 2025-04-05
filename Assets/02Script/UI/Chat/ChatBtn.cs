@@ -1,12 +1,18 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class ChatBtn : MonoBehaviour
 {
     public static Action OnSkipChat;
 
+    [Header("SaveBtn Need")]
+    [SerializeField] private GameObject SaveWindow;
+    [SerializeField] private TMP_InputField inputName; //ÆÄÀÏ¸í
+    [Space(50f)]
+    [Header("HideBtn Need")]
     [SerializeField] private GameObject chatObj;
     [SerializeField] private GameObject[] inGame;
 

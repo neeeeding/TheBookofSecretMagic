@@ -29,7 +29,7 @@ public class ChatSetting : MonoBehaviour
         }
     }
 
-    public static string Name<T>(T wantName)
+    public static string Name<T>(T wantName) //enum의 주석? 얻기
     {
         var field = wantName.GetType().GetField(wantName.ToString());
         var attr = (DescriptionAttribute)Attribute.GetCustomAttribute(field, typeof(DescriptionAttribute));
