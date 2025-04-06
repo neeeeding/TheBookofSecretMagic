@@ -8,12 +8,18 @@ using System;
 public class Save : MonoBehaviour
 {
     public static string path;
-    [SerializeField] private GameObject nameMessage; //파일이름 작성 메시지
+    [Header("All Need")]
     [SerializeField] private GameObject deleteWindow; //삭제 확인 창
     [SerializeField] private GameObject oneLoadCard; //세이브 파일 하나
     [SerializeField] private GameObject content; //보관
-
-    [SerializeField] private TMP_InputField inputName; //파일명
+    [Space(20f)]
+    [Header("Save_save Need")]
+    [SerializeField] private TMP_InputField saveInputName; //기본 저장 파일명
+    [SerializeField] private GameObject saveNameMessage; //파일이름 작성 메시지
+    [Space(20f)]
+    [Header("Chat_save Need")]
+    [SerializeField] private TMP_InputField chatInputName; //채팅 저장 파일명
+    [SerializeField] private GameObject chatNameMessage; //파일이름 작성 메시지
 
     private string[] fileNames; //저장 파일 이름들
     private LoadCard deleteCard; //삭제할 저장 파일 (임시)
@@ -49,25 +55,31 @@ public class Save : MonoBehaviour
 
     public void SaveBtn() //저장 버튼 누를 때 (이름 작성 창 뜨기)
     {
-        inputName.text = "";
-        nameMessage.SetActive(true);
+        saveNameMessage.SetActive(true);
     }
 
     public void CompleteBtn() //(이름 작성) 완료 버튼
     {
-        if(inputName.text != "")
+        TMP_InputField inputName = chatInputName;
+        if (saveInputName.text != "")
+        {
+            inputName = saveInputName;
+        }
+        if (inputName.text != "")
         {
             GameObject loadCard = Instantiate(oneLoadCard, content.transform);
             loadCard.GetComponent<LoadCard>().ClcikSave(inputName.text);
             File.AppendAllText($"{path}/SaveName", $"{inputName.text}\n");
 
             CloseMessage();
+            inputName.text = "";
         } //파일명 겹치는거 고려
     }
 
     public void CloseMessage() //모든 창 (이름작성, 삭제 확인) 닫기
     {
-        nameMessage.SetActive(false);
+        saveNameMessage.SetActive(false);
+        chatNameMessage.SetActive(false);
         deleteCard = null;
         deleteWindow.SetActive(false);
     }

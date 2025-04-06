@@ -10,20 +10,29 @@ public class ChatBtn : MonoBehaviour
 
     [Header("SaveBtn Need")]
     [SerializeField] private GameObject SaveWindow;
-    [SerializeField] private TMP_InputField inputName; //파일명
-    [Space(50f)]
-    [Header("HideBtn Need")]
+    [Space(0f)]
+    [Header("Hide Need")]
     [SerializeField] private GameObject chatObj;
     [SerializeField] private GameObject[] inGame;
+
+    private void Awake()
+    {
+        CloseSave();
+    }
 
     public void LoadBtn() //로드 버튼 누를 때
     {
         UISettingManager.Instance.Save();
     }
 
-    public void SaveBtn() //저장
+    public void SaveBtn() //저장 버튼
     {
+        SaveWindow.SetActive(true);
+    }
 
+    public void CloseSave() //저장 창 닫기
+    {
+        SaveWindow.SetActive(false);
     }
 
     public void SkipBtn() //스킵
@@ -33,19 +42,20 @@ public class ChatBtn : MonoBehaviour
 
     public void HideBtn() //비활성화 버튼
     {
-        chatObj.SetActive(false);
-        foreach(GameObject obj in inGame)
-        {
-            obj.SetActive(false);
-        }
+        Show(false);
     }
 
     public void ShowBtn() //활성화
     {
-        chatObj.SetActive(true);
+        Show(true);
+    }
+
+    private void Show(bool show)
+    {
+        chatObj.SetActive(show);
         foreach (GameObject obj in inGame)
         {
-            obj.SetActive(true);
+            obj.SetActive(show);
         }
     }
 
