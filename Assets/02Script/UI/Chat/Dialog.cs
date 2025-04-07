@@ -31,6 +31,7 @@ public class Dialog : MonoBehaviour
 
     private Character currentCharacter; //다음 대화임을 알려주려고
     private CharacterSO currentSO; //정보
+    [SerializeField] private CharacterSO chatPlayer; //말하고 있는애
 
     private bool holdItem; //true : 아이템 들고 있음, false : 아이템 없음
 
@@ -150,12 +151,13 @@ public class Dialog : MonoBehaviour
                        && dialog[currentChat][DialogType.Num.ToString()].ToString() == currentNum.ToString()) //해당 배열의 수가 챕터랑 번호가 같으면
         {
             getOut = false;
+            PlayerSelect(currentChat);
             LoveUP(currentChat);
         }
         else
             getOut = true;
 
-        setting.CurrentCharacter(currentSO); //세팅 해주는 거
+        setting.CurrentCharacter(chatPlayer); //세팅 해주는 거
         string chatText = IsExchangeText(dialog[currentChat][DialogType.Text.ToString()].ToString(), "`", ","); //변환 해주고 원했던 대화
         dialogText.text = chatText;
 
@@ -190,6 +192,18 @@ public class Dialog : MonoBehaviour
         }
 
         return changeDialog;
+    }
+
+    private void PlayerSelect(int i) //말하는 이에 따른 so(이름) 바꾸기
+    {
+        chatPlayer = currentSO;
+        foreach(CharacterSO so in allCharacter)
+        {
+            if(so.characterName.ToString() == dialog[i][DialogType.Player.ToString()].ToString())
+            {
+                chatPlayer = so;
+            }
+        }
     }
 
     private void LoveUP(int i) //호감도 오르거나 내리는 거 있으면 해주기.
