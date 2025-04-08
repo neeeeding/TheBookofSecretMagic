@@ -5,11 +5,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor.U2D.Aseprite;
 using UnityEngine.TextCore.Text;
+using System.IO;
 
 public class GameManager : Singleton<GameManager>
 {
+    public static string path; //파일 위치
+
     public static Action CoinText;  //코인 수 갱신 (텍스트)
     public static Action OnStart; //모든 초기화 완료 후
+
     [Header("Setting")]
     public PlayerStatSC PlayerStat; //플레이어 정보
     public Player Player; //플레이어 (state 조정 해줌(?))
@@ -38,6 +42,8 @@ public class GameManager : Singleton<GameManager>
 
     private void Awake()
     {
+        path = Application.persistentDataPath + "/Save";
+        print(path);
         isStart = false;
         PlayerStat = new PlayerStatSC();
         Player = gameObject.GetComponent<Player>();

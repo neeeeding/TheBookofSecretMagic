@@ -40,12 +40,12 @@ public class LoadCard : MonoBehaviour
 
         string data = JsonUtility.ToJson(GameManager.Instance.PlayerStat);
 
-        File.WriteAllText($"{Save.path}/{fileName}", data);
+        File.WriteAllText($"{GameManager.path}/{fileName}", data);
     }
 
     public void ClickLoad() //불러오기 누를 때
     {
-        string data = File.ReadAllText($"{Save.path}/{fileName}");
+        string data = File.ReadAllText($"{GameManager.path}/{fileName}");
         PlayerStatSC stat = JsonUtility.FromJson<PlayerStatSC>(data);
         GameManager.Instance.PlayerStat = stat;
         OnLoad?.Invoke();
@@ -79,19 +79,19 @@ public class LoadCard : MonoBehaviour
 
     public void DeleteMe() //파일 삭제
     {
-        string[] load = File.ReadAllLines($"{Save.path}/saveName");
-        File.Delete($"{Save.path}/saveName");
+        string[] load = File.ReadAllLines($"{GameManager.path}/saveName");
+        File.Delete($"{GameManager  .path}/saveName");
         
         for(int i = 0; i < load.Length; i++)
         {
             if(load[i] != fileName)
             {
                 string name = load[i];
-                File.AppendAllText($"{Save.path}/SaveName", $"{name}\n");
+                File.AppendAllText($"{GameManager.path}/SaveName", $"{name}\n");
             }
         }
 
-        File.Delete($"{Save.path}/{fileName}");
+        File.Delete($"{GameManager.path}/{fileName}");
 
         Destroy(gameObject);
     }

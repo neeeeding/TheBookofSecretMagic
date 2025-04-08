@@ -7,7 +7,6 @@ using System;
 
 public class Save : MonoBehaviour
 {
-    public static string path;
     [Header("All Need")]
     [SerializeField] private GameObject deleteWindow; //삭제 확인 창
     [SerializeField] private GameObject oneLoadCard; //세이브 파일 하나
@@ -21,13 +20,13 @@ public class Save : MonoBehaviour
     [SerializeField] private TMP_InputField chatInputName; //채팅 저장 파일명
     [SerializeField] private GameObject chatNameMessage; //파일이름 작성 메시지
 
+    private string path; //파일 저장 위치
     private string[] fileNames; //저장 파일 이름들
     private LoadCard deleteCard; //삭제할 저장 파일 (임시)
 
     private void Awake()
     {
-        path = Application.persistentDataPath + "/Save";
-        print(path);
+        SettingPath();
 
         if (!Directory.Exists(path))
         {
@@ -69,6 +68,7 @@ public class Save : MonoBehaviour
         {
             GameObject loadCard = Instantiate(oneLoadCard, content.transform);
             loadCard.GetComponent<LoadCard>().ClcikSave(inputName.text);
+            SettingPath(); //혹시 모르니 재 세팅
             File.AppendAllText($"{path}/SaveName", $"{inputName.text}\n");
 
             CloseMessage();
@@ -102,6 +102,18 @@ public class Save : MonoBehaviour
         deleteWindow.SetActive(true);
         deleteCard = card;
         
+    }
+
+    private void SettingPath()
+    {
+        if (GameManager.path != null && GameManager.path != "" && path != "")
+        {
+            path = GameManager.path;
+        }
+        else
+        {
+            path = Application.persistentDataPath + "/Save";
+        }
     }
 
     private void OnDisable()

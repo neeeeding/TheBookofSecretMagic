@@ -211,7 +211,7 @@ public class Dialog : MonoBehaviour
         if (dialog[i][DialogType.GetLove.ToString()].ToString() != "") //호감도 얻는게 있다면. (혹은 뺏는거)
         {
             int value = (int)dialog[i][DialogType.GetLove.ToString()];
-            GameManager.Instance.SetLove(currentSO, value);
+            GameManager.Instance.SetLove(currentSO, value); //여러명 일 때 만약 주체가 아닌 다른 이 라면.
         }
     }
 
@@ -247,17 +247,24 @@ public class Dialog : MonoBehaviour
         return haveSelec;
     }
 
+    public void Load() //로드 될 때
+    {
+        DialogSetting(currentSO, currentCharacter);
+    }
+
     #region EnDi
     private void OnEnable()
     {
         SelectBtn.OnSelect += SelectChat;
         ChatBtn.OnSkipChat += ClickSkip;
+        LoadCard.OnLoad += Load;
     }
 
     private void OnDisable()
     {
         SelectBtn.OnSelect -= SelectChat;
         ChatBtn.OnSkipChat -= ClickSkip;
+        LoadCard.OnLoad -= Load;
     }
     #endregion
 }

@@ -31,8 +31,8 @@ public class Character : MonoBehaviour
         if (field != null)
         {
             int[] chapterNum = (int[])field.GetValue(GameManager.Instance.PlayerStat);
-            finallNum = chapterNum[0];
-            chapter = chapterNum[1];
+            chapter = chapterNum[0];
+            finallNum = chapterNum[1];
             PlayerPrefs.SetInt($"{path}chapter", chapter);
             PlayerPrefs.SetInt($"{path}finallNum", finallNum);
             PlayerPrefs.Save();
@@ -80,7 +80,7 @@ public class Character : MonoBehaviour
     {
         if (isChat)
         {
-            finallNum = 1;
+            //finallNum = 1;
             OnChat?.Invoke(characterSO,this);
         }
     }
