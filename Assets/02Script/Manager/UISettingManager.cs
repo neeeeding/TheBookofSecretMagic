@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class UISettingManager : Singleton<UISettingManager>
 {
@@ -56,9 +58,9 @@ public class UISettingManager : Singleton<UISettingManager>
             PlayerMobileInput.Instance.NoInput();
         }
     }
-
     public void InGame() //게임으로
     {
+        GameManager.Instance.PlayerStat.isChat = false;
         AllHide();
         SettingAll();
         Time.timeScale = 1f;
@@ -69,6 +71,7 @@ public class UISettingManager : Singleton<UISettingManager>
     {
         AllHide();
         isChat = false;
+        GameManager.Instance.PlayerStat.isChat = false;
         SettingAll();
         InGame();
         //chat.DialogSetting(null,null);
@@ -94,6 +97,7 @@ public class UISettingManager : Singleton<UISettingManager>
         isChat = true;
         SettingAll();
         chat.DialogSetting(so, character);
+        GameManager.Instance.PlayerStat.isChat = true;
     }
 
     public void Profile() //프로필

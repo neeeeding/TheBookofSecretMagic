@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerStatSC
 {
+    public bool isChat; //ture : 채팅 중, false : 인 게임
+
     [Range(0,100)]
     public float backMagic;
     [Range(0, 100)]
@@ -44,6 +46,8 @@ public class PlayerStatSC
     public int daniel; //다니엘
 
     [Space(50f)]
+    public Character lastCharacter; //마지막 캐릭터
+    public CharacterSO lastSO;
     public string lastText; //마지막 대화
     public int[] restyLastText = new int[2]; // 레스티
     public int[] chrisLastText = new int[2]; // 크리스

@@ -37,6 +37,8 @@ public class Dialog : MonoBehaviour
 
     public void DialogSetting(CharacterSO so, Character character) //세팅 해주기
     {
+        GameManager.Instance.PlayerStat.lastCharacter = character;
+        GameManager.Instance.PlayerStat.lastSO = so;
         holdItem = false;
         currentCharacter = character;
         currentSO = so;

@@ -37,6 +37,17 @@ public class Character : MonoBehaviour
             PlayerPrefs.SetInt($"{path}finallNum", finallNum);
             PlayerPrefs.Save();
         }
+
+        if (GameManager.Instance.PlayerStat.isChat)
+        {
+            UISettingManager.Instance.CloseChat();
+            finallNum--; //대화를 시작 할 때 1를 추가하고 시작함으로.
+            UISettingManager.Instance.Chat(GameManager.Instance.PlayerStat.lastSO, GameManager.Instance.PlayerStat.lastCharacter);
+        }
+        else
+        {
+            UISettingManager.Instance.CloseChat();
+        }
     }
 
     public void NextDialog(int i) //대화가 진행 될 때마다
