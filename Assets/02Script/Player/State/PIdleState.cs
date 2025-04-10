@@ -28,6 +28,6 @@ public class PIdleState : PState
     public override void Exit()
     {
         base.Exit();
-        PlayerMobileInput.mousePos += Move;
+        PlayerMobileInput.mousePos -= Move;
     }
 }
