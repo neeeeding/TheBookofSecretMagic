@@ -50,8 +50,6 @@ public class GameManager : Singleton<GameManager>
 
         PlayerStat.ResetStat();
 
-        PlayerStat.playerSpeed = 1f;
-
         AwakeData();
 
         LoadCard.OnLoad += LoadData;

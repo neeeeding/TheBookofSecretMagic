@@ -21,7 +21,7 @@ public class PlayerStatSC
 
     public int playerCoin; //소지금
 
-    public float playerSpeed; //걷는(뛰는 속도)
+    public Vector2 playerPosition; //플레이어 위치
 
     public PlayerJob job; //전공
 

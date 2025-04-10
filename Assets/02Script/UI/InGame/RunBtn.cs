@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class RunBtn : MonoBehaviour
 {
+    private float walk;
+
+    private void Awake()
+    {
+       walk =  PlayerMovement.Instance.speed;
+    }
+
     public void Run()
     {
-        GameManager.Instance.PlayerStat.playerSpeed = 5f; 
+        PlayerMovement.Instance.speed = walk * 2;
     }
 
     public void Walk()
     {
-        GameManager.Instance.PlayerStat.playerSpeed = 1f;
+        PlayerMovement.Instance.speed = walk;
     }
 }

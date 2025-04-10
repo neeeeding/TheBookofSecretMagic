@@ -5,9 +5,8 @@ using UnityEngine.UIElements;
 
 public class PlayerMovement: Singleton<PlayerMovement>
 {
-    [SerializeField] private float speed; //속도
+    public float speed; //속도
     [HideInInspector] public Vector2 TargetPos; //마우스 위치
-    private Player _player;
     private Rigidbody2D _rigidbody;
     private bool _isMoving;
 
@@ -15,7 +14,7 @@ public class PlayerMovement: Singleton<PlayerMovement>
 
     private void Awake()
     {
-        _player = GetComponent<Player>();
+        GameManager.OnStart += StartLoad;
         _rigidbody = GetComponent<Rigidbody2D>();
     }
 
@@ -23,20 +22,26 @@ public class PlayerMovement: Singleton<PlayerMovement>
     {
         _isMoving = false;
         PlayerMobileInput.mousePos += Move;
+        LoadCard.OnLoad += Load;
     }
 
     private void OnDisable()
     {
+        GameManager.OnStart -= StartLoad;
         PlayerMobileInput.mousePos -= Move;
+        LoadCard.OnLoad -= Load;
     }
     #endregion
 
     private void FixedUpdate()
     {
-        Vector2 direction = (TargetPos - (Vector2)_player.transform.position);
+        Vector2 direction = (TargetPos - (Vector2)transform.position);
 
         if (direction.magnitude < 0.1f || !_isMoving) // 너무 가까우면 멈추기
         {
+            PlayerPrefs.SetFloat("playerX", transform.position.x);
+            PlayerPrefs.SetFloat("playerY", transform.position.y);
+            GameManager.Instance.PlayerStat.playerPosition = transform.position; //위치 저장
             _rigidbody.velocity = Vector2.zero;
             _isMoving = false;
         }
@@ -50,5 +55,17 @@ public class PlayerMovement: Singleton<PlayerMovement>
     {
         _isMoving = true;
         TargetPos = mousePos;
+    }
+
+    private void StartLoad()
+    {
+        Vector2 position = new Vector2(PlayerPrefs.GetFloat("playerX"), PlayerPrefs.GetFloat("playerY"));
+        GameManager.Instance.PlayerStat.playerPosition = position;
+        Load();
+    }
+
+    private void Load()
+    {
+        transform.position = GameManager.Instance.PlayerStat.playerPosition;
     }
 }
