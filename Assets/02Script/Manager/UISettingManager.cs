@@ -15,7 +15,7 @@ public class UISettingManager : Singleton<UISettingManager>
     [SerializeField] private GameObject coin;
     [Space(10f)]
     [SerializeField] private GameObject profile;
-    [SerializeField] private GameObject likeItem;
+    [SerializeField] private LikeItem likeItem;
     [SerializeField] private GameObject likeabilityGuide;
     [SerializeField] private GameObject map;
     [SerializeField] private GameObject setting;
@@ -107,11 +107,12 @@ public class UISettingManager : Singleton<UISettingManager>
         SettingAll();
     }
 
-    public void LiKeItme() //선호 아이템
+    public void LiKeItme(CharacterSO so) //선호 아이템
     {
         AllHide();
         isLikeItem = true;
         isLikeabilityGuide = true;
+        likeItem.LikeItemSetting(so);
         SettingAll();
     }
 
@@ -146,7 +147,7 @@ public class UISettingManager : Singleton<UISettingManager>
     private void SettingAll() //세팅들
     {
         profile.SetActive(isProfile);
-        likeItem.SetActive(isLikeItem);
+        likeItem.gameObject.SetActive(isLikeItem);
         likeabilityGuide.SetActive(isLikeabilityGuide);
         map.SetActive(isMap);
         setting.SetActive(isSetting);
