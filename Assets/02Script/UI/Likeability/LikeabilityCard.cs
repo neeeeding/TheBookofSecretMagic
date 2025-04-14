@@ -30,7 +30,10 @@ public class LikeabilityCard : MonoBehaviour
     private void OnEnable()
     {
         LoadCard.OnLoad += LoadData;
-        LoadData(); // 로드를 위해...
+        if(GameManager.Instance.isStart)
+        {
+            LoadData(); // 로드를 위해
+        }
     }
 
     public void Click()

@@ -15,7 +15,7 @@ public class UISettingManager : Singleton<UISettingManager>
     [SerializeField] private GameObject coin;
     [Space(10f)]
     [SerializeField] private GameObject profile;
-    [SerializeField] private LikeItem likeItem;
+    [SerializeField] private LikeItemShow likeItem;
     [SerializeField] private GameObject likeabilityGuide;
     [SerializeField] private GameObject map;
     [SerializeField] private GameObject setting;
