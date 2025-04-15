@@ -16098,7 +16098,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1350718511}
         m_TargetAssemblyTypeName: LikeItem, Assembly-CSharp
-        m_MethodName: ClcikBtn
+        m_MethodName: ChangeColorLove
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
