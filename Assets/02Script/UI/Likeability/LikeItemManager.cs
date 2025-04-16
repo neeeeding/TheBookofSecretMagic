@@ -13,11 +13,6 @@ public class LikeItemManager : MonoBehaviour
     [SerializeField] private GameObject Item; //오브젝트
     private CharacterSO character; //현재 캐릭터 정보
 
-    private void Awake()
-    {
-        MakeItem();
-    }
-
     public void Setting(CharacterSO so) //세팅
     {
         character = so;

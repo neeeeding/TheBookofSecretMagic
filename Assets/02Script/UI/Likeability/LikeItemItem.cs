@@ -12,13 +12,12 @@ public class LikeItemItem : MonoBehaviour
     private Image itemImage; //아이템 이미지
     private int colorCount; //(클릭) 단계
 
-    private void Awake()
-    {
-        itemImage = GetComponent<Image>();
-    }
-    
     public void SettingItem(CharacterSO characterSO,ItemSO itemSO) //아이템 세팅 (누구인지, 어떤 아이템인지)
     {
+        if(itemImage == null)
+        {
+            itemImage = GetComponent<Image>();
+        }
         loveCharacter = characterSO;
         loveItem = itemSO;
         //itemImage.sprite = loveItem.itemImage;
