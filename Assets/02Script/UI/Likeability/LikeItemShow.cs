@@ -4,10 +4,5 @@ using UnityEngine;
 
 public class LikeItemShow : MonoBehaviour
 {
-    private CharacterSO character;
 
-    public void LikeItemSetting(CharacterSO so)
-    {
-        character = so;
-    }
 }

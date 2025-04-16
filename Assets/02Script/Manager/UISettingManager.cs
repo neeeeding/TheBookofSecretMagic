@@ -15,7 +15,8 @@ public class UISettingManager : Singleton<UISettingManager>
     [SerializeField] private GameObject coin;
     [Space(10f)]
     [SerializeField] private GameObject profile;
-    [SerializeField] private LikeItemShow likeItem;
+    [SerializeField] private GameObject likeItem;
+    [SerializeField] private LikeItemManager likeItemManager;
     [SerializeField] private GameObject likeabilityGuide;
     [SerializeField] private GameObject map;
     [SerializeField] private GameObject setting;
@@ -112,7 +113,7 @@ public class UISettingManager : Singleton<UISettingManager>
         AllHide();
         isLikeItem = true;
         isLikeabilityGuide = true;
-        likeItem.LikeItemSetting(so);
+        likeItemManager.Setting(so);
         SettingAll();
     }
 
@@ -147,7 +148,7 @@ public class UISettingManager : Singleton<UISettingManager>
     private void SettingAll() //¼¼ÆÃµé
     {
         profile.SetActive(isProfile);
-        likeItem.gameObject.SetActive(isLikeItem);
+        likeItem.SetActive(isLikeItem);
         likeabilityGuide.SetActive(isLikeabilityGuide);
         map.SetActive(isMap);
         setting.SetActive(isSetting);

@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LikeItem : MonoBehaviour
+public class LikeItemItem : MonoBehaviour
 {
+    [SerializeField]private CharacterSO loveCharacter; //아이템 종류
     [SerializeField]private ItemSO loveItem; //아이템 종류
 
     private string savePath; //저장 경로
@@ -16,11 +17,12 @@ public class LikeItem : MonoBehaviour
         itemImage = GetComponent<Image>();
     }
     
-    public void SettingItem(ItemSO itemSO) //아이템 세팅
+    public void SettingItem(CharacterSO characterSO,ItemSO itemSO) //아이템 세팅 (누구인지, 어떤 아이템인지)
     {
+        loveCharacter = characterSO;
         loveItem = itemSO;
-        itemImage.sprite = loveItem.itemImage;
-        savePath = $"{loveItem.itemType}likeItem";
+        //itemImage.sprite = loveItem.itemImage;
+        savePath = $"{loveCharacter}_{loveItem.itemType}likeItem";
         colorCount = PlayerPrefs.GetInt(savePath) - 1; //더해주니까.
         ChangeColorLove();
     }
