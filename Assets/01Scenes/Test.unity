@@ -1682,7 +1682,7 @@ RectTransform:
   m_Father: {fileID: 441988212}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3358,7 +3358,7 @@ RectTransform:
   m_Father: {fileID: 1729279073}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -11.200012, y: 0}
   m_SizeDelta: {x: 20, y: 70}
   m_Pivot: {x: 0, y: 0.5}
@@ -3766,7 +3766,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &350848277
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6045,13 +6045,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 541729019}
+  - component: {fileID: 541729020}
   m_Layer: 5
   m_Name: Setting
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &541729019
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6079,6 +6080,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -74.57706}
   m_SizeDelta: {x: 1920, y: 930.8459}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &541729020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 541729018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feee445f1d13335469ba861ba344ed79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  main: {fileID: 1393635505}
+  bgm: {fileID: 1467862254}
+  effect: {fileID: 2038596263}
 --- !u!1 &542343621
 GameObject:
   m_ObjectHideFlags: 0
@@ -9992,7 +10008,7 @@ RectTransform:
   m_Father: {fileID: 965923769}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -16411,7 +16427,7 @@ RectTransform:
   m_Father: {fileID: 1213954871}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -11.200012, y: 0}
   m_SizeDelta: {x: 20, y: 70}
   m_Pivot: {x: 0, y: 0.5}
@@ -16751,7 +16767,19 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 541729020}
+        m_TargetAssemblyTypeName: AudioSave, Assembly-CSharp
+        m_MethodName: ChangeValue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1396481020
 GameObject:
   m_ObjectHideFlags: 0
@@ -17668,7 +17696,19 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 541729020}
+        m_TargetAssemblyTypeName: AudioSave, Assembly-CSharp
+        m_MethodName: ChangeValue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1468986600
 GameObject:
   m_ObjectHideFlags: 0
@@ -18991,7 +19031,7 @@ RectTransform:
   m_Father: {fileID: 1216993575}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -28885,7 +28925,19 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 541729020}
+        m_TargetAssemblyTypeName: AudioSave, Assembly-CSharp
+        m_MethodName: ChangeValue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2041111963
 GameObject:
   m_ObjectHideFlags: 0
@@ -29399,7 +29451,7 @@ RectTransform:
   m_Father: {fileID: 222260654}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -11.200012, y: 0}
   m_SizeDelta: {x: 20, y: 70}
   m_Pivot: {x: 0, y: 0.5}
