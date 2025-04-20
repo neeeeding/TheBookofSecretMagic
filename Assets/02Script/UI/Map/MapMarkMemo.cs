@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MapMark : MonoBehaviour
+public class MapMarkMemo : MonoBehaviour
 {
     private TMP_InputField memo;
     private bool isMemo;
