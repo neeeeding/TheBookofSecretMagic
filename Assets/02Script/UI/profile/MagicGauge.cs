@@ -32,9 +32,9 @@ public class MagicGauge : MonoBehaviour
         potionSlider.value = stat.potionMagic;
         copySlider.value = stat.copyMagic;
         waterSlider.value = stat.waterMagic;
-        fireSlider.value = stat.firebookCount;
+        fireSlider.value = stat.fireMagic;
         healSlider.value = stat.healMagic;
-        blackSlider.value = stat.blackbookCount;
+        blackSlider.value = stat.blackMagic;
     }
 
     private void LoadStat()

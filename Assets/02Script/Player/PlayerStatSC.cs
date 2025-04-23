@@ -7,7 +7,7 @@ public class PlayerStatSC
     public bool isChat; //ture : 채팅 중, false : 인 게임
 
     [Range(0,100)]
-    public float backMagic;
+    public float blackMagic;
     [Range(0, 100)]
     public float healMagic;
     [Range(0, 100)]
@@ -114,7 +114,7 @@ public class PlayerStatSC
     [ContextMenu("ResetStat")]
     public void ResetStat()
     {
-        backMagic = 0;
+        blackMagic = 0;
         healMagic = 0;
         fireMagic = 0;
         waterMagic = 0;
