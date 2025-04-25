@@ -10150,7 +10150,7 @@ GameObject:
   - component: {fileID: 894962462}
   m_Layer: 7
   m_Name: CC
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16555,7 +16555,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 541729020}
         m_TargetAssemblyTypeName: AudioSave, Assembly-CSharp
-        m_MethodName: ChangeValue
+        m_MethodName: ChangeMain
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -17514,7 +17514,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 541729020}
         m_TargetAssemblyTypeName: AudioSave, Assembly-CSharp
-        m_MethodName: ChangeValue
+        m_MethodName: ChangeBGM
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -28273,7 +28273,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 541729020}
         m_TargetAssemblyTypeName: AudioSave, Assembly-CSharp
-        m_MethodName: ChangeValue
+        m_MethodName: ChangeEffect
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -18,12 +18,26 @@ public class AudioSave : MonoBehaviour
         effect.value = PlayerPrefs.GetFloat($"{effect}{path}");
     }
 
-    public void ChangeValue()
+    public void ChangeMain()
     {
         if(GameManager.Instance.isStart)
         {
             PlayerPrefs.SetFloat($"{main}{path}", main.value);
+            PlayerPrefs.Save();
+        }
+    }  
+    public void ChangeBGM()
+    {
+        if(GameManager.Instance.isStart)
+        {
             PlayerPrefs.SetFloat($"{bgm}{path}", bgm.value);
+            PlayerPrefs.Save();
+        }
+    }
+    public void ChangeEffect()
+    {
+        if(GameManager.Instance.isStart)
+        {
             PlayerPrefs.SetFloat($"{effect}{path}", effect.value);
             PlayerPrefs.Save();
         }
