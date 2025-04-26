@@ -11,6 +11,8 @@ public class DeleteAllChild : MonoBehaviour
         foreach(Transform child in parentObject.transform)
         {
             Destroy(child.gameObject);
+
+            MapMarkInGame.num = 0; // 개수 초기화
         }
     }
 }

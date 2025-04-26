@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.PlayerSettings;
 
 public class MapMarkInGame : MonoBehaviour
 {
@@ -15,9 +16,24 @@ public class MapMarkInGame : MonoBehaviour
     [Header("Show")]
     [SerializeField] private RectTransform imageRect; //맵 크기
 
+    public static int num = 0; //번째
+    private string numPath = "mapPos";
+    private string path = $"mapPos_"; //저장 이름
+
+    [ContextMenu("ResetNum")]
+    private void ResetNum()
+    {
+        num = 0;
+        PlayerPrefs.SetInt(numPath, num);
+        PlayerPrefs.Save();
+    }
+
+
     private void Awake()
     {
+        num = PlayerPrefs.GetInt(numPath);
         imageRect = mapImage.GetComponent<RectTransform>();
+        LoadMapMark();
     }
 
     public void ClcikMapMark() //맵 마크 버튼 누를 때
@@ -34,6 +50,13 @@ public class MapMarkInGame : MonoBehaviour
                 ((mapPos.y - (mapSize.y / 2)) + mapPosition.y)); //최종 마크 위치 결정 (비율과 보정을 함)
 
             mark.transform.localPosition = pos;
+
+            //위치 저장
+            num++;
+            PlayerPrefs.SetInt(numPath, num);
+            PlayerPrefs.Save();
+            PlayerPrefs.SetFloat($"{path}_{num}_X", pos.x);
+            PlayerPrefs.SetFloat($"{path}_{num}_Y", pos.y);
         }
     }
 
@@ -53,5 +76,21 @@ public class MapMarkInGame : MonoBehaviour
         //범위 벗어날 때를 생각
         mapPos = localPoint;
         return true;
+    }
+
+    private void LoadMapMark() //맵 마크 위치 복구
+    {
+        if(num > 0)
+        {
+            int count = num + 1;
+            for(int i = 1; i < count; i++)
+            {
+                num = i;
+                GameObject mark = Instantiate(mapMark, mapImage.transform);
+                float x = PlayerPrefs.GetFloat($"{path}_{num}_X");
+                float y = PlayerPrefs.GetFloat($"{path}_{num}_Y");
+                mark.transform.localPosition = new Vector2(x, y);
+            }
+        }
     }
 }

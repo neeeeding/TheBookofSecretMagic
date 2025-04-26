@@ -6,7 +6,7 @@ public class PlayerStatSC
 {
     public bool isChat; //ture : 채팅 중, false : 인 게임
 
-    [Range(0,100)]
+    [Range(0,100)] //능력치
     public float blackMagic;
     [Range(0, 100)]
     public float healMagic;
@@ -25,7 +25,7 @@ public class PlayerStatSC
 
     public PlayerJob job; //전공
 
-    [Space(50f)]
+    [Space(50f)] //호감도
     [Range(0, 100)]
     public int resty;//레스티
     [Range(0, 100)]
@@ -59,7 +59,7 @@ public class PlayerStatSC
     public int[] harryLastText = new int[2]; // 해리
     public int[] danielLastText = new int[2]; // 다니엘
 
-    [Space(50f)]
+    [Space(50f)] //날짜
     public int year;
     public int month;
     public int day;
