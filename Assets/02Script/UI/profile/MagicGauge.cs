@@ -31,5 +31,12 @@ public class MagicGauge : MonoBehaviour
         fireSlider.value = stat.fireMagic;
         healSlider.value = stat.healMagic;
         blackSlider.value = stat.blackMagic;
+
+        PlayerPrefs.SetFloat(nameof(stat.potionMagic),stat.potionMagic);
+        PlayerPrefs.SetFloat(nameof(stat.copyMagic),stat.copyMagic);
+        PlayerPrefs.SetFloat(nameof(stat.waterMagic),stat.waterMagic);
+        PlayerPrefs.SetFloat(nameof(stat.fireMagic),stat.fireMagic);
+        PlayerPrefs.SetFloat(nameof(stat.healMagic),stat.healMagic);
+        PlayerPrefs.SetFloat(nameof(stat.blackMagic),stat.blackMagic);
     }
 }

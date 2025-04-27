@@ -146,6 +146,14 @@ public class GameManager : Singleton<GameManager>
         PlayerStat.hour = PlayerPrefs.GetInt("Hour");
         PlayerStat.minute = PlayerPrefs.GetInt("Minute");
         PlayerStat.playerCoin = PlayerPrefs.GetInt("Coin");
+
+        PlayerStat.potionMagic = PlayerPrefs.GetFloat(nameof(PlayerStat.potionMagic));
+        PlayerStat.copyMagic = PlayerPrefs.GetFloat(nameof(PlayerStat.copyMagic));
+        PlayerStat.waterMagic = PlayerPrefs.GetFloat(nameof(PlayerStat.waterMagic));
+        PlayerStat.fireMagic = PlayerPrefs.GetFloat(nameof(PlayerStat.fireMagic));
+        PlayerStat.healMagic = PlayerPrefs.GetFloat(nameof(PlayerStat.healMagic));
+        PlayerStat.blackMagic = PlayerPrefs.GetFloat(nameof(PlayerStat.blackMagic));
+
         PlayerStat.resty = PlayerPrefs.GetInt($"{CharacterName.resty}Love");
         PlayerStat.chris = PlayerPrefs.GetInt($"{CharacterName.chris}Love");
         PlayerStat.theo = PlayerPrefs.GetInt($"{CharacterName.theo}Love");
