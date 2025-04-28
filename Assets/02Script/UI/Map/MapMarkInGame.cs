@@ -16,7 +16,7 @@ public class MapMarkInGame : MonoBehaviour
     [Header("Show")]
     [SerializeField] private RectTransform imageRect; //맵 크기
 
-    public static int num = 0; //번째
+    private static int num = 0; //번째
     private string numPath = "mapPos";
     private string path = $"mapPos_"; //저장 이름
 
@@ -34,6 +34,13 @@ public class MapMarkInGame : MonoBehaviour
         num = PlayerPrefs.GetInt(numPath);
         imageRect = mapImage.GetComponent<RectTransform>();
         LoadMapMark();
+    }
+
+    public void ResetMapMarkNum()
+    {
+        num = 0;
+        PlayerPrefs.SetInt(numPath, num);
+        PlayerPrefs.Save();
     }
 
     public void ClcikMapMark() //맵 마크 버튼 누를 때

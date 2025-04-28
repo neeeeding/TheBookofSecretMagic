@@ -5,6 +5,7 @@ using UnityEngine;
 public class DeleteAllChild : MonoBehaviour
 {
     [SerializeField] private GameObject parentObject;
+    [SerializeField] private MapMarkInGame map;
 
     public void AllDelete()
     {
@@ -12,7 +13,7 @@ public class DeleteAllChild : MonoBehaviour
         {
             Destroy(child.gameObject);
 
-            MapMarkInGame.num = 0; // 개수 초기화
+            map.ResetMapMarkNum();
         }
     }
 }
