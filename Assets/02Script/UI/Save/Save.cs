@@ -106,9 +106,9 @@ public class Save : MonoBehaviour
 
     private void SettingPath()
     {
-        if (GameManager.path != null && GameManager.path != "" && path != "")
+        if (GameManager.GameSaveFilePath != null && GameManager.GameSaveFilePath != "" && path != "")
         {
-            path = GameManager.path;
+            path = GameManager.GameSaveFilePath;
         }
         else
         {
