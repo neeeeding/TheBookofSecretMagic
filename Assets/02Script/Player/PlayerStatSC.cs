@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class PlayerStatSC
 {
     public bool isChat; //ture : 채팅 중, false : 인 게임

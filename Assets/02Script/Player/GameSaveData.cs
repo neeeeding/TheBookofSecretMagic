@@ -2,6 +2,7 @@
 public class GameSaveData 
 {
     public Sound sound = new Sound();
+    public PlayerStatSC stat = new PlayerStatSC();
 }
 
 [System.Serializable]

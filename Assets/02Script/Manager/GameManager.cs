@@ -158,6 +158,7 @@ public class GameManager : Singleton<GameManager>
 
     private void AwakeData() //값 세팅
     {
+        //날짜
         PlayerStat.year = PlayerPrefs.GetInt("Year");
         PlayerStat.month = PlayerPrefs.GetInt("Month");
         PlayerStat.day = PlayerPrefs.GetInt("Day");
@@ -165,13 +166,15 @@ public class GameManager : Singleton<GameManager>
         PlayerStat.minute = PlayerPrefs.GetInt("Minute");
         PlayerStat.playerCoin = PlayerPrefs.GetInt("Coin");
 
-        PlayerStat.potionMagic = PlayerPrefs.GetFloat(nameof(PlayerStat.potionMagic));
-        PlayerStat.copyMagic = PlayerPrefs.GetFloat(nameof(PlayerStat.copyMagic));
-        PlayerStat.waterMagic = PlayerPrefs.GetFloat(nameof(PlayerStat.waterMagic));
-        PlayerStat.fireMagic = PlayerPrefs.GetFloat(nameof(PlayerStat.fireMagic));
-        PlayerStat.healMagic = PlayerPrefs.GetFloat(nameof(PlayerStat.healMagic));
-        PlayerStat.blackMagic = PlayerPrefs.GetFloat(nameof(PlayerStat.blackMagic));
+        //능력치
+        PlayerStat.potionMagic = saveData.stat.potionMagic;
+        PlayerStat.copyMagic =   saveData.stat.copyMagic;
+        PlayerStat.waterMagic =  saveData.stat.waterMagic;
+        PlayerStat.fireMagic =   saveData.stat.fireMagic;
+        PlayerStat.healMagic =   saveData.stat.healMagic;
+        PlayerStat.blackMagic = saveData.stat.blackMagic;
 
+        //호감도
         PlayerStat.resty = PlayerPrefs.GetInt($"{CharacterName.resty}Love");
         PlayerStat.chris = PlayerPrefs.GetInt($"{CharacterName.chris}Love");
         PlayerStat.theo = PlayerPrefs.GetInt($"{CharacterName.theo}Love");
@@ -182,8 +185,7 @@ public class GameManager : Singleton<GameManager>
         PlayerStat.harry = PlayerPrefs.GetInt($"{CharacterName.harry}Love");
         PlayerStat.daniel = PlayerPrefs.GetInt($"{CharacterName.daniel}Love");
 
-
-
+        //아이템
         AddItems(false);
     }
 
