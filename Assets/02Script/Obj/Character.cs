@@ -26,7 +26,7 @@ public class Character : MonoBehaviour
 
     public void Load() //로드 될 때
     {
-        FieldInfo field = GameManager.Instance.FindCharacterLastText(characterSO.characterName);
+        FieldInfo field = GameManager.Instance.FindCharacterLastText(GameManager.Instance.PlayerStat,characterSO.characterName);
 
         if (field != null)
         {

@@ -96,8 +96,8 @@ public class Dialog : MonoBehaviour
     {
         GameManager.Instance.PlayerStat.lastText = $"{ ChatSetting.Name(currentSO.characterName)} : {final}"; //마지막 텍스트
 
-        //해당 캐릭터 갱신
-        FieldInfo field = GameManager.Instance.FindCharacterLastText(currentSO.characterName);
+        //해당 캐릭터 갱신 (저장 stat)
+        FieldInfo field = GameManager.Instance.FindCharacterLastText(GameManager.Instance.PlayerStat,currentSO.characterName);
 
         //저장할 위치 (이름)
         string path = $"{currentSO.characterName}Dialog";

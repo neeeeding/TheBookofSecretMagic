@@ -77,14 +77,16 @@ public class GameManager : Singleton<GameManager>
         LoadCard.OnLoad -= LoadData;
 
         //정보 저장
+        saveData.stat = PlayerStat;
+
         string json = JsonUtility.ToJson(saveData);
         PlayerPrefs.SetString(GamePath, json);
         PlayerPrefs.Save();
     }
 
-    public FieldInfo FindCharacterLastText(CharacterName character) //마지막 텍스트 그거 반환
+    public FieldInfo FindCharacterLastText(PlayerStatSC sc,CharacterName character) //마지막 텍스트 그거 반환
     {
-        FieldInfo field = PlayerStat.GetType().GetField($"{character}LastText", BindingFlags.Public | BindingFlags.Instance);
+        FieldInfo field = sc.GetType().GetField($"{character}LastText", BindingFlags.Public | BindingFlags.Instance);
         if(field != null && field.FieldType == typeof(int[]))
         {
             return field;

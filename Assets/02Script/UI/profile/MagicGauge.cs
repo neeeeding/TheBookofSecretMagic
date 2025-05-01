@@ -13,7 +13,6 @@ public class MagicGauge : MonoBehaviour
     [SerializeField] private Slider healSlider;
     [SerializeField] private Slider blackSlider;
     private PlayerStatSC stat = null;
-    private PlayerStatSC saveStat = null;
 
     private void OnEnable()
     {
@@ -33,14 +32,36 @@ public class MagicGauge : MonoBehaviour
         fireSlider.value = stat.fireMagic;
         healSlider.value = stat.healMagic;
         blackSlider.value = stat.blackMagic;
+    }
 
-        //¿˙¿Â
-        saveStat = GameManager.Instance.saveData.stat;
-        saveStat.potionMagic= potionSlider.value;
-        saveStat.copyMagic  = copySlider.value;
-        saveStat.waterMagic = waterSlider.value;
-        saveStat.fireMagic  = fireSlider.value;
-        saveStat.healMagic  = healSlider.value;
-        saveStat.blackMagic = blackSlider.value;
+    public void PotionValue()
+    {
+        stat = GameManager.Instance.PlayerStat;
+        stat.potionMagic = potionSlider.value;
+    }
+    public void CopyValue()
+    {
+        stat = GameManager.Instance.PlayerStat;
+        stat.copyMagic = copySlider.value;
+    }
+    public void WaterValue()
+    {
+        stat = GameManager.Instance.PlayerStat;
+        stat.waterMagic = waterSlider.value;
+    }
+    public void FireValue()
+    {
+        stat = GameManager.Instance.PlayerStat;
+        stat.fireMagic = fireSlider.value;
+    }
+    public void HealValue()
+    {
+        stat = GameManager.Instance.PlayerStat;
+        stat.healMagic = healSlider.value;
+    }
+    public void BlackValue()
+    {
+        stat = GameManager.Instance.PlayerStat;
+        stat.blackMagic = blackSlider.value;
     }
 }

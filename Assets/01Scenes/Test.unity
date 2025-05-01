@@ -3320,6 +3320,154 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cf130c4470f3a341acc953ba4f5370a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GamePath: gameSaveData
+  saveData:
+    sound:
+      mainSound: 0
+      bgmSound: 0
+      effectSound: 0
+    stat:
+      isChat: 0
+      blackMagic: 0
+      healMagic: 0
+      fireMagic: 0
+      waterMagic: 0
+      copyMagic: 0
+      potionMagic: 0
+      playerCoin: 0
+      playerPosition: {x: 0, y: 0}
+      job: 0
+      resty: 0
+      chris: 0
+      theo: 0
+      pio: 0
+      noah: 0
+      nia: 0
+      villain: 0
+      harry: 0
+      daniel: 0
+      lastCharacter: {fileID: 0}
+      lastSO: {fileID: 0}
+      lastText: 
+      restyLastText: 0000000000000000
+      chrisLastText: 0000000000000000
+      theoLastText: 0000000000000000
+      pioLastText: 0000000000000000
+      noahLastText: 0000000000000000
+      niaLastText: 0000000000000000
+      villainLastText: 0000000000000000
+      harryLastText: 0000000000000000
+      danielLastText: 0000000000000000
+      year: 0
+      month: 0
+      day: 0
+      hour: 0
+      minute: 0
+      lovePotionCount: 0
+      staminaPotionCount: 0
+      painPotionCount: 0
+      blackbookCount: 0
+      healbookCount: 0
+      firebookCount: 0
+      waterbookCount: 0
+      copybookCount: 0
+      potionbookCount: 0
+      umbrellaCount: 0
+      broomstickCount: 0
+      fanCount: 0
+      hotPackCount: 0
+      fryingPanCount: 0
+      flowerCount: 0
+      foragingBinCount: 0
+      drugCount: 0
+      boxCount: 0
+      glassesCount: 0
+      readingGlassesCount: 0
+      emptyGlassCount: 0
+      wormCount: 0
+      trashGlassCount: 0
+      perfectGlassCount: 0
+      restyMouse: 0
+      chrisMouse: 0
+      theoMouse: 0
+      noahMouse: 0
+      niaMouse: 0
+      villainMouse: 0
+      harryMouse: 0
+      danielMouse: 0
+      pioMouse: 0
+      giftCount: 0
+  PlayerStat:
+    isChat: 0
+    blackMagic: 0
+    healMagic: 0
+    fireMagic: 0
+    waterMagic: 0
+    copyMagic: 0
+    potionMagic: 0
+    playerCoin: 0
+    playerPosition: {x: 0, y: 0}
+    job: 0
+    resty: 0
+    chris: 0
+    theo: 0
+    pio: 0
+    noah: 0
+    nia: 0
+    villain: 0
+    harry: 0
+    daniel: 0
+    lastCharacter: {fileID: 0}
+    lastSO: {fileID: 0}
+    lastText: 
+    restyLastText: 0000000000000000
+    chrisLastText: 0000000000000000
+    theoLastText: 0000000000000000
+    pioLastText: 0000000000000000
+    noahLastText: 0000000000000000
+    niaLastText: 0000000000000000
+    villainLastText: 0000000000000000
+    harryLastText: 0000000000000000
+    danielLastText: 0000000000000000
+    year: 0
+    month: 0
+    day: 0
+    hour: 0
+    minute: 0
+    lovePotionCount: 0
+    staminaPotionCount: 0
+    painPotionCount: 0
+    blackbookCount: 0
+    healbookCount: 0
+    firebookCount: 0
+    waterbookCount: 0
+    copybookCount: 0
+    potionbookCount: 0
+    umbrellaCount: 0
+    broomstickCount: 0
+    fanCount: 0
+    hotPackCount: 0
+    fryingPanCount: 0
+    flowerCount: 0
+    foragingBinCount: 0
+    drugCount: 0
+    boxCount: 0
+    glassesCount: 0
+    readingGlassesCount: 0
+    emptyGlassCount: 0
+    wormCount: 0
+    trashGlassCount: 0
+    perfectGlassCount: 0
+    restyMouse: 0
+    chrisMouse: 0
+    theoMouse: 0
+    noahMouse: 0
+    niaMouse: 0
+    villainMouse: 0
+    harryMouse: 0
+    danielMouse: 0
+    pioMouse: 0
+    giftCount: 0
   Player: {fileID: 0}
   Item: {fileID: 0}
   isStart: 0
@@ -8672,7 +8820,19 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1534598828}
+        m_TargetAssemblyTypeName: MagicGauge, Assembly-CSharp
+        m_MethodName: HealValue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &771368816
 GameObject:
   m_ObjectHideFlags: 0
@@ -15911,7 +16071,19 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1534598828}
+        m_TargetAssemblyTypeName: MagicGauge, Assembly-CSharp
+        m_MethodName: WaterValue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1355235979
 GameObject:
   m_ObjectHideFlags: 0
@@ -25416,7 +25588,19 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1534598828}
+        m_TargetAssemblyTypeName: MagicGauge, Assembly-CSharp
+        m_MethodName: FireValue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1621104115
 GameObject:
   m_ObjectHideFlags: 0
@@ -26057,7 +26241,19 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1534598828}
+        m_TargetAssemblyTypeName: MagicGauge, Assembly-CSharp
+        m_MethodName: CopyValue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1675202435
 GameObject:
   m_ObjectHideFlags: 0
@@ -26222,7 +26418,19 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1534598828}
+        m_TargetAssemblyTypeName: MagicGauge, Assembly-CSharp
+        m_MethodName: PotionValue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1703405914
 GameObject:
   m_ObjectHideFlags: 0
@@ -27997,7 +28205,19 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1534598828}
+        m_TargetAssemblyTypeName: MagicGauge, Assembly-CSharp
+        m_MethodName: BlackValue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1990031364
 GameObject:
   m_ObjectHideFlags: 0
