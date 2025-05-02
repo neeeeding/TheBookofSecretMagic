@@ -1,3 +1,6 @@
+using System.Numerics;
+using UnityEditor.SceneManagement;
+
 [System.Serializable]
 public class GameSaveData 
 {

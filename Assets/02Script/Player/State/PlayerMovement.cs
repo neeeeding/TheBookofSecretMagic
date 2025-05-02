@@ -39,8 +39,6 @@ public class PlayerMovement: Singleton<PlayerMovement>
 
         if (direction.magnitude < 0.1f || !_isMoving) // 너무 가까우면 멈추기
         {
-            PlayerPrefs.SetFloat("playerX", transform.position.x);
-            PlayerPrefs.SetFloat("playerY", transform.position.y);
             GameManager.Instance.PlayerStat.playerPosition = transform.position; //위치 저장
             _rigidbody.velocity = Vector2.zero;
             _isMoving = false;
@@ -59,7 +57,7 @@ public class PlayerMovement: Singleton<PlayerMovement>
 
     private void StartLoad()
     {
-        Vector2 position = new Vector2(PlayerPrefs.GetFloat("playerX"), PlayerPrefs.GetFloat("playerY"));
+        Vector2 position = GameManager.Instance.saveData.stat.playerPosition;
         GameManager.Instance.PlayerStat.playerPosition = position;
         Load();
     }
