@@ -32,14 +32,6 @@ public class GameManager : Singleton<GameManager>
     public void ResetDate() //초기화 하기
     {
        PlayerPrefs.DeleteAll();
-
-        PlayerPrefs.SetInt("Year", 1);
-        PlayerPrefs.SetInt("Month", 1);
-        PlayerPrefs.SetInt("Day", 1);
-        PlayerPrefs.SetInt("Hour", 1);
-        PlayerPrefs.SetInt("Minute", 0);
-        PlayerPrefs.SetInt("Coin", 5);
-
         PlayerPrefs.Save();
     }
 
@@ -53,7 +45,7 @@ public class GameManager : Singleton<GameManager>
         GameSaveFilePath = Application.persistentDataPath + "/Save";
         print(GameSaveFilePath);
         isStart = false;
-        PlayerStat = new PlayerStatSC();
+        PlayerStat = saveData.stat; //로드
         Player = gameObject.GetComponent<Player>();
 
         PlayerStat.ResetStat();
@@ -96,17 +88,9 @@ public class GameManager : Singleton<GameManager>
 
     private void LoadData() //로드하기
     {
-        PlayerPrefs.SetInt("Year", PlayerStat.year);
-        PlayerPrefs.SetInt("Month", PlayerStat.month);
-        PlayerPrefs.SetInt("Day", PlayerStat.day);
-        PlayerPrefs.SetInt("Hour", PlayerStat.hour);
-        PlayerPrefs.SetInt("Minute", PlayerStat.minute);
-        PlayerPrefs.SetInt("Coin", PlayerStat.playerCoin);
-
         //호감도는 LikeabilityCard에서 해줌.
 
         AddItems(true);
-        PlayerPrefs.Save();
     }
 
     public void SetLove(CharacterSO character, int love) //정보 넣고 해당 호감도 스탯에서의 이름 찾아서 전해주기
@@ -160,22 +144,6 @@ public class GameManager : Singleton<GameManager>
 
     private void AwakeData() //값 세팅
     {
-        //날짜
-        PlayerStat.year = PlayerPrefs.GetInt("Year");
-        PlayerStat.month = PlayerPrefs.GetInt("Month");
-        PlayerStat.day = PlayerPrefs.GetInt("Day");
-        PlayerStat.hour = PlayerPrefs.GetInt("Hour");
-        PlayerStat.minute = PlayerPrefs.GetInt("Minute");
-        PlayerStat.playerCoin = PlayerPrefs.GetInt("Coin");
-
-        //능력치
-        PlayerStat.potionMagic = saveData.stat.potionMagic;
-        PlayerStat.copyMagic =   saveData.stat.copyMagic;
-        PlayerStat.waterMagic =  saveData.stat.waterMagic;
-        PlayerStat.fireMagic =   saveData.stat.fireMagic;
-        PlayerStat.healMagic =   saveData.stat.healMagic;
-        PlayerStat.blackMagic = saveData.stat.blackMagic;
-
         //호감도
         PlayerStat.resty = PlayerPrefs.GetInt($"{CharacterName.resty}Love");
         PlayerStat.chris = PlayerPrefs.GetInt($"{CharacterName.chris}Love");
@@ -234,28 +202,23 @@ public class GameManager : Singleton<GameManager>
             yield return new WaitForSeconds(10f);
 
             PlayerStat.minute++;
-            PlayerPrefs.SetInt("Minute", PlayerStat.minute);
             if (PlayerStat.minute >= 60)
             {
-                PlayerPrefs.SetInt("Hour", PlayerStat.hour);
                 PlayerStat.minute = 0;
                 PlayerStat.hour++;
 
                 if(PlayerStat.hour >= 24)
                 {
-                    PlayerPrefs.SetInt("Day", PlayerStat.day);
                     PlayerStat.hour = 1;
                     PlayerStat.day++;
 
                     if(CompareMonth(PlayerStat.day, PlayerStat.month))
                     {
-                        PlayerPrefs.SetInt("Month", PlayerStat.month);
                         PlayerStat.day = 1;
                         PlayerStat.month++;
 
                         if(PlayerStat.month > 12)
                         {
-                            PlayerPrefs.SetInt("Year", PlayerStat.year);
                             PlayerStat.year++;
                         }
                     }
