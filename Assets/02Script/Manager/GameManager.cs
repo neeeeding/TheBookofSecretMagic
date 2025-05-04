@@ -24,9 +24,6 @@ public class GameManager : Singleton<GameManager>
     public ItemSO Item; //들고 있는 아이템?
     [Space(10f)]
     public bool isStart;
-    [Space(50f)]
-    [Header("Item")]
-    public Dictionary<ItemType, int> Items = new Dictionary<ItemType, int>();
 
     [ContextMenu("ResetAll")]
     public void ResetDate() //초기화 하기
@@ -45,11 +42,13 @@ public class GameManager : Singleton<GameManager>
         GameSaveFilePath = Application.persistentDataPath + "/Save";
         print(GameSaveFilePath);
         isStart = false;
+
         PlayerStat = saveData.stat; //로드
+        //PlayerStat = new PlayerStatSC();
+
         Player = gameObject.GetComponent<Player>();
 
         PlayerStat.ResetStat();
-        ResetDate();
 
         AwakeData();
 
@@ -91,8 +90,7 @@ public class GameManager : Singleton<GameManager>
     {
         //호감도는 LikeabilityCard에서 해줌.
 
-
-        AddItems(true);
+        //로드해 줄 것
     }
 
     public void SetLove(CharacterSO character, int love) //정보 넣고 해당 호감도 스탯에서의 이름 찾아서 전해주기
@@ -127,21 +125,11 @@ public class GameManager : Singleton<GameManager>
     {
         PlayerStat.playerCoin += num;
         CoinText?.Invoke();
-        PlayerPrefs.SetInt("Coin", PlayerStat.playerCoin);
-        PlayerPrefs.Save();
     }
 
     public void AddItemCount(ItemCategory category,ItemType type,int num) //얻은, 잃은 아이템 수들
     {
-        Items[type] += num;
-
-        FieldInfo field = GetField(category, type);
-
-        if(field != null)
-        {
-            field.SetValue(PlayerStat, Items[type]);
-            PlayerPrefs.SetInt($"{type}", Items[type]);
-        }
+        PlayerStat.items[category][type] += num;
     }
 
     private void AwakeData() //값 세팅
@@ -158,37 +146,23 @@ public class GameManager : Singleton<GameManager>
         PlayerStat.daniel = PlayerPrefs.GetInt($"{CharacterName.daniel}Love");
 
         //아이템
-        //AddItems(false);
-    }
-
-    private FieldInfo GetField(ItemCategory category, ItemType type) //아이템변수들을 필드 찾기(stat에서)
-    {
-        string itemName = type.ToString();
-        if(category != ItemCategory.mouse)
-        {
-            itemName += "Count";
-        }
-        FieldInfo field = PlayerStat.GetType().GetField(itemName, BindingFlags.Public | BindingFlags.Instance);
-        if(field != null && field.FieldType == typeof(int) && category != ItemCategory.coin)
-        {
-            return field;
-        }
-        return null;
+        ResetItem();
     }
 
     private void ResetItem() //스탯의 아이템 전부 초기화
     {
+        PlayerStat.items = new SaveDictionary<ItemCategory, SaveDictionary<ItemType, int>>();
         PlayerStat.items.Clear();
 
         int num;
 
         foreach(ItemCategory category in Enum.GetValues(typeof(ItemCategory))) //카테고리 저장
         {
-            if (category != ItemCategory.coin) //코인 제외
+            if (category == ItemCategory.coin || category == ItemCategory.none) //코인 제외
                 continue;
 
             num = (int)category/1000;
-            Dictionary<ItemType, int> item = new Dictionary<ItemType, int>(); //아이템
+            SaveDictionary<ItemType, int> item = new SaveDictionary<ItemType, int>(); //아이템
 
             foreach (ItemType type in Enum.GetValues(typeof(ItemType))) //해당 카테고리와 앞 자리 같은 종료를 저장
             {
@@ -198,29 +172,7 @@ public class GameManager : Singleton<GameManager>
                 item.Add(type, 0); //0으로 초기화
             }
             PlayerStat.items.Add(category, item); //저장
-
         }
-    }
-
-    private void AddItems(bool load)//아이템 전부 추가
-    {
-        Items.Clear();
-
-        foreach (ItemType type in Enum.GetValues(typeof(ItemType)))
-        {
-            ItemCategory category = type.ToString().Contains("mouse") ? ItemCategory.mouse : ItemCategory.none ;
-            FieldInfo field = GetField(category,type);
-            if (field != null)
-            {
-                if (load)
-                {
-                    //저장
-                }
-                //로드
-                Items.Add(type, (int)field.GetValue(PlayerStat));
-            }
-        }
-
     }
 
     private IEnumerator nowDate() //시간세는거

@@ -1,8 +1,8 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
+[Serializable]
 public class PlayerStatSC
 {
     public bool isChat; //ture : 채팅 중, false : 인 게임
@@ -67,8 +67,10 @@ public class PlayerStatSC
     public int hour;
     public int minute;
 
-    public Dictionary<ItemCategory,Dictionary<ItemType, int>> items; //아이템들 카테고리<종류,수>
+    public SaveDictionary<ItemCategory, SaveDictionary<ItemType, int>> items; //아이템들 카테고리<종류,수>
+    
 
+    #region 이전 아이템 저장 법
     //public int lovePotionCount; //포션
     //public int staminaPotionCount;
     //public int painPotionCount;
@@ -111,6 +113,7 @@ public class PlayerStatSC
     //public int pioMouse; //커서
 
     //public int giftCount; //아직임
+    #endregion
 
     [ContextMenu("ResetStat")]
     public void ResetStat()
@@ -145,4 +148,3 @@ public class PlayerStatSC
         minute = 0;
     }
 }
-

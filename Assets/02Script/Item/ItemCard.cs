@@ -48,8 +48,8 @@ public class ItemCard : MonoBehaviour
         realItem = item;
         HideItem();
 
-        getItem = GameManager.Instance.Items[mySO.itemType] <= 0 ? false : true;
-        countItme = GameManager.Instance.Items[mySO.itemType];
+        countItme = GameManager.Instance.PlayerStat.items[mySO.category][mySO.itemType]; //개수 넣기
+        getItem = countItme <= 0 ? false : true; // 0 미만인지
         ShowCount();
         if (!getItem)
         {
@@ -120,7 +120,7 @@ public class ItemCard : MonoBehaviour
         if(currentSO == so)
         {
             GameManager.Instance.AddItemCount(so.category, so.itemType, -1);
-            countItme = GameManager.Instance.Items[currentSO.itemType];
+            countItme = GameManager.Instance.PlayerStat.items[currentSO.category][currentSO.itemType];
             //PlayerPrefs.SetInt(so.name, --countItme);
             if (countItme < 1)
             {
@@ -137,7 +137,7 @@ public class ItemCard : MonoBehaviour
         if(currentSO == so)
         {
             GameManager.Instance.AddItemCount(so.category, so.itemType, 1);
-            countItme = GameManager.Instance.Items[currentSO.itemType];
+            countItme = GameManager.Instance.PlayerStat.items[currentSO.category][currentSO.itemType];
             getItem = true;
             //PlayerPrefs.SetInt(so.name, ++countItme);
             ShowCount();

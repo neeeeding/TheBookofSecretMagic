@@ -11,13 +11,8 @@ public class TimeText : MonoBehaviour
 
     private void Awake()
     {
-        GameManager.OnStart += GameStart;
+        GameManager.OnStart += ChangeStat;
         timeText = GetComponent<TextMeshProUGUI>();
-    }
-
-    private void GameStart()
-    {
-        stat = GameManager.Instance.PlayerStat;
     }
 
     private void OnEnable()
@@ -32,13 +27,20 @@ public class TimeText : MonoBehaviour
 
     private void Update()
     {
-        bool pm = stat.hour >= 12 && stat.hour != 24;
-        timeText.text = $"{stat.month} / {stat.day}\n{(pm ? "오후" : "오전")} {(pm ? stat.hour -12 : stat.hour)} : {stat.minute} ";
+        if (stat == null)
+        {
+            ChangeStat();
+        }
+        else
+        {
+            bool pm = stat.hour >= 12 && stat.hour != 24;
+            timeText.text = $"{stat.month} / {stat.day}\n{(pm ? "오후" : "오전")} {(pm ? stat.hour - 12 : stat.hour)} : {stat.minute} ";
+        }
     }
 
     private void OnDisable()
     {
-        GameManager.OnStart -= GameStart;
+        GameManager.OnStart -= ChangeStat;
         LoadCard.OnLoad -= ChangeStat;
     }
 }
