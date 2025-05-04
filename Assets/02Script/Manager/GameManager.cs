@@ -28,7 +28,7 @@ public class GameManager : Singleton<GameManager>
     [Header("Item")]
     public Dictionary<ItemType, int> Items = new Dictionary<ItemType, int>();
 
-    [ContextMenu("ResetDate")]
+    [ContextMenu("ResetAll")]
     public void ResetDate() //초기화 하기
     {
        PlayerPrefs.DeleteAll();
@@ -49,6 +49,7 @@ public class GameManager : Singleton<GameManager>
         Player = gameObject.GetComponent<Player>();
 
         PlayerStat.ResetStat();
+        ResetDate();
 
         AwakeData();
 
@@ -89,6 +90,7 @@ public class GameManager : Singleton<GameManager>
     private void LoadData() //로드하기
     {
         //호감도는 LikeabilityCard에서 해줌.
+
 
         AddItems(true);
     }
@@ -156,7 +158,7 @@ public class GameManager : Singleton<GameManager>
         PlayerStat.daniel = PlayerPrefs.GetInt($"{CharacterName.daniel}Love");
 
         //아이템
-        AddItems(false);
+        //AddItems(false);
     }
 
     private FieldInfo GetField(ItemCategory category, ItemType type) //아이템변수들을 필드 찾기(stat에서)
@@ -174,6 +176,32 @@ public class GameManager : Singleton<GameManager>
         return null;
     }
 
+    private void ResetItem() //스탯의 아이템 전부 초기화
+    {
+        PlayerStat.items.Clear();
+
+        int num;
+
+        foreach(ItemCategory category in Enum.GetValues(typeof(ItemCategory))) //카테고리 저장
+        {
+            if (category != ItemCategory.coin) //코인 제외
+                continue;
+
+            num = (int)category/1000;
+            Dictionary<ItemType, int> item = new Dictionary<ItemType, int>(); //아이템
+
+            foreach (ItemType type in Enum.GetValues(typeof(ItemType))) //해당 카테고리와 앞 자리 같은 종료를 저장
+            {
+                if (num != (int)type / 1000) //앞자리 비교
+                    continue;
+
+                item.Add(type, 0); //0으로 초기화
+            }
+            PlayerStat.items.Add(category, item); //저장
+
+        }
+    }
+
     private void AddItems(bool load)//아이템 전부 추가
     {
         Items.Clear();
@@ -186,9 +214,9 @@ public class GameManager : Singleton<GameManager>
             {
                 if (load)
                 {
-                    PlayerPrefs.SetInt($"{type}", (int)field.GetValue(PlayerStat));
+                    //저장
                 }
-                field.SetValue(PlayerStat, PlayerPrefs.GetInt($"{type}"));
+                //로드
                 Items.Add(type, (int)field.GetValue(PlayerStat));
             }
         }

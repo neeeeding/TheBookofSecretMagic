@@ -20,15 +20,6 @@ public class MapMarkInGame : MonoBehaviour
     private string numPath = "mapPos";
     private string path = $"mapPos_"; //저장 이름
 
-    [ContextMenu("ResetNum")]
-    private void ResetNum()
-    {
-        num = 0;
-        PlayerPrefs.SetInt(numPath, num);
-        PlayerPrefs.Save();
-    }
-
-
     private void Awake()
     {
         num = PlayerPrefs.GetInt(numPath);

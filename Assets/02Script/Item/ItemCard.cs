@@ -25,14 +25,6 @@ public class ItemCard : MonoBehaviour
     private bool getItem; //아이템을 얻었는지.
     private bool isUse; //들고 있는중
 
-    [ContextMenu("ResetCount")]
-    public void ResetCount()
-    {
-        countItme = 0;
-        PlayerPrefs.SetInt($"{so.name}", 0);
-        PlayerPrefs.Save();
-    }
-
     private void Awake()
     {
         cardImage = GetComponent<Image>();
