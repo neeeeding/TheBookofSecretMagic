@@ -97,17 +97,14 @@ public class Dialog : MonoBehaviour
         GameManager.Instance.PlayerStat.lastText = $"{ ChatSetting.Name(currentSO.characterName)} : {final}"; //마지막 텍스트
 
         //해당 캐릭터 갱신 (저장 stat)
-        FieldInfo field = GameManager.Instance.FindCharacterLastText(GameManager.Instance.PlayerStat,currentSO.characterName);
+        PlayerStatSC path = GameManager.Instance.PlayerStat;
 
-        //저장할 위치 (이름)
-        string path = $"{currentSO.characterName}Dialog";
-
-        if (field != null)
+        if (path != null)
         {
-            field.SetValue(GameManager.Instance.PlayerStat,new int[] { currentChapter,currentNum});
-            PlayerPrefs.SetInt($"{path}chapter", currentChapter);
-            PlayerPrefs.SetInt($"{path}finallNum", currentNum);
-            PlayerPrefs.Save();
+            //저장
+            path.characterlastText[chatPlayer.characterName][DialogType.Chapter] = currentNum;
+            path.characterlastText[chatPlayer.characterName][DialogType.Num] = currentChapter;
+            //path.characterlastText[chatPlayer.characterName][DialogType.Text] = final;
         }
     }
 

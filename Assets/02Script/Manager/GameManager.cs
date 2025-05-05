@@ -76,16 +76,6 @@ public class GameManager : Singleton<GameManager>
         PlayerPrefs.Save();
     }
 
-    public FieldInfo FindCharacterLastText(PlayerStatSC sc,CharacterName character) //마지막 텍스트 그거 반환
-    {
-        FieldInfo field = sc.GetType().GetField($"{character}LastText", BindingFlags.Public | BindingFlags.Instance);
-        if(field != null && field.FieldType == typeof(int[]))
-        {
-            return field;
-        }
-        return null;
-    }
-
     private void LoadData() //로드하기
     {
         //호감도는 LikeabilityCard에서 해줌.

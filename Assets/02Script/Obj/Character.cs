@@ -7,37 +7,35 @@ using UnityEngine.SocialPlatforms;
 
 public class Character : MonoBehaviour
 {
-    //현재 memo, love, dialogfinallName, dialogchapter 있음
+    //저장을 num : (챕터의) 넘버/ chapter : 챕터/ text : 마지막 대화
+    //현재 memo, love
     public static Action<CharacterSO,Character> OnChat;
 
     [SerializeField] private CharacterSO characterSO;
     [SerializeField] private int chapter; //챕터
     [SerializeField] private int finallNum; //번호
-    private string path;
+    private PlayerStatSC path; //스탯 (저장 공간)
     private bool isChat;
 
     private void Awake()
     {
         isChat = false;
-        path = $"{characterSO.characterName}Dialog";
-        finallNum = PlayerPrefs.GetInt($"{path}finallNum");
-        chapter = PlayerPrefs.GetInt($"{path}chapter");
+        path = GameManager.Instance.PlayerStat;
+        chapter = path.characterlastText[characterSO.characterName][DialogType.Chapter];
+        finallNum = path.characterlastText[characterSO.characterName][DialogType.Num];
     }
 
     public void Load() //로드 될 때
     {
-        FieldInfo field = GameManager.Instance.FindCharacterLastText(GameManager.Instance.PlayerStat,characterSO.characterName);
+        path = GameManager.Instance.PlayerStat; // 
 
-        if (field != null)
+        if (path != null)
         {
-            int[] chapterNum = (int[])field.GetValue(GameManager.Instance.PlayerStat);
-            chapter = chapterNum[0];
-            finallNum = chapterNum[1];
-            PlayerPrefs.SetInt($"{path}chapter", chapter);
-            PlayerPrefs.SetInt($"{path}finallNum", finallNum);
-            PlayerPrefs.Save();
+            chapter = path.characterlastText[characterSO.characterName][DialogType.Chapter];
+            finallNum = path.characterlastText[characterSO.characterName][DialogType.Num];
         }
 
+        //아이템이나 특수 대화에서는 문제가 없는지 확인 할 것
         if (GameManager.Instance.PlayerStat.isChat)
         {
             UISettingManager.Instance.CloseChat();
@@ -53,8 +51,8 @@ public class Character : MonoBehaviour
     public void NextDialog(int i) //대화가 진행 될 때마다
     {
         finallNum = i;
-        PlayerPrefs.SetInt($"{path}finallNum", finallNum);
-        PlayerPrefs.Save();
+
+        path.characterlastText[characterSO.characterName][DialogType.Num] = finallNum;
     }
 
     public int[] CurrentDialog() //현재 진행 사항 (챕터, 넘버 값 넘겨주기)
@@ -82,9 +80,9 @@ public class Character : MonoBehaviour
     {
         finallNum = 1;
         chapter++;
-        PlayerPrefs.SetInt($"{path}chapter", chapter);
-        PlayerPrefs.SetInt($"{path}finallNum", finallNum);
-        PlayerPrefs.Save();
+
+        path.characterlastText[characterSO.characterName][DialogType.Chapter] = chapter;
+        path.characterlastText[characterSO.characterName][DialogType.Num] = finallNum;
     }
 
     public void ClickCharacter() //대화 하기 (클릭)

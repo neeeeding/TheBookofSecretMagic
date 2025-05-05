@@ -50,15 +50,20 @@ public class PlayerStatSC
     public Character lastCharacter; //마지막 캐릭터
     public CharacterSO lastSO;
     public string lastText; //마지막 대화
-    public int[] restyLastText = new int[2]; // 레스티
-    public int[] chrisLastText = new int[2]; // 크리스
-    public int[] theoLastText = new int[2]; // 테오
-    public int[] pioLastText = new int[2]; // 피오
-    public int[] noahLastText = new int[2]; // 노아
-    public int[] niaLastText = new int[2]; // 니아
-    public int[] villainLastText = new int[2]; // 빌런
-    public int[] harryLastText = new int[2]; // 해리
-    public int[] danielLastText = new int[2]; // 다니엘
+
+    public SaveDictionary<CharacterName, SaveDictionary<DialogType,int>> characterlastText; //캐릭터 마지막 대화 이름<다이얼로그(종류), 번째>
+
+    #region 이전 호감도 저장 법
+    //public int[] restyLastText = new int[2]; // 레스티
+    //public int[] chrisLastText = new int[2]; // 크리스
+    //public int[] theoLastText = new int[2]; // 테오
+    //public int[] pioLastText = new int[2]; // 피오
+    //public int[] noahLastText = new int[2]; // 노아
+    //public int[] niaLastText = new int[2]; // 니아
+    //public int[] villainLastText = new int[2]; // 빌런
+    //public int[] harryLastText = new int[2]; // 해리
+    //public int[] danielLastText = new int[2]; // 다니엘
+    #endregion
 
     [Space(50f)] //날짜
     public int year;
