@@ -94,23 +94,6 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    public int CharacterLoveValue(CharacterName character) //호감도 값 반환
-    {
-        return character switch
-        {
-            CharacterName.resty => PlayerStat.resty,
-            CharacterName.chris => PlayerStat.chris,
-            CharacterName.theo => PlayerStat.theo,
-            CharacterName.noah => PlayerStat.noah,
-            CharacterName.nia => PlayerStat.nia,
-            CharacterName.villain => PlayerStat.villain,
-            CharacterName.harry => PlayerStat.harry,
-            CharacterName.daniel => PlayerStat.daniel,
-            CharacterName.pio => PlayerStat.pio,
-            _=> 0
-        };
-    }
-
     public void AddCoin(int num) //코인 수
     {
         PlayerStat.playerCoin += num;
@@ -125,15 +108,6 @@ public class GameManager : Singleton<GameManager>
     private void AwakeData() //값 세팅
     {
         //호감도
-        PlayerStat.resty = PlayerPrefs.GetInt($"{CharacterName.resty}Love");
-        PlayerStat.chris = PlayerPrefs.GetInt($"{CharacterName.chris}Love");
-        PlayerStat.theo = PlayerPrefs.GetInt($"{CharacterName.theo}Love");
-        PlayerStat.pio = PlayerPrefs.GetInt($"{CharacterName.pio}Love");
-        PlayerStat.noah = PlayerPrefs.GetInt($"{CharacterName.noah}Love");
-        PlayerStat.nia = PlayerPrefs.GetInt($"{CharacterName.nia}Love");
-        PlayerStat.villain = PlayerPrefs.GetInt($"{CharacterName.villain}Love");
-        PlayerStat.harry = PlayerPrefs.GetInt($"{CharacterName.harry}Love");
-        PlayerStat.daniel = PlayerPrefs.GetInt($"{CharacterName.daniel}Love");
 
         //아이템
         ResetItem();

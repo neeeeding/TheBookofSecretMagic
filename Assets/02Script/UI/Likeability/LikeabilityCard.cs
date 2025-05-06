@@ -7,6 +7,7 @@ using static UnityEngine.Rendering.DebugUI;
 using System.IO;
 using System.Reflection;
 using System;
+using UnityEngine.TextCore.Text;
 
 public class LikeabilityCard : MonoBehaviour
 {
@@ -19,11 +20,12 @@ public class LikeabilityCard : MonoBehaviour
     [SerializeField]private TMP_InputField memo; //메모
     private int loveValue; //호감도 (수)
 
+    private PlayerStatSC path; //스탯 (저장 공간)
+
     private void Awake()
     {
         characterName.text = ChatSetting.Name(character.characterName);
         //characterImage.sprite = character.characterImage;
-        memo.text = PlayerPrefs.GetString($"{character.characterName}Memo");
         GameManager.OnStart += LoadData;
     }
 
@@ -32,6 +34,8 @@ public class LikeabilityCard : MonoBehaviour
         LoadCard.OnLoad += LoadData;
         if(GameManager.Instance.isStart)
         {
+            path = GameManager.Instance.PlayerStat;
+            memo.text = path.characterlastText[character.characterName][DialogType.Memo];
             LoadData(); // 로드를 위해
         }
     }
@@ -44,8 +48,7 @@ public class LikeabilityCard : MonoBehaviour
     public void InputText()
     {
         string value = memo.text;
-        PlayerPrefs.SetString($"{character.characterName}Memo", value);
-        PlayerPrefs.Save();
+        path.characterlastText[character.characterName][DialogType.Memo] = value; //메모 저장
     }
 
     private void LoveUp(int value)
@@ -53,8 +56,9 @@ public class LikeabilityCard : MonoBehaviour
         loveValue += value;
         valueText.text = $"{loveValue} / 100 ";
         valueSlider.value = loveValue;
-        PlayerPrefs.SetInt($"{character.characterName}Love", loveValue);
-        PlayerPrefs.Save();
+
+        path.characterlastText[character.characterName][DialogType.Love] = loveValue.ToString(); //호감도 저장
+
         SaveMyLoveValue(true);
     }
 
@@ -65,18 +69,15 @@ public class LikeabilityCard : MonoBehaviour
 
     private void SaveMyLoveValue(bool set)
     {
-        FieldInfo field = GameManager.Instance.PlayerStat.GetType().GetField(character.characterName.ToString(), BindingFlags.Public | BindingFlags.Instance);
-        if(field != null && field.FieldType == typeof(int))
+        if(path != null)
         {
             if(set)
             {
-                field.SetValue(GameManager.Instance.PlayerStat, loveValue); //플레이어에게 저장해주기
+                path.characterlastText[character.characterName][DialogType.Love] = loveValue.ToString(); //호감도 저장
             }
             else
             {
-                PlayerPrefs.SetInt($"{character.characterName}Love", ((int)field.GetValue(GameManager.Instance.PlayerStat))); //값 저장하기. (실상은 불러오기)
-                PlayerPrefs.Save();
-                loveValue = GameManager.Instance.CharacterLoveValue(character.characterName);
+                int.TryParse(path.characterlastText[character.characterName][DialogType.Love], out loveValue); //호감도 저장
                 LoveUp(0);
             }
         }

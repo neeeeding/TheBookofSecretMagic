@@ -26,34 +26,36 @@ public class PlayerStatSC
 
     public PlayerJob job; //전공
 
-    [Space(50f)] //호감도
-    [Range(0, 100)]
-    public int resty;//레스티
-    [Range(0, 100)]
-    public int chris; //크리스
-    [Range(0, 100)]
-    public int theo; //테오
-    [Range(0, 100)]
-    public int pio; //피오
-    [Range(0, 100)]
-    public int noah; //노아
-    [Range(0, 100)]
-    public int nia; //니아
-    [Range(0, 100)]
-    public int villain; //빌런
-    [Range(0, 100)]
-    public int harry; //해리
-    [Range(0, 100)]
-    public int daniel; //다니엘
-
     [Space(50f)]
     public Character lastCharacter; //마지막 캐릭터
     public CharacterSO lastSO;
     public string lastText; //마지막 대화
 
-    public SaveDictionary<CharacterName, SaveDictionary<DialogType,int>> characterlastText; //캐릭터 마지막 대화 이름<다이얼로그(종류), 번째>
+    public SaveDictionary<CharacterName, SaveDictionary<DialogType, string>> characterlastText; //캐릭터 마지막 대화 이름<다이얼로그(종류), 번째(혹은 텍스트)>
 
     #region 이전 호감도 저장 법
+    //[Space(50f)] //호감도
+    //[Range(0, 100)]
+    //public int resty;//레스티
+    //[Range(0, 100)]
+    //public int chris; //크리스
+    //[Range(0, 100)]
+    //public int theo; //테오
+    //[Range(0, 100)]
+    //public int pio; //피오
+    //[Range(0, 100)]
+    //public int noah; //노아
+    //[Range(0, 100)]
+    //public int nia; //니아
+    //[Range(0, 100)]
+    //public int villain; //빌런
+    //[Range(0, 100)]
+    //public int harry; //해리
+    //[Range(0, 100)]
+    //public int daniel; //다니엘
+    #endregion
+
+    #region 이전 내용 저장 법
     //public int[] restyLastText = new int[2]; // 레스티
     //public int[] chrisLastText = new int[2]; // 크리스
     //public int[] theoLastText = new int[2]; // 테오
@@ -134,15 +136,15 @@ public class PlayerStatSC
 
         job = PlayerJob.none;
 
-        resty = 0;
-        chris = 0;
-        theo = 0;
-        pio = 0;
-        noah = 0;
-        nia = 0;
-        villain = 0;
-        harry = 0;
-        daniel = 0;
+        //resty = 0;
+        //chris = 0;
+        //theo = 0;
+        //pio = 0;
+        //noah = 0;
+        //nia = 0;
+        //villain = 0;
+        //harry = 0;
+        //daniel = 0;
 
         lastText = "마지막 대화가 없습니다.";
 

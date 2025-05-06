@@ -102,8 +102,8 @@ public class Dialog : MonoBehaviour
         if (path != null)
         {
             //저장
-            path.characterlastText[chatPlayer.characterName][DialogType.Chapter] = currentNum;
-            path.characterlastText[chatPlayer.characterName][DialogType.Num] = currentChapter;
+            path.characterlastText[chatPlayer.characterName][DialogType.Chapter] = currentNum.ToString();
+            path.characterlastText[chatPlayer.characterName][DialogType.Num] = currentChapter.ToString();
             //path.characterlastText[chatPlayer.characterName][DialogType.Text] = final;
         }
     }
@@ -282,7 +282,11 @@ public enum DialogType
         OtherPosition, //이전 대화의 캐릭터의 위치
         SkipNum, //스킵 했을 때 넘어가는 번호
         NextNum, //다음으로 넘어갈 번호
-        SelectText //선택지 (개수 따라)
+        SelectText, //선택지 (개수 따라)
+
+        //저장을 위한 (캐릭터 카드)
+        Memo, //메모
+        Love //호감도
 }
 
 public enum DialogPosition

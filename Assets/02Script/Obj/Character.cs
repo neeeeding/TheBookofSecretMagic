@@ -8,7 +8,7 @@ using UnityEngine.SocialPlatforms;
 public class Character : MonoBehaviour
 {
     //저장을 num : (챕터의) 넘버/ chapter : 챕터/ text : 마지막 대화
-    //현재 memo, love
+    //LikeabilityCard = 
     public static Action<CharacterSO,Character> OnChat;
 
     [SerializeField] private CharacterSO characterSO;
@@ -21,8 +21,8 @@ public class Character : MonoBehaviour
     {
         isChat = false;
         path = GameManager.Instance.PlayerStat;
-        chapter = path.characterlastText[characterSO.characterName][DialogType.Chapter];
-        finallNum = path.characterlastText[characterSO.characterName][DialogType.Num];
+        int.TryParse(path.characterlastText[characterSO.characterName][DialogType.Chapter],out chapter);
+        int.TryParse(path.characterlastText[characterSO.characterName][DialogType.Num],out finallNum);
     }
 
     public void Load() //로드 될 때
@@ -31,8 +31,8 @@ public class Character : MonoBehaviour
 
         if (path != null)
         {
-            chapter = path.characterlastText[characterSO.characterName][DialogType.Chapter];
-            finallNum = path.characterlastText[characterSO.characterName][DialogType.Num];
+            int.TryParse(path.characterlastText[characterSO.characterName][DialogType.Chapter], out chapter);
+            int.TryParse(path.characterlastText[characterSO.characterName][DialogType.Num], out finallNum);
         }
 
         //아이템이나 특수 대화에서는 문제가 없는지 확인 할 것
@@ -52,7 +52,7 @@ public class Character : MonoBehaviour
     {
         finallNum = i;
 
-        path.characterlastText[characterSO.characterName][DialogType.Num] = finallNum;
+        path.characterlastText[characterSO.characterName][DialogType.Num] = finallNum.ToString();
     }
 
     public int[] CurrentDialog() //현재 진행 사항 (챕터, 넘버 값 넘겨주기)
@@ -81,8 +81,8 @@ public class Character : MonoBehaviour
         finallNum = 1;
         chapter++;
 
-        path.characterlastText[characterSO.characterName][DialogType.Chapter] = chapter;
-        path.characterlastText[characterSO.characterName][DialogType.Num] = finallNum;
+        path.characterlastText[characterSO.characterName][DialogType.Chapter] = chapter.ToString();
+        path.characterlastText[characterSO.characterName][DialogType.Num] = finallNum.ToString();
     }
 
     public void ClickCharacter() //대화 하기 (클릭)

@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.ComponentModel;
 using System;
+using UnityEngine.TextCore.Text;
 
 public class ChatSetting : MonoBehaviour
 {
@@ -19,8 +20,11 @@ public class ChatSetting : MonoBehaviour
         {
             characterLoveGauge.gameObject.SetActive(true);
             characterLoveText.gameObject.SetActive(true);
-            characterLoveGauge.value = GameManager.Instance.CharacterLoveValue(current.characterName);
-            characterLoveText.text = GameManager.Instance.CharacterLoveValue(current.characterName).ToString();
+
+            int.TryParse(GameManager.Instance.PlayerStat.characterlastText[current.characterName][DialogType.Love], out int love);
+            characterLoveGauge.value = love;
+
+            characterLoveText.text = GameManager.Instance.PlayerStat.characterlastText[current.characterName][DialogType.Text];
         }
         else
         {
