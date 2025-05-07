@@ -88,9 +88,9 @@ public class GameManager : Singleton<GameManager>
         FieldInfo field = PlayerStat.GetType().GetField(character.characterName.ToString(), BindingFlags.Public | BindingFlags.Instance);
         if (field != null && field.FieldType == typeof(int))
         {
-            field.SetValue(PlayerStat, (int)field.GetValue(PlayerStat) + love); //저장해주기
-            PlayerPrefs.SetInt($"{character.characterName}Love", (int)field.GetValue(PlayerStat)); //값 저장하기. (실상은 불러오기)
-            PlayerPrefs.Save();
+            int.TryParse(PlayerStat.characterlastText[character.characterName][DialogType.Love], out int basic); //원래 값 가져오기
+
+            PlayerStat.characterlastText[character.characterName][DialogType.Love] = (basic + love).ToString(); //저장해주기
         }
     }
 
