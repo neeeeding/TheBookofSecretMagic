@@ -42,5 +42,6 @@ public class LikeItemItem : MonoBehaviour
             _ => Color.white
         };
         PlayerPrefs.SetInt(savePath, colorCount);
+        PlayerPrefs.Save();
     }
 }

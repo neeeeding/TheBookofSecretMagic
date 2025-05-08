@@ -13,26 +13,21 @@ public class ItemCard : MonoBehaviour
 
     [SerializeField] private int countItme; //아이템 소지 개수
 
+    private bool getItem; //아이템을 얻었는지.
+
     private static ItemCard currentUseItem; //현재 사용중인 아이템
     private static bool useTrue; //ture : 사용중인 아이템 있음, false : 사용중인 아이템 없음
+    private bool isUse; //들고 있는중
+    private ItemHold realItem; //들리게 될 아이템(위치)
 
     private TextMeshProUGUI countText; //소지 개수 텍스트
     private Image cardImage; //아이템 이미지
-
-    private ItemHold realItem;
-
-    private int itemCount; //아이템 개수
-    private bool getItem; //아이템을 얻었는지.
-    private bool isUse; //들고 있는중
 
     private void Awake()
     {
         cardImage = GetComponent<Image>();
         //cardImage.sprite = so.itemImage;
-        PlayerPrefs.SetInt(so.name, 1);
 
-
-        //countItme = PlayerPrefs.GetInt(so.name);
         countText = GetComponentInChildren<TextMeshProUGUI>();
     }
 
@@ -121,7 +116,7 @@ public class ItemCard : MonoBehaviour
         {
             GameManager.Instance.AddItemCount(so.category, so.itemType, -1);
             countItme = GameManager.Instance.PlayerStat.items[currentSO.category][currentSO.itemType];
-            //PlayerPrefs.SetInt(so.name, --countItme);
+
             if (countItme < 1)
             {
                 getItem = false;
@@ -139,7 +134,7 @@ public class ItemCard : MonoBehaviour
             GameManager.Instance.AddItemCount(so.category, so.itemType, 1);
             countItme = GameManager.Instance.PlayerStat.items[currentSO.category][currentSO.itemType];
             getItem = true;
-            //PlayerPrefs.SetInt(so.name, ++countItme);
+
             ShowCount();
         }
     }

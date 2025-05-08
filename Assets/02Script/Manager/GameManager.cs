@@ -44,7 +44,6 @@ public class GameManager : Singleton<GameManager>
         isStart = false;
 
         PlayerStat = saveData.stat; //로드
-        //PlayerStat = new PlayerStatSC();
 
         Player = gameObject.GetComponent<Player>();
 
@@ -108,9 +107,30 @@ public class GameManager : Singleton<GameManager>
     private void AwakeData() //값 세팅
     {
         //호감도
+        ResetCharacter();
 
         //아이템
         ResetItem();
+    }
+
+    private void ResetCharacter() //캐릭터들  전부 초기화
+    {
+        PlayerStat.characterlastText = new SaveDictionary<CharacterName, SaveDictionary<DialogType, string>>();
+        PlayerStat.characterlastText.Clear();
+
+        int num;
+
+        foreach (CharacterName name in Enum.GetValues(typeof(CharacterName))) //이름들 저장
+        {
+            num = (int)name / 1000;
+            SaveDictionary<DialogType, string> di = new SaveDictionary<DialogType, string>();
+
+            foreach (DialogType dialog in Enum.GetValues(typeof(DialogType))) //모든 걸 저장 / 다이얼로그 종류 (챕터, 넘버, 텍스트, 메모, 러브 만 사용하긴 함.)
+            {
+                di.Add(dialog, ""); // " " 초기화
+            }
+            PlayerStat.characterlastText.Add(name, di); //저장
+        }
     }
 
     private void ResetItem() //스탯의 아이템 전부 초기화
