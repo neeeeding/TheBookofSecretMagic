@@ -43,13 +43,13 @@ public class GameManager : Singleton<GameManager>
         print(GameSaveFilePath);
         isStart = false;
 
-        PlayerStat = saveData.stat; //로드
+        PlayerStat = data.stat; //로드
 
         Player = gameObject.GetComponent<Player>();
 
-        PlayerStat.ResetStat();
 
-        AwakeData();
+        //PlayerStat.ResetStat();
+        //ResetValue();
 
         LoadCard.OnLoad += LoadData;
         ItemCard.OnHoldItem += hold => Item = hold;
@@ -69,6 +69,7 @@ public class GameManager : Singleton<GameManager>
 
         //정보 저장
         saveData.stat = PlayerStat;
+        
 
         string json = JsonUtility.ToJson(saveData);
         PlayerPrefs.SetString(GamePath, json);
@@ -104,7 +105,7 @@ public class GameManager : Singleton<GameManager>
         PlayerStat.items[category][type] += num;
     }
 
-    private void AwakeData() //값 세팅
+    private void ResetValue() //값 세팅
     {
         //호감도
         ResetCharacter();
