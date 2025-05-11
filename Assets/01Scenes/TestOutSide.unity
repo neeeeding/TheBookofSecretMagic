@@ -3337,66 +3337,20 @@ MonoBehaviour:
       playerCoin: 0
       playerPosition: {x: 0, y: 0}
       job: 0
-      resty: 0
-      chris: 0
-      theo: 0
-      pio: 0
-      noah: 0
-      nia: 0
-      villain: 0
-      harry: 0
-      daniel: 0
       lastCharacter: {fileID: 0}
       lastSO: {fileID: 0}
       lastText: 
-      restyLastText: 0000000000000000
-      chrisLastText: 0000000000000000
-      theoLastText: 0000000000000000
-      pioLastText: 0000000000000000
-      noahLastText: 0000000000000000
-      niaLastText: 0000000000000000
-      villainLastText: 0000000000000000
-      harryLastText: 0000000000000000
-      danielLastText: 0000000000000000
+      characterlastText:
+        ks: 
+        vs: []
       year: 0
       month: 0
       day: 0
       hour: 0
       minute: 0
-      lovePotionCount: 0
-      staminaPotionCount: 0
-      painPotionCount: 0
-      blackbookCount: 0
-      healbookCount: 0
-      firebookCount: 0
-      waterbookCount: 0
-      copybookCount: 0
-      potionbookCount: 0
-      umbrellaCount: 0
-      broomstickCount: 0
-      fanCount: 0
-      hotPackCount: 0
-      fryingPanCount: 0
-      flowerCount: 0
-      foragingBinCount: 0
-      drugCount: 0
-      boxCount: 0
-      glassesCount: 0
-      readingGlassesCount: 0
-      emptyGlassCount: 0
-      wormCount: 0
-      trashGlassCount: 0
-      perfectGlassCount: 0
-      restyMouse: 0
-      chrisMouse: 0
-      theoMouse: 0
-      noahMouse: 0
-      niaMouse: 0
-      villainMouse: 0
-      harryMouse: 0
-      danielMouse: 0
-      pioMouse: 0
-      giftCount: 0
+      items:
+        ks: 
+        vs: []
   PlayerStat:
     isChat: 0
     blackMagic: 0
@@ -3408,66 +3362,20 @@ MonoBehaviour:
     playerCoin: 0
     playerPosition: {x: 0, y: 0}
     job: 0
-    resty: 0
-    chris: 0
-    theo: 0
-    pio: 0
-    noah: 0
-    nia: 0
-    villain: 0
-    harry: 0
-    daniel: 0
     lastCharacter: {fileID: 0}
     lastSO: {fileID: 0}
     lastText: 
-    restyLastText: 0000000000000000
-    chrisLastText: 0000000000000000
-    theoLastText: 0000000000000000
-    pioLastText: 0000000000000000
-    noahLastText: 0000000000000000
-    niaLastText: 0000000000000000
-    villainLastText: 0000000000000000
-    harryLastText: 0000000000000000
-    danielLastText: 0000000000000000
+    characterlastText:
+      ks: 
+      vs: []
     year: 0
     month: 0
     day: 0
     hour: 0
     minute: 0
-    lovePotionCount: 0
-    staminaPotionCount: 0
-    painPotionCount: 0
-    blackbookCount: 0
-    healbookCount: 0
-    firebookCount: 0
-    waterbookCount: 0
-    copybookCount: 0
-    potionbookCount: 0
-    umbrellaCount: 0
-    broomstickCount: 0
-    fanCount: 0
-    hotPackCount: 0
-    fryingPanCount: 0
-    flowerCount: 0
-    foragingBinCount: 0
-    drugCount: 0
-    boxCount: 0
-    glassesCount: 0
-    readingGlassesCount: 0
-    emptyGlassCount: 0
-    wormCount: 0
-    trashGlassCount: 0
-    perfectGlassCount: 0
-    restyMouse: 0
-    chrisMouse: 0
-    theoMouse: 0
-    noahMouse: 0
-    niaMouse: 0
-    villainMouse: 0
-    harryMouse: 0
-    danielMouse: 0
-    pioMouse: 0
-    giftCount: 0
+    items:
+      ks: 
+      vs: []
   Player: {fileID: 0}
   Item: {fileID: 0}
   isStart: 0
@@ -8607,17 +8515,17 @@ MonoBehaviour:
   - {fileID: 1411302412}
   - {fileID: 2041707105}
   chat: {fileID: 1566133849}
-  store: {fileID: 69054668}
   coin: {fileID: 575223703}
+  backBtn: {fileID: 964962045}
+  allSetting: {fileID: 350848276}
+  setting: {fileID: 541729018}
   profile: {fileID: 1324085983}
+  likeabilityGuide: {fileID: 1621104115}
   likeItem: {fileID: 1027971279}
   likeItemManager: {fileID: 2087411041}
-  likeabilityGuide: {fileID: 1621104115}
   map: {fileID: 313784254}
-  setting: {fileID: 541729018}
   save: {fileID: 185908790}
-  allSetting: {fileID: 350848276}
-  backBtn: {fileID: 964962045}
+  obj: {fileID: 0}
 --- !u!1 &735729904
 GameObject:
   m_ObjectHideFlags: 0
@@ -13598,7 +13506,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1675202436}
   m_Direction: 0
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.99999917
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -14853,7 +14761,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 814.30005, y: 0}
+  m_AnchoredPosition: {x: 0.0002007575, y: 0}
   m_SizeDelta: {x: 100, y: 690}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1262667295
@@ -26287,7 +26195,7 @@ RectTransform:
   m_Father: {fileID: 273737165}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0.99999917, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}

@@ -2,20 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StoreEnter : MonoBehaviour
+public class ObjEnter : MonoBehaviour
 {
-    private bool isStore;
+    private bool isObj;
 
     private void Awake()
     {
-        isStore = false;
+        isObj = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            isStore = true;
+            isObj = true;
         }
     }
 
@@ -23,15 +23,15 @@ public class StoreEnter : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            isStore = false;
+            isObj = false;
         }
     }
 
     public void ClickStore()
     {
-        if(isStore)
+        if(isObj)
         {
-            UISettingManager.Instance.Store();
+            UISettingManager.Instance.Obj();
         }
     }
 }

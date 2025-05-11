@@ -6,28 +6,28 @@ using UnityEngine.TextCore.Text;
 
 public class UISettingManager : Singleton<UISettingManager>
 {
-    [SerializeField] private GameObject[] inGame;
+    [Header("Need")]
+    [SerializeField] private GameObject[] inGame; //인 게임 필요 요소 (ex : 돈, 설정...)
+    [SerializeField] private Dialog chat; //채팅
+    [SerializeField] private GameObject coin; //코인 상점
+
+    [SerializeField] private GameObject backBtn; //인 게임으로
     [Space(10f)]
-    [SerializeField] private Dialog chat;
-    [Space(10f)]
-    [SerializeField] private GameObject store;
-    [Space(10f)]
-    [SerializeField] private GameObject coin;
-    [Space(10f)]
-    [SerializeField] private GameObject profile;
-    [SerializeField] private GameObject likeItem;
-    [SerializeField] private LikeItemManager likeItemManager;
-    [SerializeField] private GameObject likeabilityGuide;
-    [SerializeField] private GameObject map;
-    [SerializeField] private GameObject setting;
-    [SerializeField] private GameObject save;
-    [Space (10f)]
-    [SerializeField] private GameObject allSetting;
-    [Space(10f)]
-    [SerializeField] private GameObject backBtn;
+    [Header("Need(setting)")]
+    [SerializeField] private GameObject allSetting;//설정들 다 모아둔 어미
+    [SerializeField] private GameObject setting; //설정
+    [SerializeField] private GameObject profile; //프로필
+    [SerializeField] private GameObject likeabilityGuide; //캐릭터들
+    [SerializeField] private GameObject likeItem; //선호 아이템
+    [SerializeField] private LikeItemManager likeItemManager; //선호 아이템 매니저
+    [SerializeField] private GameObject map; //지도
+    [SerializeField] private GameObject save; //저장
+    [Space(10)]
+    [Header("Select")]
+    [SerializeField] private GameObject obj; //상점(혹은 교시 고르기)
 
     private bool isChat; // !isInGame
-    private bool isStore;
+    private bool isObj;
     private bool isCoin;
     private bool isProfile;
     private bool isLikeItem;
@@ -54,7 +54,7 @@ public class UISettingManager : Singleton<UISettingManager>
 
     private void Update()
     {
-        if ((isProfile || isSetting || isLikeabilityGuide || isLikeItem || isMap || isSetting || isSave || isCoin || isStore || isChat)&&PlayerMobileInput.Instance.CheckCanInput())
+        if ((isProfile || isSetting || isLikeabilityGuide || isLikeItem || isMap || isSetting || isSave || isCoin || isObj || isChat)&&PlayerMobileInput.Instance.CheckCanInput())
         {
             PlayerMobileInput.Instance.NoInput();
         }
@@ -85,10 +85,10 @@ public class UISettingManager : Singleton<UISettingManager>
         SettingAll();
     }
 
-    public void Store() //상점
+    public void Obj() //상점
     {
         AllHide();
-        isStore = true;
+        isObj = true;
         SettingAll();
     }
 
@@ -160,11 +160,11 @@ public class UISettingManager : Singleton<UISettingManager>
         {
             obj.SetActive(!isChat);
         }
-        store.SetActive(isStore);
+        obj.SetActive(isObj);
 
         bool all = isProfile || isSetting || isLikeabilityGuide || isLikeItem || isMap || isSetting || isSave;
         allSetting.SetActive(all);
-        backBtn.SetActive(all || isCoin || isStore);
+        backBtn.SetActive(all || isCoin || isObj);
 
         Time.timeScale = 0f;
     }
@@ -173,7 +173,7 @@ public class UISettingManager : Singleton<UISettingManager>
     {
         isCoin = false;
         //isChat = false;
-        isStore = false;
+        isObj = false;
         isProfile = false;
         isLikeItem = false;
         isLikeabilityGuide = false;
