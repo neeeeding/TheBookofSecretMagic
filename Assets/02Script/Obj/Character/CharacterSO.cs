@@ -32,7 +32,7 @@ public enum CharacterName
 
 public enum PlayerJob
 {
-    [Description("없음")] none,
+    [Description("없음")] none = 0,
     [Description("흑")] brack,
     [Description("치료")] heal,
     [Description("불")] fire,

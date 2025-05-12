@@ -8525,7 +8525,7 @@ MonoBehaviour:
   likeItemManager: {fileID: 2087411041}
   map: {fileID: 313784254}
   save: {fileID: 185908790}
-  obj: {fileID: 0}
+  obj: {fileID: 69054668}
 --- !u!1 &735729904
 GameObject:
   m_ObjectHideFlags: 0
