@@ -19,6 +19,34 @@ public class SelectClass : MonoBehaviour
         }
     }
 
+    //없음 일 때가 안되도록 막기
+    public void CompleteBtn() //완료 버튼 눌렀을 때
+    {
+        SchoolManager.Instance.ClearToday(); //혹시 모르니 비워주기
+
+        for(int i = 1; i <=select.Length; i++)
+        {
+            print(i);
+            TMP_Dropdown item = select[i-1];
+
+            string value = item.options[item.value].text;
+            PlayerJob v = value switch //포함하는 글자를 보고 변환
+            {
+                string s when s.Contains("흑") => PlayerJob.brack,
+                string s when s.Contains("치료") => PlayerJob.heal,
+                string s when s.Contains("불") => PlayerJob.fire,
+                string s when s.Contains("물") => PlayerJob.water,
+                string s when s.Contains("복제") => PlayerJob.copy,
+                string s when s.Contains("포션") => PlayerJob.potion,
+                _ => PlayerJob.none
+            };
+
+            SchoolManager.Instance.todayClass.Add(i,v ); //추가하기
+        }
+        SchoolManager.Instance.SettingTodayClass(); //수업 세팅한 것을 알려주기
+        UISettingManager.Instance.InGame();
+    }
+
     private void SetClass(TMP_Dropdown dropdown) //해당 드롭 다운에 필요한 내용 넣어주기.
     {
         dropdown.options.Clear(); //비어주기
