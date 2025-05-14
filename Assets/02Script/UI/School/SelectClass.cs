@@ -10,9 +10,11 @@ public class SelectClass : MonoBehaviour
 {
     [Header("Need")]
     [SerializeField] private TMP_Dropdown[] select; // 해당 드롭 다운
+    [SerializeField] private GameObject warning; // 안 씀 경고
 
     private void Awake()
     {
+        warning.SetActive(false);
         foreach (TMP_Dropdown item in select)
         {
             SetClass(item);
@@ -24,10 +26,10 @@ public class SelectClass : MonoBehaviour
     public void CompleteBtn() //완료 버튼 눌렀을 때
     {
         SchoolManager.Instance.ClearToday(); //혹시 모르니 비워주기
+        bool isNone = false; // true : none가 포함 / false : none가 미포함
 
         for(int i = 1; i <=select.Length; i++)
         {
-            print(i);
             TMP_Dropdown item = select[i-1];
 
             string value = item.options[item.value].text;
@@ -42,10 +44,32 @@ public class SelectClass : MonoBehaviour
                 _ => PlayerJob.none
             };
 
+            if (v == PlayerJob.none)
+            {
+                isNone = true;
+                break;
+            }
+
             SchoolManager.Instance.todayClass.Add(i,v ); //추가하기
         }
-        SchoolManager.Instance.SettingTodayClass(); //수업 세팅한 것을 알려주기
-        UISettingManager.Instance.InGame();
+
+        if (!isNone) // 전부 제대로 선택 할 때
+        {
+
+            SchoolManager.Instance.SettingTodayClass(); //수업 세팅한 것을 알려주기
+            UISettingManager.Instance.InGame();
+        }
+        else
+        {
+            StartCoroutine(Warning());
+        }
+    }
+
+    private IEnumerator Warning()
+    {
+        warning.SetActive(true);
+        yield return new WaitForSecondsRealtime(1);
+        warning.SetActive(false);
     }
 
     private void SetClass(TMP_Dropdown dropdown) //해당 드롭 다운에 필요한 내용 넣어주기.
