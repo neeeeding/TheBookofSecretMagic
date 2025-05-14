@@ -7,6 +7,11 @@ public class SchoolManager : Singleton<SchoolManager>
     public SaveDictionary<int,PlayerJob> todayClass; //오늘 수업
     public bool setTodayClass; // true : 오늘 수업 세팅 함/ false : 오늘의 수업 세팅 안 함.
 
+    private void Awake()
+    {
+        GameManager.OnNextDay += ClearToday;
+    }
+
     public void ClearToday() //학교 일정 싹 비우기
     {
         todayClass.Clear();

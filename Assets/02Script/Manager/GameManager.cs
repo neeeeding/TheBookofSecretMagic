@@ -13,6 +13,7 @@ public class GameManager : Singleton<GameManager>
     public static string GameSaveFilePath; //파일 위치
     public string GamePath = "gameSaveData"; // 저장 경로
 
+    public static Action OnNextDay; //다음날이 됨.
     public static Action CoinText;  //코인 수 갱신 (텍스트)
     public static Action OnStart; //모든 초기화 완료 후
 
@@ -176,8 +177,9 @@ public class GameManager : Singleton<GameManager>
                 {
                     PlayerStat.hour = 1;
                     PlayerStat.day++;
+                    OnNextDay?.Invoke();
 
-                    if(CompareMonth(PlayerStat.day, PlayerStat.month))
+                    if (CompareMonth(PlayerStat.day, PlayerStat.month))
                     {
                         PlayerStat.day = 1;
                         PlayerStat.month++;

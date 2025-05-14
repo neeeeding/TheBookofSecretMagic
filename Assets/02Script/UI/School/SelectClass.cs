@@ -17,6 +17,7 @@ public class SelectClass : MonoBehaviour
         {
             SetClass(item);
         }
+
     }
 
     //없음 일 때가 안되도록 막기
