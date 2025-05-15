@@ -24,6 +24,11 @@ public class Player : MonoBehaviour
         stateMachin.ChangeState(PlayerState.Idle, PlayerRotate.Front);
     }
 
+    private void OnDisable()
+    {
+        stateMachin.currentState.Exit();
+    }
+
     public void ChangeState(PlayerState state)
     {
         stateMachin.ChangeState(state, PlayerRotate.Front);
