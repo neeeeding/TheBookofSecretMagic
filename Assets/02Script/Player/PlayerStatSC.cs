@@ -5,6 +5,8 @@ using UnityEngine;
 [Serializable]
 public class PlayerStatSC
 {
+    public string sceneName; //활동 하던 씬이름
+
     public bool isChat; //ture : 채팅 중, false : 인 게임
 
     [Range(0,100)] //능력치

@@ -7,6 +7,7 @@ using UnityEditor.U2D.Aseprite;
 using UnityEngine.TextCore.Text;
 using System.IO;
 using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -16,6 +17,8 @@ public class GameManager : Singleton<GameManager>
     public static Action OnNextDay; //다음날이 됨.
     public static Action CoinText;  //코인 수 갱신 (텍스트)
     public static Action OnStart; //모든 초기화 완료 후
+
+    public string curScene; // 현재 씬 이름
 
     [Header("Setting")]
     public GameSaveData saveData; //기기에서만 저장 되는 것들 (ex: 저장 안한 진행사항)
@@ -48,6 +51,8 @@ public class GameManager : Singleton<GameManager>
 
         Player = gameObject.GetComponent<Player>();
 
+        curScene = SceneManager.GetActiveScene().name; //현재 씬 알려주기
+        PlayerStat.sceneName = curScene;
 
         //PlayerStat.ResetStat();
         //ResetValue();
@@ -86,13 +91,9 @@ public class GameManager : Singleton<GameManager>
 
     public void SetLove(CharacterSO character, int love) //정보 넣고 해당 호감도 스탯에서의 이름 찾아서 전해주기
     {
-        FieldInfo field = PlayerStat.GetType().GetField(character.characterName.ToString(), BindingFlags.Public | BindingFlags.Instance);
-        if (field != null && field.FieldType == typeof(int))
-        {
-            int.TryParse(PlayerStat.characterlastText[character.characterName][DialogType.Love], out int basic); //원래 값 가져오기
+        int.TryParse(PlayerStat.characterlastText[character.characterName][DialogType.Love], out int basic); //원래 값 가져오기
 
-            PlayerStat.characterlastText[character.characterName][DialogType.Love] = (basic + love).ToString(); //저장해주기
-        }
+        PlayerStat.characterlastText[character.characterName][DialogType.Love] = (basic + love).ToString(); //저장해주기
     }
 
     public void AddCoin(int num) //코인 수

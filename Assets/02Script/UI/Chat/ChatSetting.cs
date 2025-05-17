@@ -24,7 +24,7 @@ public class ChatSetting : MonoBehaviour
             int.TryParse(GameManager.Instance.PlayerStat.characterlastText[current.characterName][DialogType.Love], out int love);
             characterLoveGauge.value = love;
 
-            characterLoveText.text = GameManager.Instance.PlayerStat.characterlastText[current.characterName][DialogType.Text];
+            characterLoveText.text = GameManager.Instance.PlayerStat.characterlastText[current.characterName][DialogType.Love];
         }
         else
         {
