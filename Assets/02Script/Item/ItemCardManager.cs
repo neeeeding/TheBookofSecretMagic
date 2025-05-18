@@ -40,6 +40,8 @@ public class ItemCardManager : MonoBehaviour
 
     private void AddAllItems() //모든 아이템들 로드 (추가)
     {
+        item = GameManager.Instance.itemPos;
+
         isSetting = true;
         for(int i = 0; i < itemSOs.Length; i++)
         {

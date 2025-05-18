@@ -21,6 +21,7 @@ public class GameManager : Singleton<GameManager>
     public Player Player; //플레이어 (state 조정 해줌(?))
     [Space(20f)]
     public ItemSO Item; //들고 있는 아이템?
+    public ItemHold itemPos; //플레이어가 들고 있을 아이템 위치
     [Space(10f)]
     public bool isStart;
 
