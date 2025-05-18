@@ -3196,7 +3196,6 @@ GameObject:
   - component: {fileID: 325617856}
   - component: {fileID: 325617855}
   - component: {fileID: 325617861}
-  - component: {fileID: 325617862}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -3322,80 +3321,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   TargetPos: {x: 0, y: 0}
---- !u!114 &325617862
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 325617854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cf130c4470f3a341acc953ba4f5370a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GamePath: gameSaveData
-  curScene: 
-  saveData:
-    sound:
-      mainSound: 0
-      bgmSound: 0
-      effectSound: 0
-    stat:
-      sceneName: 
-      isChat: 0
-      blackMagic: 0
-      healMagic: 0
-      fireMagic: 0
-      waterMagic: 0
-      copyMagic: 0
-      potionMagic: 0
-      playerCoin: 0
-      playerPosition: {x: 0, y: 0}
-      job: 0
-      lastCharacter: {fileID: 0}
-      lastSO: {fileID: 0}
-      lastText: 
-      characterlastText:
-        ks: 
-        vs: []
-      year: 0
-      month: 0
-      day: 0
-      hour: 0
-      minute: 0
-      items:
-        ks: 
-        vs: []
-  PlayerStat:
-    sceneName: 
-    isChat: 0
-    blackMagic: 0
-    healMagic: 0
-    fireMagic: 0
-    waterMagic: 0
-    copyMagic: 0
-    potionMagic: 0
-    playerCoin: 0
-    playerPosition: {x: 0, y: 0}
-    job: 0
-    lastCharacter: {fileID: 0}
-    lastSO: {fileID: 0}
-    lastText: 
-    characterlastText:
-      ks: 
-      vs: []
-    year: 0
-    month: 0
-    day: 0
-    hour: 0
-    minute: 0
-    items:
-      ks: 
-      vs: []
-  Player: {fileID: 0}
-  Item: {fileID: 0}
-  isStart: 0
 --- !u!1 &327934283
 GameObject:
   m_ObjectHideFlags: 0
@@ -8642,6 +8567,112 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e29666f94e1d8aa4f896fc3067090484, type: 2}
   itemCard: {fileID: 7599526017728085362, guid: 5d1dadf8f743d26419b9cbdbb5d8cc34, type: 3}
   item: {fileID: 511918014}
+--- !u!1 &741075614
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 741075616}
+  - component: {fileID: 741075615}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &741075615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741075614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cf130c4470f3a341acc953ba4f5370a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GamePath: gameSaveData
+  curScene: 
+  saveData:
+    sound:
+      mainSound: 0
+      bgmSound: 0
+      effectSound: 0
+    stat:
+      sceneName: 
+      isChat: 0
+      blackMagic: 0
+      healMagic: 0
+      fireMagic: 0
+      waterMagic: 0
+      copyMagic: 0
+      potionMagic: 0
+      playerCoin: 0
+      playerPosition: {x: 0, y: 0}
+      job: 0
+      lastCharacter: {fileID: 0}
+      lastSO: {fileID: 0}
+      lastText: 
+      characterlastText:
+        ks: 
+        vs: []
+      year: 0
+      month: 0
+      day: 0
+      hour: 0
+      minute: 0
+      items:
+        ks: 
+        vs: []
+  PlayerStat:
+    sceneName: 
+    isChat: 0
+    blackMagic: 0
+    healMagic: 0
+    fireMagic: 0
+    waterMagic: 0
+    copyMagic: 0
+    potionMagic: 0
+    playerCoin: 0
+    playerPosition: {x: 0, y: 0}
+    job: 0
+    lastCharacter: {fileID: 0}
+    lastSO: {fileID: 0}
+    lastText: 
+    characterlastText:
+      ks: 
+      vs: []
+    year: 0
+    month: 0
+    day: 0
+    hour: 0
+    minute: 0
+    items:
+      ks: 
+      vs: []
+  Player: {fileID: 325617856}
+  Item: {fileID: 0}
+  isStart: 0
+--- !u!4 &741075616
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741075614}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.9127965, y: 1.3488853, z: -0.06486046}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &746754197
 GameObject:
   m_ObjectHideFlags: 0
@@ -30384,3 +30415,4 @@ SceneRoots:
   - {fileID: 729196524}
   - {fileID: 27577089}
   - {fileID: 1204750702}
+  - {fileID: 741075616}

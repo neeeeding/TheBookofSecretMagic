@@ -1,12 +1,7 @@
 using System;
-using System.Reflection;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor.U2D.Aseprite;
-using UnityEngine.TextCore.Text;
-using System.IO;
-using Unity.VisualScripting;
+using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
@@ -38,10 +33,22 @@ public class GameManager : Singleton<GameManager>
 
     private void Awake()
     {
+        if (Instance != null && Instance != this) //더 있으면
+        {
+            Destroy(gameObject);
+        }
         //로드
-        string jsson = PlayerPrefs.GetString(GamePath);
-        GameSaveData data = JsonUtility.FromJson<GameSaveData>(jsson);
-        saveData = data;
+        GameSaveData data;
+        if (PlayerPrefs.GetString(GamePath) != "")
+        {
+            string jsson = PlayerPrefs.GetString(GamePath);
+            data = JsonUtility.FromJson<GameSaveData>(jsson);
+            saveData = data;
+        }
+        else //저장 된게 없으면 새 거
+        {
+            data = new GameSaveData();
+        }
 
         GameSaveFilePath = Application.persistentDataPath + "/Save";
         print(GameSaveFilePath);
@@ -49,16 +56,15 @@ public class GameManager : Singleton<GameManager>
 
         PlayerStat = data.stat; //로드
 
-        Player = gameObject.GetComponent<Player>();
+        //Player = gameObject.GetComponent<Player>();
 
         curScene = SceneManager.GetActiveScene().name; //현재 씬 알려주기
-        PlayerStat.sceneName = curScene;
 
         //PlayerStat.ResetStat();
         //ResetValue();
-
-        LoadCard.OnLoad += LoadData;
         ItemCard.OnHoldItem += hold => Item = hold;
+
+        DontDestroyOnLoad(gameObject); //삭제 되지 말라고
 
         StartCoroutine(nowDate());
     }
@@ -69,26 +75,21 @@ public class GameManager : Singleton<GameManager>
         isStart = true;
     }
 
-    private void OnDisable()
+    private void Update()
     {
-        LoadCard.OnLoad -= LoadData;
+        print($"cu : {curScene} / sa {PlayerStat.sceneName}");
+    }
 
+    private void OnApplicationQuit()
+    {
         //정보 저장
         saveData.stat = PlayerStat;
-        
+
 
         string json = JsonUtility.ToJson(saveData);
         PlayerPrefs.SetString(GamePath, json);
         PlayerPrefs.Save();
     }
-
-    private void LoadData() //로드하기
-    {
-        //호감도는 LikeabilityCard에서 해줌.
-
-        //로드해 줄 것
-    }
-
     public void SetLove(CharacterSO character, int love) //정보 넣고 해당 호감도 스탯에서의 이름 찾아서 전해주기
     {
         int.TryParse(PlayerStat.characterlastText[character.characterName][DialogType.Love], out int basic); //원래 값 가져오기

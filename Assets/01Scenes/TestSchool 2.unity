@@ -4405,6 +4405,7 @@ GameObject:
   - component: {fileID: 325617857}
   - component: {fileID: 325617856}
   - component: {fileID: 325617855}
+  - component: {fileID: 325617860}
   - component: {fileID: 325617861}
   - component: {fileID: 325617862}
   m_Layer: 6
@@ -4518,6 +4519,77 @@ Transform:
   - {fileID: 1931149195}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &325617860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 325617854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cf130c4470f3a341acc953ba4f5370a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GamePath: gameSaveData
+  saveData:
+    sound:
+      mainSound: 0
+      bgmSound: 0
+      effectSound: 0
+    stat:
+      isChat: 0
+      blackMagic: 0
+      healMagic: 0
+      fireMagic: 0
+      waterMagic: 0
+      copyMagic: 0
+      potionMagic: 0
+      playerCoin: 0
+      playerPosition: {x: 0, y: 0}
+      job: 0
+      lastCharacter: {fileID: 0}
+      lastSO: {fileID: 0}
+      lastText: 
+      characterlastText:
+        ks: 
+        vs: []
+      year: 0
+      month: 0
+      day: 0
+      hour: 0
+      minute: 0
+      items:
+        ks: 
+        vs: []
+  PlayerStat:
+    isChat: 0
+    blackMagic: 0
+    healMagic: 0
+    fireMagic: 0
+    waterMagic: 0
+    copyMagic: 0
+    potionMagic: 0
+    playerCoin: 0
+    playerPosition: {x: 0, y: 0}
+    job: 0
+    lastCharacter: {fileID: 0}
+    lastSO: {fileID: 0}
+    lastText: 
+    characterlastText:
+      ks: 
+      vs: []
+    year: 0
+    month: 0
+    day: 0
+    hour: 0
+    minute: 0
+    items:
+      ks: 
+      vs: []
+  Player: {fileID: 0}
+  Item: {fileID: 0}
+  isStart: 0
 --- !u!114 &325617861
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -85,7 +85,7 @@ public class UISettingManager : Singleton<UISettingManager>
         SettingAll();
     }
 
-    public void Obj() //상점
+    public void Obj() //상점 혹은 학교 수업 선택
     {
         AllHide();
         isObj = true;
