@@ -59,13 +59,16 @@ public class GameManager : Singleton<GameManager>
 
         //Player = gameObject.GetComponent<Player>();
 
-        curScene = SceneManager.GetActiveScene().name; //현재 씬 알려주기
-
         //PlayerStat.ResetStat();
         //ResetValue();
         ItemCard.OnHoldItem += hold => Item = hold;
 
         DontDestroyOnLoad(gameObject); //삭제 되지 말라고
+
+
+        SceneManager.LoadScene(PlayerStat.sceneName);
+
+        curScene = SceneManager.GetActiveScene().name; //현재 씬 알려주기
 
         StartCoroutine(nowDate());
     }

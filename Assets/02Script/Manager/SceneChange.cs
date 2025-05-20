@@ -52,6 +52,7 @@ public class SceneChange : MonoBehaviour
         {
             string scenePath = SceneUtility.GetScenePathByBuildIndex(i);
             string sceneName = Path.GetFileNameWithoutExtension(scenePath);
+            GameManager.Instance.curScene = sceneName;
             GameManager.Instance.PlayerStat.sceneName = sceneName;
             SceneManager.LoadScene(i);
         }
@@ -60,6 +61,7 @@ public class SceneChange : MonoBehaviour
     {
         if (isSceneChange)
         {
+            GameManager.Instance.curScene = name;
             GameManager.Instance.PlayerStat.sceneName = name;
             SceneManager.LoadScene(name);
         }
