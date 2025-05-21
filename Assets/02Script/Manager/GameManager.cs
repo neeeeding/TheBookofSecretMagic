@@ -98,7 +98,7 @@ public class GameManager : Singleton<GameManager>
     {
         int.TryParse(PlayerStat.characterlastText[character.characterName][DialogType.Love], out int basic); //원래 값 가져오기
 
-        PlayerStat.characterlastText[character.characterName][DialogType.Love] = (basic + love).ToString(); //저장해주기
+        PlayerStat.characterlastText[character.characterName][DialogType.Love] = (basic + love > 100 ? 100 : basic + love).ToString(); //저장해주기 (100초과시 걍 100)
     }
 
     public void AddCoin(int num) //코인 수
