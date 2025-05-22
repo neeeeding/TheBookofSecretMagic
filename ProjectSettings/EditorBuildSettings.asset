@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01Scenes/TestSchool.unity
     guid: 1c03d7ed6e49a554c9814a3a6b3f0778
+  - enabled: 1
+    path: Assets/01Scenes/TestDormitory.unity
+    guid: 233f45048a16cca4cb75ca9125419e77
   m_configObjects: {}
