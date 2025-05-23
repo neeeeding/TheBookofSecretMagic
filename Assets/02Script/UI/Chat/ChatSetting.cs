@@ -3,7 +3,6 @@ using UnityEngine.UI;
 using TMPro;
 using System.ComponentModel;
 using System;
-using UnityEngine.TextCore.Text;
 
 public class ChatSetting : MonoBehaviour
 {

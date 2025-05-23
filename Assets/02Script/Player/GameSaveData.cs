@@ -1,6 +1,4 @@
 using System;
-using System.Numerics;
-using UnityEditor.SceneManagement;
 
 [Serializable]
 public class GameSaveData 

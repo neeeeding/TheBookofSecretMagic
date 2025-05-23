@@ -1,13 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using static UnityEngine.Rendering.DebugUI;
-using System.IO;
-using System.Reflection;
-using System;
-using UnityEngine.TextCore.Text;
 
 public class LikeabilityCard : MonoBehaviour
 {

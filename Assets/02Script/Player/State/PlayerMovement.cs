@@ -1,7 +1,4 @@
-﻿using System;
-using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
-using UnityEngine.UIElements;
+﻿using UnityEngine;
 
 public class PlayerMovement: Singleton<PlayerMovement>
 {
