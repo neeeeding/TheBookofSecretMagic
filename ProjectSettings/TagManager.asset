@@ -45,8 +45,14 @@ TagManager:
   - name: Object
     uniqueID: 3756040143
     locked: 0
+  - name: BackPlayer
+    uniqueID: 707165223
+    locked: 0
   - name: Player
     uniqueID: 1215562335
+    locked: 0
+  - name: FrontPlayer
+    uniqueID: 4171157993
     locked: 0
   - name: Wall
     uniqueID: 3593056683

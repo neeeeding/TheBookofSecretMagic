@@ -78,11 +78,6 @@ public class GameManager : Singleton<GameManager>
         isStart = true;
     }
 
-    private void Update()
-    {
-        print($"cu : {curScene} / sa {PlayerStat.sceneName}");
-    }
-
     private void OnApplicationQuit()
     {
         //정보 저장

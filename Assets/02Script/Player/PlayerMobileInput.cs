@@ -16,7 +16,6 @@ public class PlayerMobileInput : Singleton<PlayerMobileInput>
     {
         if (Input.GetMouseButtonDown(0) && canInput)
         {
-            print(Camera.main.ScreenToWorldPoint(Input.mousePosition));
             mousePos?.Invoke(Camera.main.ScreenToWorldPoint(Input.mousePosition));
         }
     }
