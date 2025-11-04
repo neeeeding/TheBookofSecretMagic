@@ -3,16 +3,16 @@ using UnityEngine;
 
 public class Store : MonoBehaviour
 {
-    public static Action<ItemSO> OnSellItem; //¾ÆÀÌÅÛÀ» »ò´Ù
+    public static Action<ItemSO> OnSellItem; //ì•„ì´í…œì„ ìƒ€ë‹¤
 
-    [SerializeField] private GameObject sellCard; //ÆÇ¸Å Ä«µå
+    [SerializeField] private GameObject sellCard; //íŒë§¤ ì¹´ë“œ
     [Space (10f)]
-    [SerializeField] private ItemSO[] allItemSOs; //¾ÆÀÌÅÛ ¸ğµÎ
+    [SerializeField] private ItemSO[] allItemSOs; //ì•„ì´í…œ ëª¨ë‘
 
-    [SerializeField]private int sellCount = 10; //ÇÏ·ç ÆÈ ¾ÆÀÌÅÛ ¾ç
-    [SerializeField] private ItemSO[] sellItem; //ÆÈ ¾ÆÀÌÅÛµé
+    [SerializeField]private int sellCount = 10; //í•˜ë£¨ íŒ” ì•„ì´í…œ ì–‘
+    [SerializeField] private ItemSO[] sellItem; //íŒ” ì•„ì´í…œë“¤
 
-    [SerializeField] private bool isCoin; //true : ÄÚÀÎ »óÁ¡, false : °ÔÀÓ »óÁ¡
+    [SerializeField] private bool isCoin; //true : ì½”ì¸ ìƒì , false : ê²Œì„ ìƒì 
 
     private void Awake()
     {
@@ -20,7 +20,7 @@ public class Store : MonoBehaviour
         DecideSellItem();
     }
 
-    private void DecideSellItem() //ÆÈ ¾ÆÀÌÅÛ Á¤ÇÏ±â
+    private void DecideSellItem() //íŒ” ì•„ì´í…œ ì •í•˜ê¸°
     {
         sellItem = new ItemSO[isCoin? allItemSOs.Length : sellCount];
 

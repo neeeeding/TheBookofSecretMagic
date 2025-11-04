@@ -6,16 +6,16 @@ using System;
 
 public class ChatSetting : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI characterName; //ÀÌ¸§
-    [SerializeField] private Image characterImage; //»çÁø
-    [SerializeField] private Slider characterLoveGauge; //·¯ºê °ÔÀÌÁö
-    [SerializeField] private TextMeshProUGUI characterLoveText; //·¯ºê °ÔÀÌÁö
+    [SerializeField] private TextMeshProUGUI characterName; //ì´ë¦„
+    [SerializeField] private Image characterImage; //ì‚¬ì§„
+    [SerializeField] private Slider characterLoveGauge; //ëŸ¬ë¸Œ ê²Œì´ì§€
+    [SerializeField] private TextMeshProUGUI characterLoveText; //ëŸ¬ë¸Œ ê²Œì´ì§€
 
-    public void CurrentCharacter(CharacterSO current) //Ã¹ ¼¼ÆÃ
+    public void CurrentCharacter(CharacterSO current) //ì²« ì„¸íŒ…
     {
         characterName.text = Name(current.characterName);
         //characterImage.sprite = character.characterImage;
-       if(current.characterName != CharacterName.me)
+        if(current.characterName != CharacterName.me)
         {
             characterLoveGauge.gameObject.SetActive(true);
             characterLoveText.gameObject.SetActive(true);
@@ -32,7 +32,7 @@ public class ChatSetting : MonoBehaviour
         }
     }
 
-    public static string Name<T>(T wantName) //enumÀÇ ÁÖ¼®? ¾ò±â
+    public static string Name<T>(T wantName) //enumì˜ ì£¼ì„? ì–»ê¸°
     {
         var field = wantName.GetType().GetField(wantName.ToString());
         var attr = (DescriptionAttribute)Attribute.GetCustomAttribute(field, typeof(DescriptionAttribute));

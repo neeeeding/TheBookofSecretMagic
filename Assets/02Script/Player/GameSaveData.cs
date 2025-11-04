@@ -8,7 +8,7 @@ public class GameSaveData
 }
 
 [Serializable]
-public class Sound //¼Ò¸® (AudioSave)
+public class Sound //ì†Œë¦¬ (AudioSave)
 {
     public float mainSound;
     public float bgmSound;

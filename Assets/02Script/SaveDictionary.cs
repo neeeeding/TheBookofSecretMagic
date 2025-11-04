@@ -2,23 +2,23 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-//ÀúÀå °¡´É µñ¼Å³Ê¸®
+//ì €ì¥ ê°€ëŠ¥ ë”•ì…”ë„ˆë¦¬
 [Serializable]
 public class SaveDictionary<K, V> : ISerializationCallbackReceiver
 {
-    [SerializeField] private List<K> ks = new List<K>(); //Å°µé
-    [SerializeField] private List<V> vs = new List<V>(); //°ªµé
+    [SerializeField] private List<K> ks = new List<K>(); //í‚¤ë“¤
+    [SerializeField] private List<V> vs = new List<V>(); //ê°’ë“¤
 
-    private Dictionary<K,V> dictionary = new Dictionary<K,V>(); //»ç¿ëµÉ µñ¼Å³Ê¸®
+    private Dictionary<K,V> dictionary = new Dictionary<K,V>(); //ì‚¬ìš©ë  ë”•ì…”ë„ˆë¦¬
 
-    public void Add(K key, V value) //°ª Ãß°¡
+    public void Add(K key, V value) //ê°’ ì¶”ê°€
     {
         dictionary.Add(key, value);
         ks.Add(key);
         vs.Add(value);
     }
 
-    public void Clear() //Áö¿ì±â
+    public void Clear() //ì§€ìš°ê¸°
     {
         dictionary.Clear();
         ks.Clear();
@@ -26,12 +26,12 @@ public class SaveDictionary<K, V> : ISerializationCallbackReceiver
     }
 
 
-    public Dictionary<K, V> ToDictionary() //µñ¼Å³Ê¸® ¾ò±â
+    public Dictionary<K, V> ToDictionary() //ë”•ì…”ë„ˆë¦¬ ì–»ê¸°
     {
         return dictionary;
     }
 
-    public void FromDictionary(Dictionary<K, V> source) //·ÎµåÇÒ ¶§ »ç¿ë
+    public void FromDictionary(Dictionary<K, V> source) //ë¡œë“œí•  ë•Œ ì‚¬ìš©
     {
         dictionary = new Dictionary<K, V>(source);
         ks.Clear();
@@ -45,9 +45,9 @@ public class SaveDictionary<K, V> : ISerializationCallbackReceiver
 
 
 
-    public void OnBeforeSerialize() //Á÷·ÄÈ­
+    public void OnBeforeSerialize() //ì§ë ¬í™”
     {
-        ks.Clear();//°ª ÃÊ±âÈ­
+        ks.Clear();//ê°’ ì´ˆê¸°í™”
         vs.Clear();
         foreach (var kv in dictionary)
         {
@@ -56,7 +56,7 @@ public class SaveDictionary<K, V> : ISerializationCallbackReceiver
         }
     }
 
-    public void OnAfterDeserialize() //¿ªÁ÷·ÄÈ­
+    public void OnAfterDeserialize() //ì—­ì§ë ¬í™”
     {
         dictionary = new Dictionary<K, V>();
         for (int i = 0; i < ks.Count && i < vs.Count; i++)
@@ -74,7 +74,7 @@ public class SaveDictionary<K, V> : ISerializationCallbackReceiver
 
 //public class SaveDictionary<K, V> : Dictionary<K, V>, ISerializationCallbackReceiver
 //{
-//    [SerializeField] private List<SaveList<K, V>> _dictionaryList; //ÀúÀå µÇ´Â º»Ã¼
+//    [SerializeField] private List<SaveList<K, V>> _dictionaryList; //ì €ì¥ ë˜ëŠ” ë³¸ì²´
 
 //    public SaveDictionary()
 //    {
@@ -82,11 +82,11 @@ public class SaveDictionary<K, V> : ISerializationCallbackReceiver
 //    }
 
 
-//    public void OnAfterDeserialize() //Á÷·ÄÈ­ µÉ ¶§
+//    public void OnAfterDeserialize() //ì§ë ¬í™” ë  ë•Œ
 //    {
 //        _dictionaryList.Clear();
 
-//        foreach(var item in this) // µñ¼Å³Ê¸®ÀÇ °ªµéÀ» ¸®½ºÆ®¿¡ ÀúÀå
+//        foreach(var item in this) // ë”•ì…”ë„ˆë¦¬ì˜ ê°’ë“¤ì„ ë¦¬ìŠ¤íŠ¸ì— ì €ì¥
 //        {
 //            _dictionaryList.Add(new SaveList<K, V>
 //            {
@@ -98,7 +98,7 @@ public class SaveDictionary<K, V> : ISerializationCallbackReceiver
 //        }
 //    }
 
-//    public void OnBeforeSerialize() //¿ªÁ÷·ÄÈ­ µÉ ¶§
+//    public void OnBeforeSerialize() //ì—­ì§ë ¬í™” ë  ë•Œ
 //    {
 //        this.Clear();
 
@@ -116,7 +116,7 @@ public class SaveDictionary<K, V> : ISerializationCallbackReceiver
 //    }
 //}
 
-////ÀúÀå °¡´É µñ¼Å³Ê¸®¸¦ °¡´ÉÇÏ°Ô ÇØÁÖ´Â ¸®½ºÆ® (Å¬·¡½º)
+////ì €ì¥ ê°€ëŠ¥ ë”•ì…”ë„ˆë¦¬ë¥¼ ê°€ëŠ¥í•˜ê²Œ í•´ì£¼ëŠ” ë¦¬ìŠ¤íŠ¸ (í´ë˜ìŠ¤)
 //[Serializable]
 //public class SaveList<K,V>
 //{

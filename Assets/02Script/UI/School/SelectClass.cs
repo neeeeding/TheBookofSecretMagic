@@ -6,8 +6,8 @@ using UnityEngine;
 public class SelectClass : MonoBehaviour
 {
     [Header("Need")]
-    [SerializeField] private TMP_Dropdown[] select; // ÇØ´ç µå·Ó ´Ù¿î
-    [SerializeField] private GameObject warning; // ¾È ¾¸ °æ°í
+    [SerializeField] private TMP_Dropdown[] select; // í•´ë‹¹ ë“œë¡­ ë‹¤ìš´
+    [SerializeField] private GameObject warning; // ì•ˆ ì”€ ê²½ê³ 
 
     private void Awake()
     {
@@ -19,25 +19,25 @@ public class SelectClass : MonoBehaviour
 
     }
 
-    //¾øÀ½ ÀÏ ¶§°¡ ¾ÈµÇµµ·Ï ¸·±â
-    public void CompleteBtn() //¿Ï·á ¹öÆ° ´­·¶À» ¶§
+    //ì—†ìŒ ì¼ ë•Œê°€ ì•ˆë˜ë„ë¡ ë§‰ê¸°
+    public void CompleteBtn() //ì™„ë£Œ ë²„íŠ¼ ëˆŒë €ì„ ë•Œ
     {
-        SchoolManager.Instance.ClearToday(); //È¤½Ã ¸ğ¸£´Ï ºñ¿öÁÖ±â
-        bool isNone = false; // true : none°¡ Æ÷ÇÔ / false : none°¡ ¹ÌÆ÷ÇÔ
+        SchoolManager.Instance.ClearToday(); //í˜¹ì‹œ ëª¨ë¥´ë‹ˆ ë¹„ì›Œì£¼ê¸°
+        bool isNone = false; // true : noneê°€ í¬í•¨ / false : noneê°€ ë¯¸í¬í•¨
 
         for(int i = 1; i <=select.Length; i++)
         {
             TMP_Dropdown item = select[i-1];
 
             string value = item.options[item.value].text;
-            PlayerJob v = value switch //Æ÷ÇÔÇÏ´Â ±ÛÀÚ¸¦ º¸°í º¯È¯
+            PlayerJob v = value switch //í¬í•¨í•˜ëŠ” ê¸€ìë¥¼ ë³´ê³  ë³€í™˜
             {
-                string s when s.Contains("Èæ") => PlayerJob.brack,
-                string s when s.Contains("Ä¡·á") => PlayerJob.heal,
-                string s when s.Contains("ºÒ") => PlayerJob.fire,
-                string s when s.Contains("¹°") => PlayerJob.water,
-                string s when s.Contains("º¹Á¦") => PlayerJob.copy,
-                string s when s.Contains("Æ÷¼Ç") => PlayerJob.potion,
+                string s when s.Contains("í‘") => PlayerJob.brack,
+                string s when s.Contains("ì¹˜ë£Œ") => PlayerJob.heal,
+                string s when s.Contains("ë¶ˆ") => PlayerJob.fire,
+                string s when s.Contains("ë¬¼") => PlayerJob.water,
+                string s when s.Contains("ë³µì œ") => PlayerJob.copy,
+                string s when s.Contains("í¬ì…˜") => PlayerJob.potion,
                 _ => PlayerJob.none
             };
 
@@ -47,13 +47,13 @@ public class SelectClass : MonoBehaviour
                 break;
             }
 
-            SchoolManager.Instance.todayClass.Add(i,v ); //Ãß°¡ÇÏ±â
+            SchoolManager.Instance.todayClass.Add(i,v ); //ì¶”ê°€í•˜ê¸°
         }
 
-        if (!isNone) // ÀüºÎ Á¦´ë·Î ¼±ÅÃ ÇÒ ¶§
+        if (!isNone) // ì „ë¶€ ì œëŒ€ë¡œ ì„ íƒ í•  ë•Œ
         {
 
-            SchoolManager.Instance.SettingTodayClass(); //¼ö¾÷ ¼¼ÆÃÇÑ °ÍÀ» ¾Ë·ÁÁÖ±â
+            SchoolManager.Instance.SettingTodayClass(); //ìˆ˜ì—… ì„¸íŒ…í•œ ê²ƒì„ ì•Œë ¤ì£¼ê¸°
             UISettingManager.Instance.InGame();
         }
         else
@@ -69,24 +69,24 @@ public class SelectClass : MonoBehaviour
         warning.SetActive(false);
     }
 
-    private void SetClass(TMP_Dropdown dropdown) //ÇØ´ç µå·Ó ´Ù¿î¿¡ ÇÊ¿äÇÑ ³»¿ë ³Ö¾îÁÖ±â.
+    private void SetClass(TMP_Dropdown dropdown) //í•´ë‹¹ ë“œë¡­ ë‹¤ìš´ì— í•„ìš”í•œ ë‚´ìš© ë„£ì–´ì£¼ê¸°.
     {
-        dropdown.options.Clear(); //ºñ¾îÁÖ±â
+        dropdown.options.Clear(); //ë¹„ì–´ì£¼ê¸°
         foreach(PlayerJob item in Enum.GetValues(typeof(PlayerJob)))
         {
-            TMP_Dropdown.OptionData data = new TMP_Dropdown.OptionData(); //ÇÏ³ª »ı¼º
+            TMP_Dropdown.OptionData data = new TMP_Dropdown.OptionData(); //í•˜ë‚˜ ìƒì„±
 
             if(item == PlayerJob.none)
             {
-                data.text = $"¼ö¾÷À» ¼±ÅÃÇÏ¼¼¿ä.";
+                data.text = $"ìˆ˜ì—…ì„ ì„ íƒí•˜ì„¸ìš”.";
             }
             else if(item == PlayerJob.potion)
             {
-                data.text = $"{ChatSetting.Name<PlayerJob>(item)} Á¦ÀÛ ¼ö¾÷";
+                data.text = $"{ChatSetting.Name<PlayerJob>(item)} ì œì‘ ìˆ˜ì—…";
             }
             else
             {
-                data.text = $"{ChatSetting.Name<PlayerJob>(item)} ¸¶¹ı ¼ö¾÷";
+                data.text = $"{ChatSetting.Name<PlayerJob>(item)} ë§ˆë²• ìˆ˜ì—…";
             }
             dropdown.options.Add(data);
         }

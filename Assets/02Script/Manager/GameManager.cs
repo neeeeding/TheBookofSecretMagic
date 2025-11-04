@@ -5,27 +5,27 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
-    public static string GameSaveFilePath; //ÆÄÀÏ À§Ä¡
-    public string GamePath = "gameSaveData"; // ÀúÀå °æ·Î
+    public static string GameSaveFilePath; //íŒŒì¼ ìœ„ì¹˜
+    public string GamePath = "gameSaveData"; // ì €ì¥ ê²½ë¡œ
 
-    public static Action OnNextDay; //´ÙÀ½³¯ÀÌ µÊ.
-    public static Action CoinText;  //ÄÚÀÎ ¼ö °»½Å (ÅØ½ºÆ®)
-    public static Action OnStart; //¸ğµç ÃÊ±âÈ­ ¿Ï·á ÈÄ
+    public static Action OnNextDay; //ë‹¤ìŒë‚ ì´ ë¨.
+    public static Action CoinText;  //ì½”ì¸ ìˆ˜ ê°±ì‹  (í…ìŠ¤íŠ¸)
+    public static Action OnStart; //ëª¨ë“  ì´ˆê¸°í™” ì™„ë£Œ í›„
 
-    public string curScene; // ÇöÀç ¾À ÀÌ¸§
+    public string curScene; // í˜„ì¬ ì”¬ ì´ë¦„
 
     [Header("Setting")]
-    public GameSaveData saveData; //±â±â¿¡¼­¸¸ ÀúÀå µÇ´Â °Íµé (ex: ÀúÀå ¾ÈÇÑ ÁøÇà»çÇ×)
-    public PlayerStatSC PlayerStat; //ÇÃ·¹ÀÌ¾î Á¤º¸
-    public Player Player; //ÇÃ·¹ÀÌ¾î (state Á¶Á¤ ÇØÁÜ(?))
+    public GameSaveData saveData; //ê¸°ê¸°ì—ì„œë§Œ ì €ì¥ ë˜ëŠ” ê²ƒë“¤ (ex: ì €ì¥ ì•ˆí•œ ì§„í–‰ì‚¬í•­)
+    public PlayerStatSC PlayerStat; //í”Œë ˆì´ì–´ ì •ë³´
+    public Player Player; //í”Œë ˆì´ì–´ (state ì¡°ì • í•´ì¤Œ(?))
     [Space(20f)]
-    public ItemSO Item; //µé°í ÀÖ´Â ¾ÆÀÌÅÛ?
-    public ItemHold itemPos; //ÇÃ·¹ÀÌ¾î°¡ µé°í ÀÖÀ» ¾ÆÀÌÅÛ À§Ä¡
+    public ItemSO Item; //ë“¤ê³  ìˆëŠ” ì•„ì´í…œ?
+    public ItemHold itemPos; //í”Œë ˆì´ì–´ê°€ ë“¤ê³  ìˆì„ ì•„ì´í…œ ìœ„ì¹˜
     [Space(10f)]
     public bool isStart;
 
     [ContextMenu("ResetAll")]
-    public void ResetDate() //ÃÊ±âÈ­ ÇÏ±â
+    public void ResetDate() //ì´ˆê¸°í™” í•˜ê¸°
     {
        PlayerPrefs.DeleteAll();
         PlayerPrefs.Save();
@@ -33,11 +33,11 @@ public class GameManager : Singleton<GameManager>
 
     private void Awake()
     {
-        if (Instance != null && Instance != this) //´õ ÀÖÀ¸¸é
+        if (Instance != null && Instance != this) //ë” ìˆìœ¼ë©´
         {
             Destroy(gameObject);
         }
-        //·Îµå
+        //ë¡œë“œ
         GameSaveData data;
         if (PlayerPrefs.GetString(GamePath) != "")
         {
@@ -45,7 +45,7 @@ public class GameManager : Singleton<GameManager>
             data = JsonUtility.FromJson<GameSaveData>(jsson);
             saveData = data;
         }
-        else //ÀúÀå µÈ°Ô ¾øÀ¸¸é »õ °Å
+        else //ì €ì¥ ëœê²Œ ì—†ìœ¼ë©´ ìƒˆ ê±°
         {
             data = new GameSaveData();
         }
@@ -54,7 +54,7 @@ public class GameManager : Singleton<GameManager>
         print(GameSaveFilePath);
         isStart = false;
 
-        PlayerStat = data.stat; //·Îµå
+        PlayerStat = data.stat; //ë¡œë“œ
 
         //Player = gameObject.GetComponent<Player>();
 
@@ -62,12 +62,12 @@ public class GameManager : Singleton<GameManager>
         //ResetValue();
         ItemCard.OnHoldItem += hold => Item = hold;
 
-        DontDestroyOnLoad(gameObject); //»èÁ¦ µÇÁö ¸»¶ó°í
+        DontDestroyOnLoad(gameObject); //ì‚­ì œ ë˜ì§€ ë§ë¼ê³ 
 
 
         SceneManager.LoadScene(PlayerStat.sceneName);
 
-        curScene = SceneManager.GetActiveScene().name; //ÇöÀç ¾À ¾Ë·ÁÁÖ±â
+        curScene = SceneManager.GetActiveScene().name; //í˜„ì¬ ì”¬ ì•Œë ¤ì£¼ê¸°
 
         StartCoroutine(nowDate());
     }
@@ -85,7 +85,7 @@ public class GameManager : Singleton<GameManager>
 
     private void OnApplicationQuit()
     {
-        //Á¤º¸ ÀúÀå
+        //ì •ë³´ ì €ì¥
         saveData.stat = PlayerStat;
 
 
@@ -93,80 +93,80 @@ public class GameManager : Singleton<GameManager>
         PlayerPrefs.SetString(GamePath, json);
         PlayerPrefs.Save();
     }
-    public void SetLove(CharacterSO character, int love) //Á¤º¸ ³Ö°í ÇØ´ç È£°¨µµ ½ºÅÈ¿¡¼­ÀÇ ÀÌ¸§ Ã£¾Æ¼­ ÀüÇØÁÖ±â
+    public void SetLove(CharacterSO character, int love) //ì •ë³´ ë„£ê³  í•´ë‹¹ í˜¸ê°ë„ ìŠ¤íƒ¯ì—ì„œì˜ ì´ë¦„ ì°¾ì•„ì„œ ì „í•´ì£¼ê¸°
     {
-        int.TryParse(PlayerStat.characterlastText[character.characterName][DialogType.Love], out int basic); //¿ø·¡ °ª °¡Á®¿À±â
+        int.TryParse(PlayerStat.characterlastText[character.characterName][DialogType.Love], out int basic); //ì›ë˜ ê°’ ê°€ì ¸ì˜¤ê¸°
 
-        PlayerStat.characterlastText[character.characterName][DialogType.Love] = (basic + love > 100 ? 100 : basic + love).ToString(); //ÀúÀåÇØÁÖ±â (100ÃÊ°ú½Ã °Á 100)
+        PlayerStat.characterlastText[character.characterName][DialogType.Love] = (basic + love > 100 ? 100 : basic + love).ToString(); //ì €ì¥í•´ì£¼ê¸° (100ì´ˆê³¼ì‹œ ê± 100)
     }
 
-    public void AddCoin(int num) //ÄÚÀÎ ¼ö
+    public void AddCoin(int num) //ì½”ì¸ ìˆ˜
     {
         PlayerStat.playerCoin += num;
         CoinText?.Invoke();
     }
 
-    public void AddItemCount(ItemCategory category,ItemType type,int num) //¾òÀº, ÀÒÀº ¾ÆÀÌÅÛ ¼öµé
+    public void AddItemCount(ItemCategory category,ItemType type,int num) //ì–»ì€, ìƒì€ ì•„ì´í…œ ìˆ˜ë“¤
     {
         PlayerStat.items[category][type] += num;
     }
 
-    private void ResetValue() //°ª ¼¼ÆÃ
+    private void ResetValue() //ê°’ ì„¸íŒ…
     {
-        //È£°¨µµ
+        //í˜¸ê°ë„
         ResetCharacter();
 
-        //¾ÆÀÌÅÛ
+        //ì•„ì´í…œ
         ResetItem();
     }
 
-    private void ResetCharacter() //Ä³¸¯ÅÍµé  ÀüºÎ ÃÊ±âÈ­
+    private void ResetCharacter() //ìºë¦­í„°ë“¤  ì „ë¶€ ì´ˆê¸°í™”
     {
         PlayerStat.characterlastText = new SaveDictionary<CharacterName, SaveDictionary<DialogType, string>>();
         PlayerStat.characterlastText.Clear();
 
         int num;
 
-        foreach (CharacterName name in Enum.GetValues(typeof(CharacterName))) //ÀÌ¸§µé ÀúÀå
+        foreach (CharacterName name in Enum.GetValues(typeof(CharacterName))) //ì´ë¦„ë“¤ ì €ì¥
         {
             num = (int)name / 1000;
             SaveDictionary<DialogType, string> di = new SaveDictionary<DialogType, string>();
 
-            foreach (DialogType dialog in Enum.GetValues(typeof(DialogType))) //¸ğµç °É ÀúÀå / ´ÙÀÌ¾ó·Î±× Á¾·ù (Ã©ÅÍ, ³Ñ¹ö, ÅØ½ºÆ®, ¸Ş¸ğ, ·¯ºê ¸¸ »ç¿ëÇÏ±ä ÇÔ.)
+            foreach (DialogType dialog in Enum.GetValues(typeof(DialogType))) //ëª¨ë“  ê±¸ ì €ì¥ / ë‹¤ì´ì–¼ë¡œê·¸ ì¢…ë¥˜ (ì±•í„°, ë„˜ë²„, í…ìŠ¤íŠ¸, ë©”ëª¨, ëŸ¬ë¸Œ ë§Œ ì‚¬ìš©í•˜ê¸´ í•¨.)
             {
-                di.Add(dialog, ""); // " " ÃÊ±âÈ­
+                di.Add(dialog, ""); // " " ì´ˆê¸°í™”
             }
-            PlayerStat.characterlastText.Add(name, di); //ÀúÀå
+            PlayerStat.characterlastText.Add(name, di); //ì €ì¥
         }
     }
 
-    private void ResetItem() //½ºÅÈÀÇ ¾ÆÀÌÅÛ ÀüºÎ ÃÊ±âÈ­
+    private void ResetItem() //ìŠ¤íƒ¯ì˜ ì•„ì´í…œ ì „ë¶€ ì´ˆê¸°í™”
     {
         PlayerStat.items = new SaveDictionary<ItemCategory, SaveDictionary<ItemType, int>>();
         PlayerStat.items.Clear();
 
         int num;
 
-        foreach(ItemCategory category in Enum.GetValues(typeof(ItemCategory))) //Ä«Å×°í¸® ÀúÀå
+        foreach(ItemCategory category in Enum.GetValues(typeof(ItemCategory))) //ì¹´í…Œê³ ë¦¬ ì €ì¥
         {
-            if (category == ItemCategory.coin || category == ItemCategory.none) //ÄÚÀÎ Á¦¿Ü
+            if (category == ItemCategory.coin || category == ItemCategory.none) //ì½”ì¸ ì œì™¸
                 continue;
 
             num = (int)category/1000;
-            SaveDictionary<ItemType, int> item = new SaveDictionary<ItemType, int>(); //¾ÆÀÌÅÛ
+            SaveDictionary<ItemType, int> item = new SaveDictionary<ItemType, int>(); //ì•„ì´í…œ
 
-            foreach (ItemType type in Enum.GetValues(typeof(ItemType))) //ÇØ´ç Ä«Å×°í¸®¿Í ¾Õ ÀÚ¸® °°Àº Á¾·á¸¦ ÀúÀå
+            foreach (ItemType type in Enum.GetValues(typeof(ItemType))) //í•´ë‹¹ ì¹´í…Œê³ ë¦¬ì™€ ì• ìë¦¬ ê°™ì€ ì¢…ë£Œë¥¼ ì €ì¥
             {
-                if (num != (int)type / 1000) //¾ÕÀÚ¸® ºñ±³
+                if (num != (int)type / 1000) //ì•ìë¦¬ ë¹„êµ
                     continue;
 
-                item.Add(type, 0); //0À¸·Î ÃÊ±âÈ­
+                item.Add(type, 0); //0ìœ¼ë¡œ ì´ˆê¸°í™”
             }
-            PlayerStat.items.Add(category, item); //ÀúÀå
+            PlayerStat.items.Add(category, item); //ì €ì¥
         }
     }
 
-    private IEnumerator nowDate() //½Ã°£¼¼´Â°Å
+    private IEnumerator nowDate() //ì‹œê°„ì„¸ëŠ”ê±°
     {
         while (true)
         {
@@ -200,7 +200,7 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    private bool CompareMonth(int day, int month) //¿ù °è»ê
+    private bool CompareMonth(int day, int month) //ì›” ê³„ì‚°
     {
         if (day < 28) return false;
 

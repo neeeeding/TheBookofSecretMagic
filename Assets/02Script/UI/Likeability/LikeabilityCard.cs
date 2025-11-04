@@ -4,16 +4,16 @@ using UnityEngine.UI;
 
 public class LikeabilityCard : MonoBehaviour
 {
-    [SerializeField] private CharacterSO character; //´ë»ó Á¤º¸
+    [SerializeField] private CharacterSO character; //ëŒ€ìƒ ì •ë³´
 
-    [SerializeField] private TextMeshProUGUI characterName; //´ë»ó ÀÌ¸§
+    [SerializeField] private TextMeshProUGUI characterName; //ëŒ€ìƒ ì´ë¦„
     [SerializeField] private Image characterImage;
-    [SerializeField] private TextMeshProUGUI valueText; //È£°¨µµ Ç¥½Ã ÅØ½ºÆ®
-    [SerializeField] private Slider valueSlider; //È£°¨µµ ½½¶óÀÌ´õ
-    [SerializeField]private TMP_InputField memo; //¸Ş¸ğ
-    private int loveValue; //È£°¨µµ (¼ö)
+    [SerializeField] private TextMeshProUGUI valueText; //í˜¸ê°ë„ í‘œì‹œ í…ìŠ¤íŠ¸
+    [SerializeField] private Slider valueSlider; //í˜¸ê°ë„ ìŠ¬ë¼ì´ë”
+    [SerializeField]private TMP_InputField memo; //ë©”ëª¨
+    private int loveValue; //í˜¸ê°ë„ (ìˆ˜)
 
-    private PlayerStatSC path; //½ºÅÈ (ÀúÀå °ø°£)
+    private PlayerStatSC path; //ìŠ¤íƒ¯ (ì €ì¥ ê³µê°„)
 
     private void Awake()
     {
@@ -29,7 +29,7 @@ public class LikeabilityCard : MonoBehaviour
         {
             path = GameManager.Instance.PlayerStat;
             memo.text = path.characterlastText[character.characterName][DialogType.Memo];
-            LoadData(); // ·Îµå¸¦ À§ÇØ
+            LoadData(); // ë¡œë“œë¥¼ ìœ„í•´
         }
     }
 
@@ -41,7 +41,7 @@ public class LikeabilityCard : MonoBehaviour
     public void InputText()
     {
         string value = memo.text;
-        path.characterlastText[character.characterName][DialogType.Memo] = value; //¸Ş¸ğ ÀúÀå
+        path.characterlastText[character.characterName][DialogType.Memo] = value; //ë©”ëª¨ ì €ì¥
     }
 
     private void LoveUp(int value)
@@ -50,7 +50,7 @@ public class LikeabilityCard : MonoBehaviour
         valueText.text = $"{loveValue} / 100 ";
         valueSlider.value = loveValue;
 
-        path.characterlastText[character.characterName][DialogType.Love] = loveValue.ToString(); //È£°¨µµ ÀúÀå
+        path.characterlastText[character.characterName][DialogType.Love] = loveValue.ToString(); //í˜¸ê°ë„ ì €ì¥
 
         SaveMyLoveValue(true);
     }
@@ -66,11 +66,11 @@ public class LikeabilityCard : MonoBehaviour
         {
             if(set)
             {
-                path.characterlastText[character.characterName][DialogType.Love] = loveValue.ToString(); //È£°¨µµ ÀúÀå
+                path.characterlastText[character.characterName][DialogType.Love] = loveValue.ToString(); //í˜¸ê°ë„ ì €ì¥
             }
             else
             {
-                int.TryParse(path.characterlastText[character.characterName][DialogType.Love], out loveValue); //È£°¨µµ ÀúÀå
+                int.TryParse(path.characterlastText[character.characterName][DialogType.Love], out loveValue); //í˜¸ê°ë„ ì €ì¥
                 LoveUp(0);
             }
         }

@@ -16,25 +16,25 @@ public class CharacterSO : ScriptableObject
 
 public enum CharacterName
 {
-    [Description("ÁÖÀÎ°ø")] me,
-    [Description("·¹½ºÆ¼")] resty,
-    [Description("Å©¸®½º")] chris,
-    [Description("ÇÇ¿À")] pio,
-    [Description("Å×¿À")] theo,
-    [Description("³ë¾Æ")] noah,
-    [Description("´Ï¾Æ")] nia,
-    [Description("ºô·±")] villain,
-    [Description("ÇØ¸®")] harry,
-    [Description("´Ù´Ï¿¤")] daniel
+    [Description("ì£¼ì¸ê³µ")] me,
+    [Description("ë ˆìŠ¤í‹°")] resty,
+    [Description("í¬ë¦¬ìŠ¤")] chris,
+    [Description("í”¼ì˜¤")] pio,
+    [Description("í…Œì˜¤")] theo,
+    [Description("ë…¸ì•„")] noah,
+    [Description("ë‹ˆì•„")] nia,
+    [Description("ë¹ŒëŸ°")] villain,
+    [Description("í•´ë¦¬")] harry,
+    [Description("ë‹¤ë‹ˆì—˜")] daniel
 }
 
 public enum PlayerJob
 {
-    [Description("¾øÀ½")] none = 0,
-    [Description("Èæ")] brack,
-    [Description("Ä¡·á")] heal,
-    [Description("ºÒ")] fire,
-    [Description("¹°")] water,
-    [Description("º¹Á¦")] copy,
-    [Description("Æ÷¼Ç")] potion
+    [Description("ì—†ìŒ")] none = 0,
+    [Description("í‘")] brack,
+    [Description("ì¹˜ë£Œ")] heal,
+    [Description("ë¶ˆ")] fire,
+    [Description("ë¬¼")] water,
+    [Description("ë³µì œ")] copy,
+    [Description("í¬ì…˜")] potion
 }

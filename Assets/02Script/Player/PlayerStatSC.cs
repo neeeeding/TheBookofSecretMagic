@@ -4,11 +4,11 @@ using UnityEngine;
 [Serializable]
 public class PlayerStatSC
 {
-    public string sceneName; //È°µ¿ ÇÏ´ø ¾ÀÀÌ¸§
+    public string sceneName; //í™œë™ í•˜ë˜ ì”¬ì´ë¦„
 
-    public bool isChat; //ture : Ã¤ÆÃ Áß, false : ÀÎ °ÔÀÓ
+    public bool isChat; //ture : ì±„íŒ… ì¤‘, false : ì¸ ê²Œì„
 
-    [Range(0,100)] //´É·ÂÄ¡
+    [Range(0,100)] //ëŠ¥ë ¥ì¹˜
     public float blackMagic;
     [Range(0, 100)]
     public float healMagic;
@@ -21,106 +21,106 @@ public class PlayerStatSC
     [Range(0, 100)]
     public float potionMagic;
 
-    public int playerCoin; //¼ÒÁö±İ
+    public int playerCoin; //ì†Œì§€ê¸ˆ
 
-    public Vector2 playerPosition; //ÇÃ·¹ÀÌ¾î À§Ä¡
+    public Vector2 playerPosition; //í”Œë ˆì´ì–´ ìœ„ì¹˜
 
-    public PlayerJob job; //Àü°ø
+    public PlayerJob job; //ì „ê³µ
 
     [Space(50f)]
-    public Character lastCharacter; //¸¶Áö¸· Ä³¸¯ÅÍ
+    public Character lastCharacter; //ë§ˆì§€ë§‰ ìºë¦­í„°
     public CharacterSO lastSO;
-    public string lastText; //¸¶Áö¸· ´ëÈ­
+    public string lastText; //ë§ˆì§€ë§‰ ëŒ€í™”
 
-    public SaveDictionary<CharacterName, SaveDictionary<DialogType, string>> characterlastText; //Ä³¸¯ÅÍ ¸¶Áö¸· ´ëÈ­ ÀÌ¸§<´ÙÀÌ¾ó·Î±×(Á¾·ù), ¹øÂ°(È¤Àº ÅØ½ºÆ®)>
+    public SaveDictionary<CharacterName, SaveDictionary<DialogType, string>> characterlastText; //ìºë¦­í„° ë§ˆì§€ë§‰ ëŒ€í™” ì´ë¦„<ë‹¤ì´ì–¼ë¡œê·¸(ì¢…ë¥˜), ë²ˆì§¸(í˜¹ì€ í…ìŠ¤íŠ¸)>
 
-    #region ÀÌÀü È£°¨µµ ÀúÀå ¹ı
-    //[Space(50f)] //È£°¨µµ
+    #region ì´ì „ í˜¸ê°ë„ ì €ì¥ ë²•
+    //[Space(50f)] //í˜¸ê°ë„
     //[Range(0, 100)]
-    //public int resty;//·¹½ºÆ¼
+    //public int resty;//ë ˆìŠ¤í‹°
     //[Range(0, 100)]
-    //public int chris; //Å©¸®½º
+    //public int chris; //í¬ë¦¬ìŠ¤
     //[Range(0, 100)]
-    //public int theo; //Å×¿À
+    //public int theo; //í…Œì˜¤
     //[Range(0, 100)]
-    //public int pio; //ÇÇ¿À
+    //public int pio; //í”¼ì˜¤
     //[Range(0, 100)]
-    //public int noah; //³ë¾Æ
+    //public int noah; //ë…¸ì•„
     //[Range(0, 100)]
-    //public int nia; //´Ï¾Æ
+    //public int nia; //ë‹ˆì•„
     //[Range(0, 100)]
-    //public int villain; //ºô·±
+    //public int villain; //ë¹ŒëŸ°
     //[Range(0, 100)]
-    //public int harry; //ÇØ¸®
+    //public int harry; //í•´ë¦¬
     //[Range(0, 100)]
-    //public int daniel; //´Ù´Ï¿¤
+    //public int daniel; //ë‹¤ë‹ˆì—˜
     #endregion
 
-    #region ÀÌÀü ³»¿ë ÀúÀå ¹ı
-    //public int[] restyLastText = new int[2]; // ·¹½ºÆ¼
-    //public int[] chrisLastText = new int[2]; // Å©¸®½º
-    //public int[] theoLastText = new int[2]; // Å×¿À
-    //public int[] pioLastText = new int[2]; // ÇÇ¿À
-    //public int[] noahLastText = new int[2]; // ³ë¾Æ
-    //public int[] niaLastText = new int[2]; // ´Ï¾Æ
-    //public int[] villainLastText = new int[2]; // ºô·±
-    //public int[] harryLastText = new int[2]; // ÇØ¸®
-    //public int[] danielLastText = new int[2]; // ´Ù´Ï¿¤
+    #region ì´ì „ ë‚´ìš© ì €ì¥ ë²•
+    //public int[] restyLastText = new int[2]; // ë ˆìŠ¤í‹°
+    //public int[] chrisLastText = new int[2]; // í¬ë¦¬ìŠ¤
+    //public int[] theoLastText = new int[2]; // í…Œì˜¤
+    //public int[] pioLastText = new int[2]; // í”¼ì˜¤
+    //public int[] noahLastText = new int[2]; // ë…¸ì•„
+    //public int[] niaLastText = new int[2]; // ë‹ˆì•„
+    //public int[] villainLastText = new int[2]; // ë¹ŒëŸ°
+    //public int[] harryLastText = new int[2]; // í•´ë¦¬
+    //public int[] danielLastText = new int[2]; // ë‹¤ë‹ˆì—˜
     #endregion
 
-    [Space(50f)] //³¯Â¥
+    [Space(50f)] //ë‚ ì§œ
     public int year;
     public int month;
     public int day;
     public int hour;
     public int minute;
 
-    public SaveDictionary<ItemCategory, SaveDictionary<ItemType, int>> items; //¾ÆÀÌÅÛµé Ä«Å×°í¸®<Á¾·ù,¼ö>
+    public SaveDictionary<ItemCategory, SaveDictionary<ItemType, int>> items; //ì•„ì´í…œë“¤ ì¹´í…Œê³ ë¦¬<ì¢…ë¥˜,ìˆ˜>
     
 
-    #region ÀÌÀü ¾ÆÀÌÅÛ ÀúÀå ¹ı
-    //public int lovePotionCount; //Æ÷¼Ç
+    #region ì´ì „ ì•„ì´í…œ ì €ì¥ ë²•
+    //public int lovePotionCount; //í¬ì…˜
     //public int staminaPotionCount;
     //public int painPotionCount;
 
-    //public int blackbookCount; //Ã¥
+    //public int blackbookCount; //ì±…
     //public int healbookCount;
     //public int firebookCount;
     //public int waterbookCount;
     //public int copybookCount;
     //public int potionbookCount;
 
-    //public int umbrellaCount; //¿ì»ê
-    //public int broomstickCount; //ºøÀÚ·ç (¼ø°£ÀÌµ¿ ¾ÆÀÌÅÛ)
-    //public int fanCount; //ºÎÃ¤
-    //public int hotPackCount; //ÇÖÆÑ
-    //public int fryingPanCount; //ÈÄ¶óÀÌÆÒ
-    //public int flowerCount; //²É´Ù¹ß (¿¬¾Ö)
-    //public int foragingBinCount; //°ïÃæ Ã¤ÁıÅë
+    //public int umbrellaCount; //ìš°ì‚°
+    //public int broomstickCount; //ë¹—ìë£¨ (ìˆœê°„ì´ë™ ì•„ì´í…œ)
+    //public int fanCount; //ë¶€ì±„
+    //public int hotPackCount; //í•«íŒ©
+    //public int fryingPanCount; //í›„ë¼ì´íŒ¬
+    //public int flowerCount; //ê½ƒë‹¤ë°œ (ì—°ì• )
+    //public int foragingBinCount; //ê³¤ì¶© ì±„ì§‘í†µ
 
-    //public int drugCount; //¸¶¾à
-    //public int boxCount; //»óÀÚ
+    //public int drugCount; //ë§ˆì•½
+    //public int boxCount; //ìƒì
 
-    //public int glassesCount; //¼Ó¸¶À½À» º¸´Â ¾È°æ (¿Ã¹Ù¸¥ ¼±ÅÃÁö)
-    //public int readingGlassesCount; //µ¸º¸±â (¼±È£ÇÏ´Â ¾ÆÀÌÅÛ 2°³)
-    //public int emptyGlassCount; //ºó À¯¸®º´
+    //public int glassesCount; //ì†ë§ˆìŒì„ ë³´ëŠ” ì•ˆê²½ (ì˜¬ë°”ë¥¸ ì„ íƒì§€)
+    //public int readingGlassesCount; //ë‹ë³´ê¸° (ì„ í˜¸í•˜ëŠ” ì•„ì´í…œ 2ê°œ)
+    //public int emptyGlassCount; //ë¹ˆ ìœ ë¦¬ë³‘
 
-    //public int wormCount; //¹ú·¹ µé
-    //public int trashGlassCount; //½ÇÆĞÇÑ À¯¸®º´
+    //public int wormCount; //ë²Œë ˆ ë“¤
+    //public int trashGlassCount; //ì‹¤íŒ¨í•œ ìœ ë¦¬ë³‘
 
-    //public int perfectGlassCount; //»ıÅÂ°è À¯¸®º´
+    //public int perfectGlassCount; //ìƒíƒœê³„ ìœ ë¦¬ë³‘
 
-    //public int restyMouse; //Ä¿¼­
-    //public int chrisMouse; //Ä¿¼­
-    //public int theoMouse; //Ä¿¼­
-    //public int noahMouse; //Ä¿¼­
-    //public int niaMouse; //Ä¿¼­
-    //public int villainMouse; //Ä¿¼­
-    //public int harryMouse; //Ä¿¼­
-    //public int danielMouse; //Ä¿¼­
-    //public int pioMouse; //Ä¿¼­
+    //public int restyMouse; //ì»¤ì„œ
+    //public int chrisMouse; //ì»¤ì„œ
+    //public int theoMouse; //ì»¤ì„œ
+    //public int noahMouse; //ì»¤ì„œ
+    //public int niaMouse; //ì»¤ì„œ
+    //public int villainMouse; //ì»¤ì„œ
+    //public int harryMouse; //ì»¤ì„œ
+    //public int danielMouse; //ì»¤ì„œ
+    //public int pioMouse; //ì»¤ì„œ
 
-    //public int giftCount; //¾ÆÁ÷ÀÓ
+    //public int giftCount; //ì•„ì§ì„
     #endregion
 
     [ContextMenu("ResetStat")]
@@ -147,7 +147,7 @@ public class PlayerStatSC
         //harry = 0;
         //daniel = 0;
 
-        lastText = "¸¶Áö¸· ´ëÈ­°¡ ¾ø½À´Ï´Ù.";
+        lastText = "ë§ˆì§€ë§‰ ëŒ€í™”ê°€ ì—†ìŠµë‹ˆë‹¤.";
 
         year = 2000;
         month = 1;

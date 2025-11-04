@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class PState
 {
-    protected Player _player; //ÇÃ·¹ÀÌ¾î
-    protected PStateMachin _stateMachin; //¸Ó½Å
-    protected int _animationHash; //ÇØ½Ã
+    protected Player _player; //í”Œë ˆì´ì–´
+    protected PStateMachin _stateMachin; //ë¨¸ì‹ 
+    protected int _animationHash; //í•´ì‹œ
 
-    protected PlayerRotate _rotate; //¾îµô ºÁ¾ß´ÂÁö
+    protected PlayerRotate _rotate; //ì–´ë”œ ë´ì•¼ëŠ”ì§€
 
     public PState(string animation,PStateMachin machin,Player player)
     {

@@ -3,14 +3,14 @@ using UnityEngine.UI;
 
 public class LikeItemItem : MonoBehaviour
 {
-    [SerializeField]private CharacterSO loveCharacter; //¾ÆÀÌÅÛ Á¾·ù
-    [SerializeField]private ItemSO loveItem; //¾ÆÀÌÅÛ Á¾·ù
+    [SerializeField]private CharacterSO loveCharacter; //ì•„ì´í…œ ì¢…ë¥˜
+    [SerializeField]private ItemSO loveItem; //ì•„ì´í…œ ì¢…ë¥˜
 
-    private string savePath; //ÀúÀå °æ·Î
-    private Image itemImage; //¾ÆÀÌÅÛ ÀÌ¹ÌÁö
-    private int colorCount; //(Å¬¸¯) ´Ü°è
+    private string savePath; //ì €ì¥ ê²½ë¡œ
+    private Image itemImage; //ì•„ì´í…œ ì´ë¯¸ì§€
+    private int colorCount; //(í´ë¦­) ë‹¨ê³„
 
-    public void SettingItem(CharacterSO characterSO,ItemSO itemSO) //¾ÆÀÌÅÛ ¼¼ÆÃ (´©±¸ÀÎÁö, ¾î¶² ¾ÆÀÌÅÛÀÎÁö)
+    public void SettingItem(CharacterSO characterSO,ItemSO itemSO) //ì•„ì´í…œ ì„¸íŒ… (ëˆ„êµ¬ì¸ì§€, ì–´ë–¤ ì•„ì´í…œì¸ì§€)
     {
         if(itemImage == null)
         {
@@ -20,11 +20,11 @@ public class LikeItemItem : MonoBehaviour
         loveItem = itemSO;
         //itemImage.sprite = loveItem.itemImage;
         savePath = $"{loveCharacter}_{loveItem.itemType}likeItem";
-        colorCount = PlayerPrefs.GetInt(savePath) - 1; //´õÇØÁÖ´Ï±î.
+        colorCount = PlayerPrefs.GetInt(savePath) - 1; //ë”í•´ì£¼ë‹ˆê¹Œ.
         ChangeColorLove();
     }
 
-    public void  ChangeColorLove() //¾ÆÀÌÅÛ ´­·¯ »ö ¹Ù²Ù±â
+    public void  ChangeColorLove() //ì•„ì´í…œ ëˆŒëŸ¬ ìƒ‰ ë°”ê¾¸ê¸°
     {
         colorCount++;
         if(colorCount <= 0 || colorCount > 3)

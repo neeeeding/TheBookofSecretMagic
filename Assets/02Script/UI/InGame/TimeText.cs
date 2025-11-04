@@ -31,7 +31,7 @@ public class TimeText : MonoBehaviour
         else
         {
             bool pm = stat.hour >= 12 && stat.hour != 24;
-            timeText.text = $"{stat.month} / {stat.day}\n{(pm ? "¿ÀÈÄ" : "¿ÀÀü")} {(pm ? stat.hour - 12 : stat.hour)} : {stat.minute} ";
+            timeText.text = $"{stat.month} / {stat.day}\n{(pm ? "ì˜¤í›„" : "ì˜¤ì „")} {(pm ? stat.hour - 12 : stat.hour)} : {stat.minute} ";
         }
     }
 

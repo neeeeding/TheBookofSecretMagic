@@ -7,21 +7,21 @@ using System;
 
 public class ItemCard : MonoBehaviour
 {
-    public static Action<ItemSO> OnHoldItem; //µé°í ÀÖ´Â ¾ÆÀÌÅÛ ÀüÇØÁÖ±â
+    public static Action<ItemSO> OnHoldItem; //ë“¤ê³  ìˆëŠ” ì•„ì´í…œ ì „í•´ì£¼ê¸°
 
-    [SerializeField] private ItemSO so; //¾ÆÀÌÅÛ Á¤º¸
+    [SerializeField] private ItemSO so; //ì•„ì´í…œ ì •ë³´
 
-    [SerializeField] private int countItme; //¾ÆÀÌÅÛ ¼ÒÁö °³¼ö
+    [SerializeField] private int countItme; //ì•„ì´í…œ ì†Œì§€ ê°œìˆ˜
 
-    private bool getItem; //¾ÆÀÌÅÛÀ» ¾ò¾ú´ÂÁö.
+    private bool getItem; //ì•„ì´í…œì„ ì–»ì—ˆëŠ”ì§€.
 
-    private static ItemCard currentUseItem; //ÇöÀç »ç¿ëÁßÀÎ ¾ÆÀÌÅÛ
-    private static bool useTrue; //ture : »ç¿ëÁßÀÎ ¾ÆÀÌÅÛ ÀÖÀ½, false : »ç¿ëÁßÀÎ ¾ÆÀÌÅÛ ¾øÀ½
-    private bool isUse; //µé°í ÀÖ´ÂÁß
-    private ItemHold realItem; //µé¸®°Ô µÉ ¾ÆÀÌÅÛ(À§Ä¡)
+    private static ItemCard currentUseItem; //í˜„ì¬ ì‚¬ìš©ì¤‘ì¸ ì•„ì´í…œ
+    private static bool useTrue; //ture : ì‚¬ìš©ì¤‘ì¸ ì•„ì´í…œ ìˆìŒ, false : ì‚¬ìš©ì¤‘ì¸ ì•„ì´í…œ ì—†ìŒ
+    private bool isUse; //ë“¤ê³  ìˆëŠ”ì¤‘
+    private ItemHold realItem; //ë“¤ë¦¬ê²Œ ë  ì•„ì´í…œ(ìœ„ì¹˜)
 
-    private TextMeshProUGUI countText; //¼ÒÁö °³¼ö ÅØ½ºÆ®
-    private Image cardImage; //¾ÆÀÌÅÛ ÀÌ¹ÌÁö
+    private TextMeshProUGUI countText; //ì†Œì§€ ê°œìˆ˜ í…ìŠ¤íŠ¸
+    private Image cardImage; //ì•„ì´í…œ ì´ë¯¸ì§€
 
     private void Awake()
     {
@@ -37,14 +37,14 @@ public class ItemCard : MonoBehaviour
         Dialog.OnGame += HideItem;
     }
 
-    public void SetCard(ItemSO mySO, ItemHold item) //Ä«µå Á¤º¸ Á¤ÇØÁÖ±â (¼¼ÆÃ ·Îµå)
+    public void SetCard(ItemSO mySO, ItemHold item) //ì¹´ë“œ ì •ë³´ ì •í•´ì£¼ê¸° (ì„¸íŒ… ë¡œë“œ)
     {
         so = mySO;
         realItem = item;
         HideItem();
 
-        countItme = GameManager.Instance.PlayerStat.items[mySO.category][mySO.itemType]; //°³¼ö ³Ö±â
-        getItem = countItme <= 0 ? false : true; // 0 ¹Ì¸¸ÀÎÁö
+        countItme = GameManager.Instance.PlayerStat.items[mySO.category][mySO.itemType]; //ê°œìˆ˜ ë„£ê¸°
+        getItem = countItme <= 0 ? false : true; // 0 ë¯¸ë§Œì¸ì§€
         ShowCount();
         if (!getItem)
         {
@@ -52,7 +52,7 @@ public class ItemCard : MonoBehaviour
         }
     }
 
-    public void ClickCard() //¾ÆÀÌÅÛ UI ¹öÆ° Å¬¸¯ ½Ã
+    public void ClickCard() //ì•„ì´í…œ UI ë²„íŠ¼ í´ë¦­ ì‹œ
     {
         if (!useTrue) HoldItem();
         else if (useTrue && !isUse) { currentUseItem.HideItem(); HoldItem(); }
@@ -60,7 +60,7 @@ public class ItemCard : MonoBehaviour
         else return;
     }
 
-    private void HoldItem() //¾ÆÀÌÅÛ È°¼ºÈ­
+    private void HoldItem() //ì•„ì´í…œ í™œì„±í™”
     {
         cardImage.color = new Color(95 / 225f, 95 / 225f, 95 / 225f, 1);
         isUse = true;
@@ -72,7 +72,7 @@ public class ItemCard : MonoBehaviour
         OnHoldItem?.Invoke(so);
     }
 
-    public void HideItem() //¾ÆÀÌÅÛ ºñÈ°¼ºÈ­
+    public void HideItem() //ì•„ì´í…œ ë¹„í™œì„±í™”
     {
         cardImage.color = Color.white;
         isUse = false;
@@ -84,7 +84,7 @@ public class ItemCard : MonoBehaviour
         OnHoldItem?.Invoke(null);
     }
 
-    public bool HaveItem(ItemSO currentSO, bool b) //ÀÌ¹Ì ¾òÀº ¾ÆÀÌÅÛ ÀÎÁö
+    public bool HaveItem(ItemSO currentSO, bool b) //ì´ë¯¸ ì–»ì€ ì•„ì´í…œ ì¸ì§€
     {
         GetItem(currentSO);
         if(b)
@@ -92,12 +92,12 @@ public class ItemCard : MonoBehaviour
         return getItem;
     }
 
-    private void HideCard() //Ä«µå ¼û±â±â
+    private void HideCard() //ì¹´ë“œ ìˆ¨ê¸°ê¸°
     {
         gameObject.SetActive(false);
     }
 
-    private void ShowCount() //¾ÆÀÌÅÛ ¼ÒÁö ¼ö ÅØ½ºÆ®
+    private void ShowCount() //ì•„ì´í…œ ì†Œì§€ ìˆ˜ í…ìŠ¤íŠ¸
     {
         if(countItme > 1)
         {
@@ -110,7 +110,7 @@ public class ItemCard : MonoBehaviour
         }
     }
 
-    private void UseItme(ItemSO currentSO) //¾ÆÀÌÅÛÀ» »ç¿ëÇÔ (ÀÒÀ½)
+    private void UseItme(ItemSO currentSO) //ì•„ì´í…œì„ ì‚¬ìš©í•¨ (ìƒìŒ)
     {
         if(currentSO == so)
         {
@@ -127,7 +127,7 @@ public class ItemCard : MonoBehaviour
         }
     }
 
-    private void GetItem(ItemSO currentSO) //¾ÆÀÌÅÛÀ» ¾òÀ½
+    private void GetItem(ItemSO currentSO) //ì•„ì´í…œì„ ì–»ìŒ
     {
         if(currentSO == so)
         {

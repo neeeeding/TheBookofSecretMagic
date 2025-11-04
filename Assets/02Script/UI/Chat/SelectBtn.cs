@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class SelectBtn : MonoBehaviour
 {
-    public static Action<int> OnSelect; //¼±ÅÃÇÑ ¹øÈ£
+    public static Action<int> OnSelect; //ì„ íƒí•œ ë²ˆí˜¸
 
-    private int mySelectNum; //º»ÀÎÀÇ ¹øÈ£ (Ã©ÅÍ¿¡¼­, ³Ñ¹ö)
-    [SerializeField] private TextMeshProUGUI selectTexts; //¼±ÅÃÁö ´ëÈ­
+    private int mySelectNum; //ë³¸ì¸ì˜ ë²ˆí˜¸ (ì±•í„°ì—ì„œ, ë„˜ë²„)
+    [SerializeField] private TextMeshProUGUI selectTexts; //ì„ íƒì§€ ëŒ€í™”
 
-    public void SetSelect(string text, int thisNum) //´ëÈ­ ³»¿ë, ¼±ÅÃÁö ¹øÈ£
+    public void SetSelect(string text, int thisNum) //ëŒ€í™” ë‚´ìš©, ì„ íƒì§€ ë²ˆí˜¸
     {
         selectTexts.text = text;
         mySelectNum = thisNum;
     }
 
-    public void ClcikSelect() //¼±ÅÃ ¹öÆ° ´©¸¦ ¶§
+    public void ClcikSelect() //ì„ íƒ ë²„íŠ¼ ëˆ„ë¥¼ ë•Œ
     {
-        OnSelect?.Invoke(mySelectNum + 1/*0ºÎÅÍ ½ÃÀÛÇÏ´Ï*/);
+        OnSelect?.Invoke(mySelectNum + 1/*0ë¶€í„° ì‹œì‘í•˜ë‹ˆ*/);
     }
 }

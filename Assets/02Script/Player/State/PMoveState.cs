@@ -17,21 +17,21 @@ public class PMoveState : PState
         ChangeAnimation(PlayerMovement.Instance.TargetPos);
     }
 
-    private void ChangeAnimation(Vector2 mousePos) //¾Ö´Ï ¹Ù²Ù±â
+    private void ChangeAnimation(Vector2 mousePos) //ì• ë‹ˆ ë°”ê¾¸ê¸°
     {
-        _player.Animator.SetBool(Animator.StringToHash(_rotate.ToString()), false); //ÀÏ´Ü ²ô°í
+        _player.Animator.SetBool(Animator.StringToHash(_rotate.ToString()), false); //ì¼ë‹¨ ë„ê³ 
 
         Vector2 minusPos = new Vector2(mousePos.x - _player.transform.position.x, mousePos.y - _player.transform.position.y);
 
 
-        _rotate = Mathf.Abs(minusPos.x) > Mathf.Abs(minusPos.y) ? //ÄÑ±â
-               minusPos.x <= 0 ? PlayerRotate.Left : PlayerRotate.Right :
-               minusPos.y <= 0 ? PlayerRotate.Back : PlayerRotate.Front;
+        _rotate = Mathf.Abs(minusPos.x) > Mathf.Abs(minusPos.y) ? //ì¼œê¸°
+            minusPos.x <= 0 ? PlayerRotate.Left : PlayerRotate.Right :
+            minusPos.y <= 0 ? PlayerRotate.Back : PlayerRotate.Front;
 
-        _player.Animator.SetBool(Animator.StringToHash(_rotate.ToString()), true); //ÄÑ±â
+        _player.Animator.SetBool(Animator.StringToHash(_rotate.ToString()), true); //ì¼œê¸°
     }
 
-    public override void StateFixedUpdate() //¿òÁ÷ÀÓ
+    public override void StateFixedUpdate() //ì›€ì§ìž„
     {
         base.StateFixedUpdate();
 

@@ -21,7 +21,7 @@ public class MagicGauge : MonoBehaviour
 
     private void LoadSlider()
     {
-        //·Îµå
+        //ë¡œë“œ
         stat = GameManager.Instance.PlayerStat;
         potionSlider.value = stat.potionMagic;
         copySlider.value = stat.copyMagic;

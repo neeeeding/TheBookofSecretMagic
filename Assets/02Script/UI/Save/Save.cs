@@ -5,21 +5,21 @@ using System.IO;
 public class Save : MonoBehaviour
 {
     [Header("All Need")]
-    [SerializeField] private GameObject deleteWindow; //»èÁ¦ È®ÀÎ Ã¢
-    [SerializeField] private GameObject oneLoadCard; //¼¼ÀÌºê ÆÄÀÏ ÇÏ³ª
-    [SerializeField] private GameObject content; //º¸°ü
+    [SerializeField] private GameObject deleteWindow; //ì‚­ì œ í™•ì¸ ì°½
+    [SerializeField] private GameObject oneLoadCard; //ì„¸ì´ë¸Œ íŒŒì¼ í•˜ë‚˜
+    [SerializeField] private GameObject content; //ë³´ê´€
     [Space(20f)]
     [Header("Save_save Need")]
-    [SerializeField] private TMP_InputField saveInputName; //±âº» ÀúÀå ÆÄÀÏ¸í
-    [SerializeField] private GameObject saveNameMessage; //ÆÄÀÏÀÌ¸§ ÀÛ¼º ¸Ş½ÃÁö
+    [SerializeField] private TMP_InputField saveInputName; //ê¸°ë³¸ ì €ì¥ íŒŒì¼ëª…
+    [SerializeField] private GameObject saveNameMessage; //íŒŒì¼ì´ë¦„ ì‘ì„± ë©”ì‹œì§€
     [Space(20f)]
     [Header("Chat_save Need")]
-    [SerializeField] private TMP_InputField chatInputName; //Ã¤ÆÃ ÀúÀå ÆÄÀÏ¸í
-    [SerializeField] private GameObject chatNameMessage; //ÆÄÀÏÀÌ¸§ ÀÛ¼º ¸Ş½ÃÁö
+    [SerializeField] private TMP_InputField chatInputName; //ì±„íŒ… ì €ì¥ íŒŒì¼ëª…
+    [SerializeField] private GameObject chatNameMessage; //íŒŒì¼ì´ë¦„ ì‘ì„± ë©”ì‹œì§€
 
-    private string path; //ÆÄÀÏ ÀúÀå À§Ä¡
-    private string[] fileNames; //ÀúÀå ÆÄÀÏ ÀÌ¸§µé
-    private LoadCard deleteCard; //»èÁ¦ÇÒ ÀúÀå ÆÄÀÏ (ÀÓ½Ã)
+    private string path; //íŒŒì¼ ì €ì¥ ìœ„ì¹˜
+    private string[] fileNames; //ì €ì¥ íŒŒì¼ ì´ë¦„ë“¤
+    private LoadCard deleteCard; //ì‚­ì œí•  ì €ì¥ íŒŒì¼ (ì„ì‹œ)
 
     private void Awake()
     {
@@ -27,7 +27,7 @@ public class Save : MonoBehaviour
 
         if (!Directory.Exists(path))
         {
-            Directory.CreateDirectory(path); // Æú´õ »ı¼º
+            Directory.CreateDirectory(path); // í´ë” ìƒì„±
         }
 
         if (File.Exists($"{path}/saveName"))
@@ -43,18 +43,18 @@ public class Save : MonoBehaviour
         LoadCard.OnDelete += DeleteLoad;
     }
 
-    public void DeleteBtn() //»èÁ¦ (¿¹)
+    public void DeleteBtn() //ì‚­ì œ (ì˜ˆ)
     {
         deleteCard.DeleteMe();
         CloseMessage();
     }
 
-    public void SaveBtn() //ÀúÀå ¹öÆ° ´©¸¦ ¶§ (ÀÌ¸§ ÀÛ¼º Ã¢ ¶ß±â)
+    public void SaveBtn() //ì €ì¥ ë²„íŠ¼ ëˆ„ë¥¼ ë•Œ (ì´ë¦„ ì‘ì„± ì°½ ëœ¨ê¸°)
     {
         saveNameMessage.SetActive(true);
     }
 
-    public void CompleteBtn() //(ÀÌ¸§ ÀÛ¼º) ¿Ï·á ¹öÆ°
+    public void CompleteBtn() //(ì´ë¦„ ì‘ì„±) ì™„ë£Œ ë²„íŠ¼
     {
         TMP_InputField inputName = chatInputName;
         if (saveInputName.text != "")
@@ -65,15 +65,15 @@ public class Save : MonoBehaviour
         {
             GameObject loadCard = Instantiate(oneLoadCard, content.transform);
             loadCard.GetComponent<LoadCard>().ClcikSave(inputName.text);
-            SettingPath(); //È¤½Ã ¸ğ¸£´Ï Àç ¼¼ÆÃ
+            SettingPath(); //í˜¹ì‹œ ëª¨ë¥´ë‹ˆ ì¬ ì„¸íŒ…
             File.AppendAllText($"{path}/SaveName", $"{inputName.text}\n");
 
             CloseMessage();
             inputName.text = "";
-        } //ÆÄÀÏ¸í °ãÄ¡´Â°Å °í·Á
+        } //íŒŒì¼ëª… ê²¹ì¹˜ëŠ”ê±° ê³ ë ¤
     }
 
-    public void CloseMessage() //¸ğµç Ã¢ (ÀÌ¸§ÀÛ¼º, »èÁ¦ È®ÀÎ) ´İ±â
+    public void CloseMessage() //ëª¨ë“  ì°½ (ì´ë¦„ì‘ì„±, ì‚­ì œ í™•ì¸) ë‹«ê¸°
     {
         saveNameMessage.SetActive(false);
         chatNameMessage.SetActive(false);
@@ -81,7 +81,7 @@ public class Save : MonoBehaviour
         deleteWindow.SetActive(false);
     }
 
-    private void LoadSave() //ÀúÀåÇÏ±â
+    private void LoadSave() //ì €ì¥í•˜ê¸°
     {
         for(int i = 0; i < fileNames.Length; i++)
         {
@@ -94,7 +94,7 @@ public class Save : MonoBehaviour
         }
     }
 
-    private void DeleteLoad(LoadCard card) //Ä«µå »èÁ¦ÇÏ±â Ã¢
+    private void DeleteLoad(LoadCard card) //ì¹´ë“œ ì‚­ì œí•˜ê¸° ì°½
     {
         deleteWindow.SetActive(true);
         deleteCard = card;

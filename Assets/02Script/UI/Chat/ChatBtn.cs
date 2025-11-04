@@ -17,32 +17,32 @@ public class ChatBtn : MonoBehaviour
         CloseSave();
     }
 
-    public void LoadBtn() //·Îµå ¹öÆ° ´©¸¦ ¶§
+    public void LoadBtn() //ë¡œë“œ ë²„íŠ¼ ëˆ„ë¥¼ ë•Œ
     {
         UISettingManager.Instance.Save();
     }
 
-    public void SaveBtn() //ÀúÀå ¹öÆ°
+    public void SaveBtn() //ì €ì¥ ë²„íŠ¼
     {
         SaveWindow.SetActive(true);
     }
 
-    public void CloseSave() //ÀúÀå Ã¢ ´İ±â
+    public void CloseSave() //ì €ì¥ ì°½ ë‹«ê¸°
     {
         SaveWindow.SetActive(false);
     }
 
-    public void SkipBtn() //½ºÅµ
+    public void SkipBtn() //ìŠ¤í‚µ
     {
         OnSkipChat?.Invoke();
     }
 
-    public void HideBtn() //ºñÈ°¼ºÈ­ ¹öÆ°
+    public void HideBtn() //ë¹„í™œì„±í™” ë²„íŠ¼
     {
         Show(false);
     }
 
-    public void ShowBtn() //È°¼ºÈ­
+    public void ShowBtn() //í™œì„±í™”
     {
         Show(true);
     }
@@ -56,12 +56,12 @@ public class ChatBtn : MonoBehaviour
         }
     }
 
-    public void Likeability() //È£°¨µµ µµ°¨
+    public void Likeability() //í˜¸ê°ë„ ë„ê°
     {
         UISettingManager.Instance.LikeabilityGuide();
     }
 
-    public void LoveBtn() //¼±È£ º¸±â
+    public void LoveBtn() //ì„ í˜¸ ë³´ê¸°
     {
 
     }

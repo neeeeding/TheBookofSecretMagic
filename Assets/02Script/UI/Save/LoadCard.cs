@@ -24,13 +24,13 @@ public class LoadCard : MonoBehaviour
         }
     }
 
-    public void AwakeLoadSave(string name, PlayerStatSC saveStat) //Àü°Å ´Ù½Ã ·ÎµåÇÏ±â
+    public void AwakeLoadSave(string name, PlayerStatSC saveStat) //ì „ê±° ë‹¤ì‹œ ë¡œë“œí•˜ê¸°
     {
         fileName = name;
         Setting(saveStat);
     }
 
-    public void ClcikSave(string name) //ÆÄÀÏ ÀÌ¸§±îÁö ÀÛ¼ºÇÑ »óÅÂ¿¡¼­ ¿Ï·á ´©¸¦ ¶§
+    public void ClcikSave(string name) //íŒŒì¼ ì´ë¦„ê¹Œì§€ ì‘ì„±í•œ ìƒíƒœì—ì„œ ì™„ë£Œ ëˆ„ë¥¼ ë•Œ
     {
         fileName = name;
 
@@ -41,7 +41,7 @@ public class LoadCard : MonoBehaviour
         File.WriteAllText($"{GameManager.GameSaveFilePath}/{fileName}", data);
     }
 
-    public void ClickLoad() //ºÒ·¯¿À±â ´©¸¦ ¶§
+    public void ClickLoad() //ë¶ˆëŸ¬ì˜¤ê¸° ëˆ„ë¥¼ ë•Œ
     {
         string data = File.ReadAllText($"{GameManager.GameSaveFilePath}/{fileName}");
         PlayerStatSC stat = JsonUtility.FromJson<PlayerStatSC>(data);
@@ -50,14 +50,14 @@ public class LoadCard : MonoBehaviour
         GameManager.CoinText?.Invoke();
     }
 
-    private void CardSetting() //Ä«µå ¼¼ÆÃ
+    private void CardSetting() //ì¹´ë“œ ì„¸íŒ…
     {
         fileNameText.text = fileName;
         lastText.text = last;
         dateText.text = date;
     }
 
-    private void Setting(PlayerStatSC saveStat ) //Ã·¿¡ ¼¼ÆÃ
+    private void Setting(PlayerStatSC saveStat ) //ì²¨ì— ì„¸íŒ…
     {
         PlayerStatSC stat = saveStat;
 
@@ -65,7 +65,7 @@ public class LoadCard : MonoBehaviour
 
         bool pm = stat.hour >= 12 && stat.hour != 24;
 
-        date = $"{stat.month} / {stat.day}\n{(pm ? "¿ÀÈÄ" : "¿ÀÀü")} {(pm ? stat.hour - 12 : stat.hour)} : {stat.minute}";
+        date = $"{stat.month} / {stat.day}\n{(pm ? "ì˜¤í›„" : "ì˜¤ì „")} {(pm ? stat.hour - 12 : stat.hour)} : {stat.minute}";
 
         CardSetting();
     }
@@ -75,7 +75,7 @@ public class LoadCard : MonoBehaviour
         OnDelete?.Invoke(this);
     }
 
-    public void DeleteMe() //ÆÄÀÏ »èÁ¦
+    public void DeleteMe() //íŒŒì¼ ì‚­ì œ
     {
         string[] load = File.ReadAllLines($"{GameManager.GameSaveFilePath}/saveName");
         File.Delete($"{GameManager  .GameSaveFilePath}/saveName");

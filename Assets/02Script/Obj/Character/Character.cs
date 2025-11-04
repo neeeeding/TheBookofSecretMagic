@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    //ÀúÀåÀ» num : (Ã©ÅÍÀÇ) ³Ñ¹ö/ chapter : Ã©ÅÍ/ text : ¸¶Áö¸· ´ëÈ­
+    //ì €ì¥ì„ num : (ì±•í„°ì˜) ë„˜ë²„/ chapter : ì±•í„°/ text : ë§ˆì§€ë§‰ ëŒ€í™”
     //LikeabilityCard = 
     public static Action<CharacterSO,Character> OnChat;
 
     [SerializeField] private CharacterSO characterSO;
-    [SerializeField] private int chapter; //Ã©ÅÍ
-    [SerializeField] private int finallNum; //¹øÈ£
-    private PlayerStatSC path; //½ºÅÈ (ÀúÀå °ø°£)
+    [SerializeField] private int chapter; //ì±•í„°
+    [SerializeField] private int finallNum; //ë²ˆí˜¸
+    private PlayerStatSC path; //ìŠ¤íƒ¯ (ì €ì¥ ê³µê°„)
     private bool isChat;
 
     private void Awake()
@@ -21,7 +21,7 @@ public class Character : MonoBehaviour
         int.TryParse(path.characterlastText[characterSO.characterName][DialogType.Num],out finallNum);
     }
 
-    public void Load() //·Îµå µÉ ¶§
+    public void Load() //ë¡œë“œ ë  ë•Œ
     {
         path = GameManager.Instance.PlayerStat; // 
 
@@ -31,11 +31,11 @@ public class Character : MonoBehaviour
             int.TryParse(path.characterlastText[characterSO.characterName][DialogType.Num], out finallNum);
         }
 
-        //¾ÆÀÌÅÛÀÌ³ª Æ¯¼ö ´ëÈ­¿¡¼­´Â ¹®Á¦°¡ ¾ø´ÂÁö È®ÀÎ ÇÒ °Í
+        //ì•„ì´í…œì´ë‚˜ íŠ¹ìˆ˜ ëŒ€í™”ì—ì„œëŠ” ë¬¸ì œê°€ ì—†ëŠ”ì§€ í™•ì¸ í•  ê²ƒ
         if (GameManager.Instance.PlayerStat.isChat)
         {
             UISettingManager.Instance.CloseChat();
-            finallNum--; //´ëÈ­¸¦ ½ÃÀÛ ÇÒ ¶§ 1¸¦ Ãß°¡ÇÏ°í ½ÃÀÛÇÔÀ¸·Î.
+            finallNum--; //ëŒ€í™”ë¥¼ ì‹œì‘ í•  ë•Œ 1ë¥¼ ì¶”ê°€í•˜ê³  ì‹œì‘í•¨ìœ¼ë¡œ.
             UISettingManager.Instance.Chat(GameManager.Instance.PlayerStat.lastSO, GameManager.Instance.PlayerStat.lastCharacter);
         }
         else
@@ -44,14 +44,14 @@ public class Character : MonoBehaviour
         }
     }
 
-    public void NextDialog(int i) //´ëÈ­°¡ ÁøÇà µÉ ¶§¸¶´Ù
+    public void NextDialog(int i) //ëŒ€í™”ê°€ ì§„í–‰ ë  ë•Œë§ˆë‹¤
     {
         finallNum = i;
 
         path.characterlastText[characterSO.characterName][DialogType.Num] = finallNum.ToString();
     }
 
-    public int[] CurrentDialog() //ÇöÀç ÁøÇà »çÇ× (Ã©ÅÍ, ³Ñ¹ö °ª ³Ñ°ÜÁÖ±â)
+    public int[] CurrentDialog() //í˜„ì¬ ì§„í–‰ ì‚¬í•­ (ì±•í„°, ë„˜ë²„ ê°’ ë„˜ê²¨ì£¼ê¸°)
     {
         return new int[]{chapter, finallNum};
     }
@@ -72,7 +72,7 @@ public class Character : MonoBehaviour
         }
     }
 
-    public void NextChapter() //´ÙÀ½ Ã©ÅÍ·Î ¼³Á¤ ÇØÁÖ±â
+    public void NextChapter() //ë‹¤ìŒ ì±•í„°ë¡œ ì„¤ì • í•´ì£¼ê¸°
     {
         finallNum = 1;
         chapter++;
@@ -81,7 +81,7 @@ public class Character : MonoBehaviour
         path.characterlastText[characterSO.characterName][DialogType.Num] = finallNum.ToString();
     }
 
-    public void ClickCharacter() //´ëÈ­ ÇÏ±â (Å¬¸¯)
+    public void ClickCharacter() //ëŒ€í™” í•˜ê¸° (í´ë¦­)
     {
         if (isChat)
         {

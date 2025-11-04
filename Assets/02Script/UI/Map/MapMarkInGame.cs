@@ -4,17 +4,17 @@ using UnityEngine.UI;
 public class MapMarkInGame : MonoBehaviour
 {
     [Header("Need")]
-    [SerializeField] private RawImage mapImage; // ¸Ê
-    [SerializeField]private Camera mainCamera; //Ä«¸Þ¶ó
-    [SerializeField] private GameObject mapMark; //¸Ê ¸¶Å©
+    [SerializeField] private RawImage mapImage; // ë§µ
+    [SerializeField]private Camera mainCamera; //ì¹´ë©”ë¼
+    [SerializeField] private GameObject mapMark; //ë§µ ë§ˆí¬
     [SerializeField] private Canvas canvas;
     [Space(20f)]
     [Header("Show")]
-    [SerializeField] private RectTransform imageRect; //¸Ê Å©±â
+    [SerializeField] private RectTransform imageRect; //ë§µ í¬ê¸°
 
-    private static int num = 0; //¹øÂ°
+    private static int num = 0; //ë²ˆì§¸
     private string numPath = "mapPos";
-    private string path = $"mapPos_"; //ÀúÀå ÀÌ¸§
+    private string path = $"mapPos_"; //ì €ìž¥ ì´ë¦„
 
     private void Awake()
     {
@@ -30,22 +30,22 @@ public class MapMarkInGame : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    public void ClcikMapMark() //¸Ê ¸¶Å© ¹öÆ° ´©¸¦ ¶§
+    public void ClcikMapMark() //ë§µ ë§ˆí¬ ë²„íŠ¼ ëˆ„ë¥¼ ë•Œ
     {
         if (ConvertWorldToRawImagePos(GameManager.Instance.Player.transform.position, out Vector2 mapPos))
         {
             GameObject mark = Instantiate(mapMark, mapImage.transform);
 
-            Vector2 mapSize = imageRect.rect.size; //¸Ê »çÀÌÁî
-            Vector2 mapPosition = imageRect.position; //¸Ê À§Ä¡ (º¸Á¤À» À§ÇØ)
+            Vector2 mapSize = imageRect.rect.size; //ë§µ ì‚¬ì´ì¦ˆ
+            Vector2 mapPosition = imageRect.position; //ë§µ ìœ„ì¹˜ (ë³´ì •ì„ ìœ„í•´)
 
             Vector2 pos = new Vector2(
                 ((mapPos.x - (mapSize.x / 2)) + mapPosition.x),
-                ((mapPos.y - (mapSize.y / 2)) + mapPosition.y)); //ÃÖÁ¾ ¸¶Å© À§Ä¡ °áÁ¤ (ºñÀ²°ú º¸Á¤À» ÇÔ)
+                ((mapPos.y - (mapSize.y / 2)) + mapPosition.y)); //ìµœì¢… ë§ˆí¬ ìœ„ì¹˜ ê²°ì • (ë¹„ìœ¨ê³¼ ë³´ì •ì„ í•¨)
 
             mark.transform.localPosition = pos;
 
-            //À§Ä¡ ÀúÀå
+            //ìœ„ì¹˜ ì €ìž¥
             num++;
             PlayerPrefs.SetInt(numPath, num);
             PlayerPrefs.Save();
@@ -54,25 +54,25 @@ public class MapMarkInGame : MonoBehaviour
         }
     }
 
-    bool ConvertWorldToRawImagePos(Vector3 player, out Vector2 mapPos)  //Ä³¸¯ÅÍ À§Ä¡¸¦ Ã£°í ±× °ÍÀ» ¸Ê À§Ä¡·Î º¯È¯
+    bool ConvertWorldToRawImagePos(Vector3 player, out Vector2 mapPos)  //ìºë¦­í„° ìœ„ì¹˜ë¥¼ ì°¾ê³  ê·¸ ê²ƒì„ ë§µ ìœ„ì¹˜ë¡œ ë³€í™˜
     {
         mapPos = Vector2.zero;
 
-        // ¿ùµå -> ½ºÅ©¸°
+        // ì›”ë“œ -> ìŠ¤í¬ë¦°
         Vector3 screenPos = mainCamera.WorldToScreenPoint(player);
 
         Camera uiCam = canvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : canvas.worldCamera;
 
-        // UI Ä«¸Þ¶ó°¡ ¾øÀ» °æ¿ì null (Screen Space - Overlay¿ë)
+        // UI ì¹´ë©”ë¼ê°€ ì—†ì„ ê²½ìš° null (Screen Space - Overlayìš©)
         bool success = RectTransformUtility.ScreenPointToLocalPointInRectangle(
             imageRect, screenPos, uiCam, out Vector2 localPoint);
 
-        //¹üÀ§ ¹þ¾î³¯ ¶§¸¦ »ý°¢
+        //ë²”ìœ„ ë²—ì–´ë‚  ë•Œë¥¼ ìƒê°
         mapPos = localPoint;
         return true;
     }
 
-    private void LoadMapMark() //¸Ê ¸¶Å© À§Ä¡ º¹±¸
+    private void LoadMapMark() //ë§µ ë§ˆí¬ ìœ„ì¹˜ ë³µêµ¬
     {
         if(num > 0)
         {

@@ -4,9 +4,9 @@ using TMPro;
 
 public class StoreSell : MonoBehaviour
 {
-    [SerializeField] private ItemSO so; //¾ÆÀÌÅÛ
-    private Image itmeImgae; //»ı±ä°Å
-    private TextMeshProUGUI coinText; //Á¦½Ã °¡°İ
+    [SerializeField] private ItemSO so; //ì•„ì´í…œ
+    private Image itmeImgae; //ìƒê¸´ê±°
+    private TextMeshProUGUI coinText; //ì œì‹œ ê°€ê²©
 
     private void Awake()
     {
@@ -37,11 +37,11 @@ public class StoreSell : MonoBehaviour
 
                 Store.OnSellItem?.Invoke(so);
                 GameManager.CoinText?.Invoke();
-                print("¾È¸ñÀÌ ÁÁÀº°É? ±×°Å ²Ï Èûµé°Ô ¾ò¾ú´Ù°í~");
+                print("ì•ˆëª©ì´ ì¢‹ì€ê±¸? ê·¸ê±° ê½¤ í˜ë“¤ê²Œ ì–»ì—ˆë‹¤ê³ ~");
             }
             else
             {
-                print("¾îÀÌ±¸ ¼Õ´Ô, µ·ÀÌ ºÎÁ·ÇÑ ¸ğ¾çÀÎµ¥?");
+                print("ì–´ì´êµ¬ ì†ë‹˜, ëˆì´ ë¶€ì¡±í•œ ëª¨ì–‘ì¸ë°?");
             }
         }
     }

@@ -3,24 +3,24 @@ using UnityEngine;
 public class UISettingManager : Singleton<UISettingManager>
 {
     [Header("Need")]
-    [SerializeField] private GameObject[] inGame; //ÀÎ °ÔÀÓ ÇÊ¿ä ¿ä¼Ò (ex : µ·, ¼³Á¤...)
-    [SerializeField] private Dialog chat; //Ã¤ÆÃ
-    [SerializeField] private GameObject coin; //ÄÚÀÎ »óÁ¡
+    [SerializeField] private GameObject[] inGame; //ì¸ ê²Œì„ í•„ìš” ìš”ì†Œ (ex : ëˆ, ì„¤ì •...)
+    [SerializeField] private Dialog chat; //ì±„íŒ…
+    [SerializeField] private GameObject coin; //ì½”ì¸ ìƒì 
 
-    [SerializeField] private GameObject backBtn; //ÀÎ °ÔÀÓÀ¸·Î
+    [SerializeField] private GameObject backBtn; //ì¸ ê²Œì„ìœ¼ë¡œ
     [Space(10f)]
     [Header("Need(setting)")]
-    [SerializeField] private GameObject allSetting;//¼³Á¤µé ´Ù ¸ğ¾ÆµĞ ¾î¹Ì
-    [SerializeField] private GameObject setting; //¼³Á¤
-    [SerializeField] private GameObject profile; //ÇÁ·ÎÇÊ
-    [SerializeField] private GameObject likeabilityGuide; //Ä³¸¯ÅÍµé
-    [SerializeField] private GameObject likeItem; //¼±È£ ¾ÆÀÌÅÛ
-    [SerializeField] private LikeItemManager likeItemManager; //¼±È£ ¾ÆÀÌÅÛ ¸Å´ÏÀú
-    [SerializeField] private GameObject map; //Áöµµ
-    [SerializeField] private GameObject save; //ÀúÀå
+    [SerializeField] private GameObject allSetting;//ì„¤ì •ë“¤ ë‹¤ ëª¨ì•„ë‘” ì–´ë¯¸
+    [SerializeField] private GameObject setting; //ì„¤ì •
+    [SerializeField] private GameObject profile; //í”„ë¡œí•„
+    [SerializeField] private GameObject likeabilityGuide; //ìºë¦­í„°ë“¤
+    [SerializeField] private GameObject likeItem; //ì„ í˜¸ ì•„ì´í…œ
+    [SerializeField] private LikeItemManager likeItemManager; //ì„ í˜¸ ì•„ì´í…œ ë§¤ë‹ˆì €
+    [SerializeField] private GameObject map; //ì§€ë„
+    [SerializeField] private GameObject save; //ì €ì¥
     [Space(10)]
     [Header("Select")]
-    [SerializeField] private GameObject obj; //»óÁ¡(È¤Àº ±³½Ã °í¸£±â)
+    [SerializeField] private GameObject obj; //ìƒì (í˜¹ì€ êµì‹œ ê³ ë¥´ê¸°)
 
     private bool isChat; // !isInGame
     private bool isObj;
@@ -55,7 +55,7 @@ public class UISettingManager : Singleton<UISettingManager>
             PlayerMobileInput.Instance.NoInput();
         }
     }
-    public void InGame() //°ÔÀÓÀ¸·Î
+    public void InGame() //ê²Œì„ìœ¼ë¡œ
     {
         GameManager.Instance.PlayerStat.isChat = false;
         AllHide();
@@ -64,7 +64,7 @@ public class UISettingManager : Singleton<UISettingManager>
         PlayerMobileInput.Instance.CanInput();
     }
 
-    public void CloseChat() //Ã¤ÆÃ ´İ±â
+    public void CloseChat() //ì±„íŒ… ë‹«ê¸°
     {
         AllHide();
         isChat = false;
@@ -74,21 +74,21 @@ public class UISettingManager : Singleton<UISettingManager>
         //chat.DialogSetting(null,null);
     }
 
-    public void Coin() //ÄÚÀÎ »óÁ¡
+    public void Coin() //ì½”ì¸ ìƒì 
     {
         AllHide();
         isCoin = true;
         SettingAll();
     }
 
-    public void Obj() //»óÁ¡ È¤Àº ÇĞ±³ ¼ö¾÷ ¼±ÅÃ
+    public void Obj() //ìƒì  í˜¹ì€ í•™êµ ìˆ˜ì—… ì„ íƒ
     {
         AllHide();
         isObj = true;
         SettingAll();
     }
 
-    public void Chat(CharacterSO so, Character character) //Ã¤ÆÃ
+    public void Chat(CharacterSO so, Character character) //ì±„íŒ…
     {
         AllHide();
         isChat = true;
@@ -97,14 +97,14 @@ public class UISettingManager : Singleton<UISettingManager>
         GameManager.Instance.PlayerStat.isChat = true;
     }
 
-    public void Profile() //ÇÁ·ÎÇÊ
+    public void Profile() //í”„ë¡œí•„
     {
         AllHide();
         isProfile = true;
         SettingAll();
     }
 
-    public void LiKeItme(CharacterSO so) //¼±È£ ¾ÆÀÌÅÛ
+    public void LiKeItme(CharacterSO so) //ì„ í˜¸ ì•„ì´í…œ
     {
         AllHide();
         isLikeItem = true;
@@ -113,35 +113,35 @@ public class UISettingManager : Singleton<UISettingManager>
         SettingAll();
     }
 
-    public void LikeabilityGuide() //È£°¨µµ
+    public void LikeabilityGuide() //í˜¸ê°ë„
     {
         AllHide();
         isLikeabilityGuide = true;
         SettingAll();
     }
 
-    public void Map() //Áöµµ
+    public void Map() //ì§€ë„
     {
         AllHide();
         isMap = true;
         SettingAll();
     }
 
-    public void Setting() // ¼¼ÆÃ
+    public void Setting() // ì„¸íŒ…
     {
         AllHide();
         isSetting = true;
         SettingAll();
     }
 
-    public void Save() //ÀúÀå
+    public void Save() //ì €ì¥
     {
         AllHide();
         isSave = true;
         SettingAll();
     }
 
-    private void SettingAll() //¼¼ÆÃµé
+    private void SettingAll() //ì„¸íŒ…ë“¤
     {
         profile.SetActive(isProfile);
         likeItem.SetActive(isLikeItem);
@@ -165,7 +165,7 @@ public class UISettingManager : Singleton<UISettingManager>
         Time.timeScale = 0f;
     }
 
-    private void AllHide() //ÀüºÎ ¼û±â±â
+    private void AllHide() //ì „ë¶€ ìˆ¨ê¸°ê¸°
     {
         isCoin = false;
         //isChat = false;

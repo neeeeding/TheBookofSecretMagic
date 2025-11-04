@@ -4,19 +4,19 @@ public class LikeItemManager : MonoBehaviour
 {
     [Header("Items")]
     [SerializeField]
-    private ItemSO[] loveItems; //¸¸µé¾îÁà¾ß ÇÒ ¾ÆÀÌÅÛµé
+    private ItemSO[] loveItems; //ë§Œë“¤ì–´ì¤˜ì•¼ í•  ì•„ì´í…œë“¤
     [Space(30f)]
     [Header("Prefabs Need")]
-    [SerializeField] private GameObject Item; //¿ÀºêÁ§Æ®
-    private CharacterSO character; //ÇöÀç Ä³¸¯ÅÍ Á¤º¸
+    [SerializeField] private GameObject Item; //ì˜¤ë¸Œì íŠ¸
+    private CharacterSO character; //í˜„ì¬ ìºë¦­í„° ì •ë³´
 
-    public void Setting(CharacterSO so) //¼¼ÆÃ
+    public void Setting(CharacterSO so) //ì„¸íŒ…
     {
         character = so;
         SettingItem();
     }
 
-    private void MakeItem()  //¾ÆÀÌÅÛµé »ı¼º
+    private void MakeItem()  //ì•„ì´í…œë“¤ ìƒì„±
     {
         for (int i = 0; i < loveItems.Length; i++)
         {
@@ -25,7 +25,7 @@ public class LikeItemManager : MonoBehaviour
         }
     }
 
-    private void SettingItem() //¾ÆÀÌÅÛ ¼¼ÆÃ
+    private void SettingItem() //ì•„ì´í…œ ì„¸íŒ…
     {
         if(transform.childCount == 0)
         {
