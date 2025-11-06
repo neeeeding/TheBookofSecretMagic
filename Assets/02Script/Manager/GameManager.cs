@@ -15,6 +15,7 @@ public class GameManager : Singleton<GameManager>
     public string curScene; // 현재 씬 이름
 
     [Header("Setting")]
+    [SerializeField] private float dayTimeDelay = 10f;
     public GameSaveData saveData; //기기에서만 저장 되는 것들 (ex: 저장 안한 진행사항)
     public PlayerStatSC PlayerStat; //플레이어 정보
     public Player Player; //플레이어 (state 조정 해줌(?))
@@ -165,7 +166,7 @@ public class GameManager : Singleton<GameManager>
     {
         while (true)
         {
-            yield return new WaitForSeconds(10f);
+            yield return new WaitForSeconds(dayTimeDelay);
 
             PlayerStat.minute++;
             if (PlayerStat.minute >= 60)

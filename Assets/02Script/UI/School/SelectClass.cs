@@ -2,12 +2,14 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class SelectClass : MonoBehaviour
 {
     [Header("Need")]
     [SerializeField] private TMP_Dropdown[] select; // 해당 드롭 다운
     [SerializeField] private GameObject warning; // 안 씀 경고
+    [SerializeField] private TextMeshProUGUI[] uiText; //교시
 
     private void Awake()
     {
@@ -16,11 +18,12 @@ public class SelectClass : MonoBehaviour
         {
             SetClass(item);
         }
+        CheckClock(9);
 
     }
 
-    //없음 일 때가 안되도록 막기
-    public void CompleteBtn() //완료 버튼 눌렀을 때
+    //없음 일 때가 안되도록 막기 (단 지각시 그냥 지정해줌)
+    public void CompleteBtn(bool isPerception = false) //완료 버튼 눌렀을 때
     {
         SchoolManager.Instance.ClearToday(); //혹시 모르니 비워주기
         bool isNone = false; // true : none가 포함 / false : none가 미포함
@@ -43,11 +46,19 @@ public class SelectClass : MonoBehaviour
 
             if (v == PlayerJob.none)
             {
-                isNone = true;
-                break;
+                if (isPerception)
+                {
+                    v = (PlayerJob)Random.Range((int)PlayerJob.brack, (int)PlayerJob.potion + 1);
+                }
+                else
+                {
+                    isNone = true;
+                    break;
+                }
             }
 
             SchoolManager.Instance.todayClass.Add(i,v ); //추가하기
+            uiText[i-1].text = ChatSetting.Name(v);
         }
 
         if (!isNone) // 전부 제대로 선택 할 때
@@ -72,6 +83,10 @@ public class SelectClass : MonoBehaviour
     private void SetClass(TMP_Dropdown dropdown) //해당 드롭 다운에 필요한 내용 넣어주기.
     {
         dropdown.options.Clear(); //비어주기
+        foreach (TextMeshProUGUI text in uiText)
+        {
+            text.text = "미정";
+        }
         foreach(PlayerJob item in Enum.GetValues(typeof(PlayerJob)))
         {
             TMP_Dropdown.OptionData data = new TMP_Dropdown.OptionData(); //하나 생성
@@ -89,6 +104,17 @@ public class SelectClass : MonoBehaviour
                 data.text = $"{ChatSetting.Name<PlayerJob>(item)} 마법 수업";
             }
             dropdown.options.Add(data);
+        }
+    }
+
+    private void CheckClock(int checkHour) //시간 확인
+    {
+        int hour = GameManager.Instance.PlayerStat.hour;
+        
+        if(hour >= checkHour)
+        {
+            print($"지금 {checkHour}시가 넘었는데 이제야 오는거야?!");
+            CompleteBtn(true);
         }
     }
 }
