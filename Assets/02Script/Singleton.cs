@@ -1,24 +1,28 @@
 using UnityEngine;
 
-public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
+namespace _02Script.UIGame
 {
-    private static T instance;
-
-    public static T Instance
+    public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     {
-        get
-        {
-            if(instance == null)
-            {
-                instance = (T)FindAnyObjectByType(typeof(T));
+        private static T instance;
 
-                if(instance == null)
+        public static T Instance
+        {
+            get
+            {
+                if (instance == null)
                 {
-                    GameObject obj = new GameObject(typeof(T).Name, typeof(T));
-                    instance = obj.GetComponent<T>();
+                    instance = (T)FindAnyObjectByType(typeof(T));
+
+                    if (instance == null)
+                    {
+                        GameObject obj = new GameObject(typeof(T).Name, typeof(T));
+                        instance = obj.GetComponent<T>();
+                    }
                 }
+
+                return instance;
             }
-            return instance;
         }
     }
 }

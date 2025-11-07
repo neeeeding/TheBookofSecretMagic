@@ -1,9 +1,13 @@
 using UnityEngine;
 
-public class DontDelete : MonoBehaviour
+
+namespace _02Script.UIGame
 {
-    private void Awake()
+    public class DontDelete : MonoBehaviour
     {
-        DontDestroyOnLoad(gameObject);
+        private void Awake()
+        {
+            DontDestroyOnLoad(gameObject);
+        }
     }
 }

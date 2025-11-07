@@ -1,35 +1,39 @@
+using _02Script.Manager;
 using UnityEngine;
 
-public class ObjEnter : MonoBehaviour
+namespace _02Script.Obj.Obj
 {
-    private bool isObj;
-
-    private void Awake()
+    public class ObjEnter : MonoBehaviour
     {
-        isObj = false;
-    }
+        private bool isObj;
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            isObj = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
+        private void Awake()
         {
             isObj = false;
         }
-    }
 
-    public void ClickStore()
-    {
-        if(isObj)
+        private void OnTriggerEnter2D(Collider2D collision)
         {
-            UISettingManager.Instance.Obj();
+            if (collision.CompareTag("Player"))
+            {
+                isObj = true;
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            if (collision.CompareTag("Player"))
+            {
+                isObj = false;
+            }
+        }
+
+        public void ClickStore()
+        {
+            if(isObj)
+            {
+                UISettingManager.Instance.Obj();
+            }
         }
     }
 }

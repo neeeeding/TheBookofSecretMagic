@@ -1,37 +1,41 @@
 using System;
+using _02Script.UIGame;
 using UnityEngine;
 
-public class PlayerMobileInput : Singleton<PlayerMobileInput>
+namespace _02Script.Player
 {
-    public static Action<Vector2> mousePos;
-
-    private bool canInput;
-
-    private void Awake()
+    public class PlayerMobileInput : Singleton<PlayerMobileInput>
     {
-        CanInput();
-    }
+        public static Action<Vector2> mousePos;
 
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(0) && canInput)
+        private bool canInput;
+
+        private void Awake()
         {
-            mousePos?.Invoke(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            CanInput();
         }
-    }
 
-    public void NoInput()
-    {
-        canInput = false;
-    }
+        private void Update()
+        {
+            if (Input.GetMouseButtonDown(0) && canInput)
+            {
+                mousePos?.Invoke(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            }
+        }
 
-    public void CanInput()
-    {
-        canInput = true;
-    }
+        public void NoInput()
+        {
+            canInput = false;
+        }
 
-    public bool CheckCanInput()
-    {
-        return canInput;
+        public void CanInput()
+        {
+            canInput = true;
+        }
+
+        public bool CheckCanInput()
+        {
+            return canInput;
+        }
     }
 }

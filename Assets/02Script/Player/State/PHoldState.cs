@@ -1,8 +1,9 @@
-
-
-public class PHoldState : PState
+namespace _02Script.Player.State
 {
-    public PHoldState(string animation, PStateMachin machin, Player player) : base(animation, machin, player)
+    public class PHoldState : PState
     {
+        public PHoldState(string animation, PStateMachin machin, Player player) : base(animation, machin, player)
+        {
+        }
     }
 }

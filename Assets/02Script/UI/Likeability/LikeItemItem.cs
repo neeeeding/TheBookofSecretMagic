@@ -1,45 +1,51 @@
+using _02Script.Item;
+using _02Script.Obj.Character;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LikeItemItem : MonoBehaviour
+namespace _02Script.UI.Likeability
 {
-    [SerializeField]private CharacterSO loveCharacter; //아이템 종류
-    [SerializeField]private ItemSO loveItem; //아이템 종류
-
-    private string savePath; //저장 경로
-    private Image itemImage; //아이템 이미지
-    private int colorCount; //(클릭) 단계
-
-    public void SettingItem(CharacterSO characterSO,ItemSO itemSO) //아이템 세팅 (누구인지, 어떤 아이템인지)
+    public class LikeItemItem : MonoBehaviour
     {
-        if(itemImage == null)
-        {
-            itemImage = GetComponent<Image>();
-        }
-        loveCharacter = characterSO;
-        loveItem = itemSO;
-        //itemImage.sprite = loveItem.itemImage;
-        savePath = $"{loveCharacter}_{loveItem.itemType}likeItem";
-        colorCount = PlayerPrefs.GetInt(savePath) - 1; //더해주니까.
-        ChangeColorLove();
-    }
+        [SerializeField] private CharacterSO loveCharacter; //아이템 종류
+        [SerializeField] private ItemSO loveItem; //아이템 종류
 
-    public void  ChangeColorLove() //아이템 눌러 색 바꾸기
-    {
-        colorCount++;
-        if(colorCount <= 0 || colorCount > 3)
+        private string savePath; //저장 경로
+        private Image itemImage; //아이템 이미지
+        private int colorCount; //(클릭) 단계
+
+        public void SettingItem(CharacterSO characterSO, ItemSO itemSO) //아이템 세팅 (누구인지, 어떤 아이템인지)
         {
-            colorCount = 1;
+            if (itemImage == null)
+            {
+                itemImage = GetComponent<Image>();
+            }
+
+            loveCharacter = characterSO;
+            loveItem = itemSO;
+            //itemImage.sprite = loveItem.itemImage;
+            savePath = $"{loveCharacter}_{loveItem.itemType}likeItem";
+            colorCount = PlayerPrefs.GetInt(savePath) - 1; //더해주니까.
+            ChangeColorLove();
         }
 
-        itemImage.color = colorCount switch
+        public void ChangeColorLove() //아이템 눌러 색 바꾸기
         {
-            1 => Color.white,
-            2 => Color.green,
-            3 => Color.red,
-            _ => Color.white
-        };
-        PlayerPrefs.SetInt(savePath, colorCount);
-        PlayerPrefs.Save();
+            colorCount++;
+            if (colorCount <= 0 || colorCount > 3)
+            {
+                colorCount = 1;
+            }
+
+            itemImage.color = colorCount switch
+            {
+                1 => Color.white,
+                2 => Color.green,
+                3 => Color.red,
+                _ => Color.white
+            };
+            PlayerPrefs.SetInt(savePath, colorCount);
+            PlayerPrefs.Save();
+        }
     }
 }

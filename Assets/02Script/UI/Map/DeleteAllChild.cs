@@ -1,17 +1,20 @@
 using UnityEngine;
 
-public class DeleteAllChild : MonoBehaviour
+namespace _02Script.UI.Map
 {
-    [SerializeField] private GameObject parentObject;
-    [SerializeField] private MapMarkInGame map;
-
-    public void AllDelete()
+    public class DeleteAllChild : MonoBehaviour
     {
-        foreach(Transform child in parentObject.transform)
-        {
-            Destroy(child.gameObject);
+        [SerializeField] private GameObject parentObject;
+        [SerializeField] private MapMarkInGame map;
 
-            map.ResetMapMarkNum();
+        public void AllDelete()
+        {
+            foreach (Transform child in parentObject.transform)
+            {
+                Destroy(child.gameObject);
+
+                map.ResetMapMarkNum();
+            }
         }
     }
 }

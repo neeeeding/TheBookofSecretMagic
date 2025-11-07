@@ -1,23 +1,26 @@
 using System.Collections.Generic;
 
-public class PStateMachin
+namespace _02Script.Player.State
 {
-    public Dictionary<PlayerState, PState> PStateD = new Dictionary<PlayerState, PState>();
-
-    public PState currentState;
-
-    public void ChangeState(PlayerState state, PlayerRotate rotate)
+    public class PStateMachin
     {
-        if(currentState != null)
+        public Dictionary<PlayerState, PState> PStateD = new Dictionary<PlayerState, PState>();
+
+        public PState currentState;
+
+        public void ChangeState(PlayerState state, PlayerRotate rotate)
         {
-            currentState.Exit();
+            if(currentState != null)
+            {
+                currentState.Exit();
+            }
+            currentState = PStateD[state];
+            currentState.Enter(rotate);
         }
-        currentState = PStateD[state];
-        currentState.Enter(rotate);
-    }
 
-    public void AddState(PlayerState state, PState sc)
-    {
-        PStateD.Add(state, sc);
+        public void AddState(PlayerState state, PState sc)
+        {
+            PStateD.Add(state, sc);
+        }
     }
 }

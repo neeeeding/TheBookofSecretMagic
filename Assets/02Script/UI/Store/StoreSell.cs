@@ -1,47 +1,52 @@
+using _02Script.Item;
+using _02Script.Manager;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class StoreSell : MonoBehaviour
+namespace _02Script.UI.Store
 {
-    [SerializeField] private ItemSO so; //아이템
-    private Image itmeImgae; //생긴거
-    private TextMeshProUGUI coinText; //제시 가격
-
-    private void Awake()
+    public class StoreSell : MonoBehaviour
     {
-        coinText = GetComponentInChildren<TextMeshProUGUI>();
-    }
+        [SerializeField] private ItemSO so; //아이템
+        private Image itmeImgae; //생긴거
+        private TextMeshProUGUI coinText; //제시 가격
 
-    public void ShowSet(ItemSO itemso)
-    {
-        so = itemso;
-        //itmeImgae.sprite = so.itemImage;
-        coinText.text = so.sellCoin.ToString();
-    }
-
-    public void ClickSell()
-    {
-        if (so.category == ItemCategory.coin)
+        private void Awake()
         {
-            GameManager.Instance.AddCoin(+so.sellCoin);
-
-            Store.OnSellItem?.Invoke(so);
-            GameManager.CoinText?.Invoke();
+            coinText = GetComponentInChildren<TextMeshProUGUI>();
         }
-        else
+
+        public void ShowSet(ItemSO itemso)
         {
-            if (GameManager.Instance.PlayerStat.playerCoin >= so.sellCoin)
+            so = itemso;
+            //itmeImgae.sprite = so.itemImage;
+            coinText.text = so.sellCoin.ToString();
+        }
+
+        public void ClickSell()
+        {
+            if (so.category == ItemCategory.coin)
             {
-                GameManager.Instance.AddCoin(-so.sellCoin);
+                GameManager.Instance.AddCoin(+so.sellCoin);
 
                 Store.OnSellItem?.Invoke(so);
                 GameManager.CoinText?.Invoke();
-                print("안목이 좋은걸? 그거 꽤 힘들게 얻었다고~");
             }
             else
             {
-                print("어이구 손님, 돈이 부족한 모양인데?");
+                if (GameManager.Instance.PlayerStat.playerCoin >= so.sellCoin)
+                {
+                    GameManager.Instance.AddCoin(-so.sellCoin);
+
+                    Store.OnSellItem?.Invoke(so);
+                    GameManager.CoinText?.Invoke();
+                    print("안목이 좋은걸? 그거 꽤 힘들게 얻었다고~");
+                }
+                else
+                {
+                    print("어이구 손님, 돈이 부족한 모양인데?");
+                }
             }
         }
     }

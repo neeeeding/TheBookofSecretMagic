@@ -2,7 +2,11 @@ using UnityEngine;
 using System.IO;
 using TMPro;
 using System;
+using _02Script.Manager;
+using _02Script.Player;
 
+namespace _02Script.UI.Save
+{
 public class LoadCard : MonoBehaviour
 {
     public static Action OnLoad;
@@ -93,4 +97,5 @@ public class LoadCard : MonoBehaviour
 
         Destroy(gameObject);
     }
+}
 }

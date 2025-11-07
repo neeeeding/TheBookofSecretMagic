@@ -1,45 +1,49 @@
+using _02Script.Player.State;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+namespace _02Script.Player
 {
-    [SerializeField] private string currentState;
-
-    private Animator animator;
-    public Animator Animator => animator;
-
-    private PStateMachin stateMachin;
-
-    private void Awake()
+    public class Player : MonoBehaviour
     {
-        animator = GetComponentInChildren<Animator>();
+        [SerializeField] private string currentState;
 
-        stateMachin = new PStateMachin();
-        stateMachin.AddState(PlayerState.Move, new PMoveState("Move", stateMachin, this));
-        stateMachin.AddState(PlayerState.Idle, new PIdleState("Idle", stateMachin, this));
-        stateMachin.AddState(PlayerState.hold, new PHoldState("Hold", stateMachin, this));
+        private Animator animator;
+        public Animator Animator => animator;
 
-        transform.position += Vector3.zero;
-        stateMachin.ChangeState(PlayerState.Idle, PlayerRotate.Front);
-    }
+        private PStateMachin stateMachin;
 
-    private void OnDisable()
-    {
-        stateMachin.currentState.Exit();
-    }
+        private void Awake()
+        {
+            animator = GetComponentInChildren<Animator>();
 
-    public void ChangeState(PlayerState state)
-    {
-        stateMachin.ChangeState(state, PlayerRotate.Front);
-    }
+            stateMachin = new PStateMachin();
+            stateMachin.AddState(PlayerState.Move, new PMoveState("Move", stateMachin, this));
+            stateMachin.AddState(PlayerState.Idle, new PIdleState("Idle", stateMachin, this));
+            stateMachin.AddState(PlayerState.hold, new PHoldState("Hold", stateMachin, this));
 
-    private void Update()
-    {
-        stateMachin.currentState.StateUpdate();
-        currentState = stateMachin.currentState.ToString();
-    }
+            transform.position += Vector3.zero;
+            stateMachin.ChangeState(PlayerState.Idle, PlayerRotate.Front);
+        }
 
-    private void FixedUpdate()
-    {
-        stateMachin.currentState.StateFixedUpdate();
+        private void OnDisable()
+        {
+            stateMachin.currentState.Exit();
+        }
+
+        public void ChangeState(PlayerState state)
+        {
+            stateMachin.ChangeState(state, PlayerRotate.Front);
+        }
+
+        private void Update()
+        {
+            stateMachin.currentState.StateUpdate();
+            currentState = stateMachin.currentState.ToString();
+        }
+
+        private void FixedUpdate()
+        {
+            stateMachin.currentState.StateFixedUpdate();
+        }
     }
 }

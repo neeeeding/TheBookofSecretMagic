@@ -1,22 +1,29 @@
 
-public class SchoolManager : Singleton<SchoolManager>
+using _02Script.Obj.Character;
+using _02Script.UIGame;
+
+
+namespace _02Script.Manager
 {
-    public SaveDictionary<int,PlayerJob> todayClass; //오늘 수업
-    public bool setTodayClass; // true : 오늘 수업 세팅 함/ false : 오늘의 수업 세팅 안 함.
-
-    private void Awake()
+    public class SchoolManager : Singleton<SchoolManager>
     {
-        GameManager.OnNextDay += ClearToday;
-    }
+        public SaveDictionary<int, PlayerJob> todayClass; //오늘 수업
+        public bool setTodayClass; // true : 오늘 수업 세팅 함/ false : 오늘의 수업 세팅 안 함.
 
-    public void ClearToday() //학교 일정 싹 비우기
-    {
-        todayClass.Clear();
-    }
+        private void Awake()
+        {
+            GameManager.OnNextDay += ClearToday;
+        }
 
-    public void SettingTodayClass() //수업 세팅 한 것을 알려주기.
-    {
-        setTodayClass = true;
-        //추후 옆 UI 띄울 생각.
+        public void ClearToday() //학교 일정 싹 비우기
+        {
+            todayClass.Clear();
+        }
+
+        public void SettingTodayClass() //수업 세팅 한 것을 알려주기.
+        {
+            setTodayClass = true;
+            //추후 옆 UI 띄울 생각.
+        }
     }
 }

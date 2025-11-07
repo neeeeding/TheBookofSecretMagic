@@ -1,20 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemHold : MonoBehaviour
+namespace _02Script.Item
 {
-    private ItemSO so;
-    private ItemCard card;
+    public class ItemHold : MonoBehaviour
+    {
+        private ItemSO so;
+        private ItemCard card;
     
-    public void Setting(ItemSO currentSO, ItemCard currentCard)
-    {
-        so = currentSO;
-        card = currentCard;
-    }
+        public void Setting(ItemSO currentSO, ItemCard currentCard)
+        {
+            so = currentSO;
+            card = currentCard;
+        }
 
-    private void UseItem()
-    {
-        card.HideItem();
+        private void UseItem()
+        {
+            card.HideItem();
+        }
     }
 }

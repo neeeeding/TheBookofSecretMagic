@@ -1,66 +1,72 @@
-﻿using UnityEngine;
+﻿using _02Script.Manager;
+using _02Script.UI.Save;
+using _02Script.UIGame;
+using UnityEngine;
 
-public class PlayerMovement: Singleton<PlayerMovement>
+namespace _02Script.Player.State
 {
-    public float speed; //속도
-    [HideInInspector] public Vector2 TargetPos; //마우스 위치
-    private Rigidbody2D _rigidbody;
-    private bool _isMoving;
-
-    #region endiaw
-
-    private void Awake()
+    public class PlayerMovement: Singleton<PlayerMovement>
     {
-        GameManager.OnStart += StartLoad;
-        _rigidbody = GetComponent<Rigidbody2D>();
-    }
+        public float speed; //속도
+        [HideInInspector] public Vector2 TargetPos; //마우스 위치
+        private Rigidbody2D _rigidbody;
+        private bool _isMoving;
 
-    private void OnEnable()
-    {
-        _isMoving = false;
-        PlayerMobileInput.mousePos += Move;
-        LoadCard.OnLoad += Load;
-    }
+        #region endiaw
 
-    private void OnDisable()
-    {
-        GameManager.OnStart -= StartLoad;
-        PlayerMobileInput.mousePos -= Move;
-        LoadCard.OnLoad -= Load;
-    }
-    #endregion
-
-    private void FixedUpdate()
-    {
-        Vector2 direction = (TargetPos - (Vector2)transform.position);
-
-        if (direction.magnitude < 0.1f || !_isMoving) // 너무 가까우면 멈추기
+        private void Awake()
         {
-            GameManager.Instance.PlayerStat.playerPosition = transform.position; //위치 저장
-            _rigidbody.velocity = Vector2.zero;
+            GameManager.OnStart += StartLoad;
+            _rigidbody = GetComponent<Rigidbody2D>();
+        }
+
+        private void OnEnable()
+        {
             _isMoving = false;
+            PlayerMobileInput.mousePos += Move;
+            LoadCard.OnLoad += Load;
         }
-        else
+
+        private void OnDisable()
         {
-            _rigidbody.velocity = direction.normalized * speed;
+            GameManager.OnStart -= StartLoad;
+            PlayerMobileInput.mousePos -= Move;
+            LoadCard.OnLoad -= Load;
         }
-    }
+        #endregion
 
-    private void Move(Vector2 mousePos)
-    {
-        _isMoving = true;
-        TargetPos = mousePos;
-    }
+        private void FixedUpdate()
+        {
+            Vector2 direction = (TargetPos - (Vector2)transform.position);
 
-    private void StartLoad()
-    {
-        Vector2 position = GameManager.Instance.saveData.stat.playerPosition;
-        GameManager.Instance.PlayerStat.playerPosition = position;
-        Load();
-    }
+            if (direction.magnitude < 0.1f || !_isMoving) // 너무 가까우면 멈추기
+            {
+                GameManager.Instance.PlayerStat.playerPosition = transform.position; //위치 저장
+                _rigidbody.velocity = Vector2.zero;
+                _isMoving = false;
+            }
+            else
+            {
+                _rigidbody.velocity = direction.normalized * speed;
+            }
+        }
 
-    private void Load()
-    {
-        transform.position = GameManager.Instance.PlayerStat.playerPosition;
+        private void Move(Vector2 mousePos)
+        {
+            _isMoving = true;
+            TargetPos = mousePos;
+        }
+
+        private void StartLoad()
+        {
+            Vector2 position = GameManager.Instance.saveData.stat.playerPosition;
+            GameManager.Instance.PlayerStat.playerPosition = position;
+            Load();
+        }
+
+        private void Load()
+        {
+            transform.position = GameManager.Instance.PlayerStat.playerPosition;
+        }
     }
 }

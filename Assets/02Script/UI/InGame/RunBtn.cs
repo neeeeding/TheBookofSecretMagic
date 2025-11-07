@@ -1,21 +1,26 @@
+using _02Script.Player.State;
 using UnityEngine;
 
-public class RunBtn : MonoBehaviour
+
+namespace _02Script.UI.InGame
 {
-    private float walk;
-
-    private void Awake()
+    public class RunBtn : MonoBehaviour
     {
-       walk =  PlayerMovement.Instance.speed;
-    }
+        private float walk;
 
-    public void Run()
-    {
-        PlayerMovement.Instance.speed = walk * 2;
-    }
+        private void Awake()
+        {
+            walk = PlayerMovement.Instance.speed;
+        }
 
-    public void Walk()
-    {
-        PlayerMovement.Instance.speed = walk;
+        public void Run()
+        {
+            PlayerMovement.Instance.speed = walk * 2;
+        }
+
+        public void Walk()
+        {
+            PlayerMovement.Instance.speed = walk;
+        }
     }
 }

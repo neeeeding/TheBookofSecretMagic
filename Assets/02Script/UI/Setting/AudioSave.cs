@@ -1,38 +1,44 @@
+using _02Script.Manager;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AudioSave : MonoBehaviour
+namespace _02Script.UI.Setting
 {
-    [SerializeField] private Slider main;
-    [SerializeField] private Slider bgm;
-    [SerializeField] private Slider effect;
+    public class AudioSave : MonoBehaviour
+    {
+        [SerializeField] private Slider main;
+        [SerializeField] private Slider bgm;
+        [SerializeField] private Slider effect;
 
-    private void Awake()
-    {
-        main.value = GameManager.Instance.saveData.sound.mainSound;
-        bgm.value = GameManager.Instance.saveData.sound.bgmSound;
-        effect.value = GameManager.Instance.saveData.sound.effectSound;
-    }
+        private void Awake()
+        {
+            main.value = GameManager.Instance.saveData.sound.mainSound;
+            bgm.value = GameManager.Instance.saveData.sound.bgmSound;
+            effect.value = GameManager.Instance.saveData.sound.effectSound;
+        }
 
-    public void ChangeMain()
-    {
-        if(GameManager.Instance.isStart)
+        public void ChangeMain()
         {
-            GameManager.Instance.saveData.sound.mainSound = main.value;
+            if (GameManager.Instance.isStart)
+            {
+                GameManager.Instance.saveData.sound.mainSound = main.value;
+            }
         }
-    }  
-    public void ChangeBGM()
-    {
-        if(GameManager.Instance.isStart)
+
+        public void ChangeBGM()
         {
-            GameManager.Instance.saveData.sound.bgmSound = bgm.value;
+            if (GameManager.Instance.isStart)
+            {
+                GameManager.Instance.saveData.sound.bgmSound = bgm.value;
+            }
         }
-    }
-    public void ChangeEffect()
-    {
-        if(GameManager.Instance.isStart)
+
+        public void ChangeEffect()
         {
-            GameManager.Instance.saveData.sound.effectSound = effect.value;
+            if (GameManager.Instance.isStart)
+            {
+                GameManager.Instance.saveData.sound.effectSound = effect.value;
+            }
         }
     }
 }

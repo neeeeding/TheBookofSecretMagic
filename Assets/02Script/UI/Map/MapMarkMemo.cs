@@ -1,26 +1,30 @@
 using TMPro;
 using UnityEngine;
 
-public class MapMarkMemo : MonoBehaviour
+
+namespace _02Script.UI.Map
 {
-    private TMP_InputField memo;
-    private bool isMemo;
-
-    private void Awake()
+    public class MapMarkMemo : MonoBehaviour
     {
-        memo = GetComponentInChildren<TMP_InputField>();
-        isMemo = true;
-        ClickMark();
-    }
+        private TMP_InputField memo;
+        private bool isMemo;
 
-    public void ClickMark()
-    {
-        memo.gameObject.SetActive(!isMemo);
-        isMemo = !isMemo;
-    }
+        private void Awake()
+        {
+            memo = GetComponentInChildren<TMP_InputField>();
+            isMemo = true;
+            ClickMark();
+        }
 
-    public void InputMemo()
-    {
-        
+        public void ClickMark()
+        {
+            memo.gameObject.SetActive(!isMemo);
+            isMemo = !isMemo;
+        }
+
+        public void InputMemo()
+        {
+
+        }
     }
 }
