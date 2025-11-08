@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Linq;
 using _02Script.Manager;
 using _02Script.Obj.Character;
 using _02Script.UI.Chat;
@@ -15,6 +16,8 @@ namespace _02Script.UI.School
         [SerializeField] private GameObject warning; // 안 씀 경고
         [SerializeField] private TextMeshProUGUI[] uiText; //교시
 
+        private readonly string _selectSchoolSaveDay = "SelectSchoolSaveDay";
+
         private void Awake()
         {
             warning.SetActive(false);
@@ -24,7 +27,20 @@ namespace _02Script.UI.School
             }
 
             CheckClock(9);
+        }
 
+        private void OnEnable()
+        {
+            int checkDay = PlayerPrefs.GetInt(_selectSchoolSaveDay);
+            if(GameManager.Instance.PlayerStat.day != checkDay)
+            {
+                select.ToList().ForEach(d => d.interactable = true);
+            }
+            else
+            {
+                select.ToList().ForEach(d => d.interactable = false);
+                //값도 고정
+            }
         }
 
         //없음 일 때가 안되도록 막기 (단 지각시 그냥 지정해줌)
@@ -64,6 +80,7 @@ namespace _02Script.UI.School
 
                 SchoolManager.Instance.todayClass.Add(i, v); //추가하기
                 uiText[i - 1].text = ChatSetting.Name(v);
+                
             }
 
             if (!isNone) // 전부 제대로 선택 할 때
@@ -71,6 +88,8 @@ namespace _02Script.UI.School
 
                 SchoolManager.Instance.SettingTodayClass(); //수업 세팅한 것을 알려주기
                 UISettingManager.Instance.InGame();
+                select.ToList().ForEach(d => d.interactable = false);
+                PlayerPrefs.SetInt(_selectSchoolSaveDay,GameManager.Instance.PlayerStat.day);
             }
             else
             {
