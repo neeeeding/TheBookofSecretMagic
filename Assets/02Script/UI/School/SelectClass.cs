@@ -17,6 +17,7 @@ namespace _02Script.UI.School
         [SerializeField] private TextMeshProUGUI[] uiText; //교시
 
         private readonly string _selectSchoolSaveDay = "SelectSchoolSaveDay";
+        private readonly string _valuesSave = "SelectSchoolSaveOneValue";
 
         private void Awake()
         {
@@ -26,20 +27,32 @@ namespace _02Script.UI.School
                 SetClass(item);
             }
 
-            CheckClock(9);
+            if(!Immobilize())
+            {
+                CheckClock(9);
+            }
         }
 
-        private void OnEnable()
+        /**날짜 변경 안되었다면 교시 선택 고정*/
+        private bool Immobilize()
         {
             int checkDay = PlayerPrefs.GetInt(_selectSchoolSaveDay);
+            
             if(GameManager.Instance.PlayerStat.day != checkDay)
             {
                 select.ToList().ForEach(d => d.interactable = true);
+                return false;
             }
             else
             {
                 select.ToList().ForEach(d => d.interactable = false);
-                //값도 고정
+
+                int i = 0;
+                foreach (TMP_Dropdown item in select)
+                {
+                    item.value = PlayerPrefs.GetInt(_valuesSave+(i++));
+                }
+                return true;
             }
         }
 
@@ -70,6 +83,7 @@ namespace _02Script.UI.School
                     if (isPerception)
                     {
                         v = (PlayerJob)Random.Range((int)PlayerJob.brack, (int)PlayerJob.potion + 1);
+                        item.value = (int)v;
                     }
                     else
                     {
@@ -80,7 +94,7 @@ namespace _02Script.UI.School
 
                 SchoolManager.Instance.todayClass.Add(i, v); //추가하기
                 uiText[i - 1].text = ChatSetting.Name(v);
-                
+                PlayerPrefs.SetInt(_valuesSave+(i-1),item.value);
             }
 
             if (!isNone) // 전부 제대로 선택 할 때
@@ -137,7 +151,7 @@ namespace _02Script.UI.School
         {
             int hour = GameManager.Instance.PlayerStat.hour;
 
-            if (hour >= checkHour)
+            if (hour >= checkHour && hour != 24)
             {
                 print($"지금 {checkHour}시가 넘었는데 이제야 오는거야?!");
                 CompleteBtn(true);
