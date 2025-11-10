@@ -52,6 +52,7 @@ namespace _02Script.UI.School
                 {
                     item.value = PlayerPrefs.GetInt(_valuesSave+(i++));
                 }
+                CompleteBtn();
                 return true;
             }
         }
