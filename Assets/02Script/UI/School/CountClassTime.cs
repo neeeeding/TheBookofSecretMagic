@@ -22,18 +22,35 @@ namespace _02Script.UI.School
         private void Awake()
         {
             studyTime = 9 * 60;
-            restTime = studyTime;
+            float gameHour = GameManager.Instance.PlayerStat.hour;
+            gameHour = (gameHour == 24 ? 0
+                : gameHour);
             curClassIndex = 0;
+            
+            while (gameHour > studyTime/60)
+            {
+                studyTime += _studyTime + _restTime;
+                curClassIndex++;
+            }
+            restTime = studyTime;
             isStudy = false;
+        }
+        
+        public (bool, PlayerJob) CheckClass()
+        {
+            return (isStudy, curClass);
         }
 
 
         private void Update()
         {
             if(curClassIndex >= select.Length) return; //모든 교시 종료
-            float gameTime = ((GameManager.Instance.PlayerStat.hour == 24? 0 
-                : GameManager.Instance.PlayerStat.hour) * 60) +  GameManager.Instance.PlayerStat.minute;
-            print(gameTime);
+            float gameHour = GameManager.Instance.PlayerStat.hour;
+            gameHour = (gameHour == 24 ? 0
+                : gameHour);
+            
+            float gameTime = (gameHour * 60) +  GameManager.Instance.PlayerStat.minute;
+            
             if (gameTime > studyTime && gameTime <= restTime && isStudy) //휴식시간
             {
                 isStudy = !isStudy;
