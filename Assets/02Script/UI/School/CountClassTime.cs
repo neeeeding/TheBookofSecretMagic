@@ -1,6 +1,7 @@
 using System;
 using _02Script.Manager;
 using _02Script.Obj.Character;
+using _02Script.UI.Chat;
 using TMPro;
 using UnityEngine;
 
@@ -19,6 +20,8 @@ namespace _02Script.UI.School
         private float restTime;
         private bool isStudy;
 
+        private bool doStudy; //교실에 올바르게 들어왔는지
+
         private void Awake()
         {
             studyTime = 9 * 60;
@@ -36,9 +39,22 @@ namespace _02Script.UI.School
             isStudy = false;
         }
         
-        public (bool, PlayerJob) CheckClass()
+        public bool CheckClass(PlayerJob classType) //틀리면 감점, 맞으면 미니게임
         {
-            return (isStudy, curClass);
+            if (!isStudy && classType == classType)
+            {
+                //미니 게임 실행
+                doStudy = true;
+                return true;
+            }
+            else if(isStudy &&  classType == classType)
+            {
+                GameManager.Instance.PlayerStat.demerit++;
+                print($" {ChatSetting.Name<PlayerJob>(classType)} 수업은 지각입니다. 지각");
+                doStudy = true;
+                return false;
+            }
+            return true;
         }
 
 
@@ -55,6 +71,7 @@ namespace _02Script.UI.School
             {
                 isStudy = !isStudy;
                 studyTime += _restTime;
+                doStudy = false;
             }
             if (gameTime >= studyTime && !isStudy) //공부 시간
             {

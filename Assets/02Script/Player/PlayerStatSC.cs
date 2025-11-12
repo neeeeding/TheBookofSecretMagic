@@ -26,6 +26,8 @@ namespace _02Script.Player
         public float copyMagic;
         [Range(0, 100)]
         public float potionMagic;
+        [Range(0, 20)] //벌점
+        public float demerit;
 
         public int playerCoin; //소지금
 
@@ -160,6 +162,7 @@ namespace _02Script.Player
             day = 1;
             hour = 1;
             minute = 0;
+            demerit = 0;
         }
     }
 }

@@ -16,23 +16,24 @@ namespace _02Script.Obj.Room
 
         protected virtual void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.CompareTag("Player"))
-            {
-                isDoor = true;
-            }
+            if (!collision.CompareTag("Player")) return;
+            isDoor = true;
         }
 
         protected virtual void OnTriggerExit2D(Collider2D collision)
         {
-            if (collision.CompareTag("Player"))
-            {
-                isDoor = false;
-            }
+            if (!collision.CompareTag("Player")) return;
+            isDoor = false;
         }
 
         public virtual void WantEnterRoom()
         {
             if(!isDoor) return;
+        }
+
+        public virtual void WantExitRoom()
+        {
+            if(isDoor) return;
         }
     }
 }
