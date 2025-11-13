@@ -9,7 +9,7 @@ namespace _02Script.UI.Map
     {
         [Header("Need")] [SerializeField] private RawImage mapImage; // 맵
         [SerializeField] private Camera mainCamera; //카메라
-        [SerializeField] private GameObject mapMark; //맵 마크
+        [SerializeField] private MapMarkMemo mapMark; //맵 마크
         [SerializeField] private Canvas canvas;
 
         [Space(20f)] [Header("Show")] [SerializeField]
@@ -17,7 +17,6 @@ namespace _02Script.UI.Map
 
         private static int num = 0; //번째
         private string numPath = "mapPos";
-        private string path = $"mapPos_"; //저장 이름
 
         private void Awake()
         {
@@ -37,7 +36,7 @@ namespace _02Script.UI.Map
         {
             if (ConvertWorldToRawImagePos(GameManager.Instance.Player.transform.position, out Vector2 mapPos))
             {
-                GameObject mark = Instantiate(mapMark, mapImage.transform);
+                MapMarkMemo mark = Instantiate(mapMark, mapImage.transform);
 
                 Vector2 mapSize = imageRect.rect.size; //맵 사이즈
                 Vector2 mapPosition = imageRect.position; //맵 위치 (보정을 위해)
@@ -49,15 +48,15 @@ namespace _02Script.UI.Map
                 mark.transform.localPosition = pos;
 
                 //위치 저장
-                num++;
+                mark.SetNum(++num);
                 PlayerPrefs.SetInt(numPath, num);
+                PlayerPrefs.SetFloat($"{numPath}_{num}_X", pos.x);
+                PlayerPrefs.SetFloat($"{numPath}_{num}_Y", pos.y);
                 PlayerPrefs.Save();
-                PlayerPrefs.SetFloat($"{path}_{num}_X", pos.x);
-                PlayerPrefs.SetFloat($"{path}_{num}_Y", pos.y);
             }
         }
 
-        bool ConvertWorldToRawImagePos(Vector3 player, out Vector2 mapPos) //캐릭터 위치를 찾고 그 것을 맵 위치로 변환
+        private bool ConvertWorldToRawImagePos(Vector3 player, out Vector2 mapPos) //캐릭터 위치를 찾고 그 것을 맵 위치로 변환
         {
             mapPos = Vector2.zero;
 
@@ -83,9 +82,10 @@ namespace _02Script.UI.Map
                 for (int i = 1; i < count; i++)
                 {
                     num = i;
-                    GameObject mark = Instantiate(mapMark, mapImage.transform);
-                    float x = PlayerPrefs.GetFloat($"{path}_{num}_X");
-                    float y = PlayerPrefs.GetFloat($"{path}_{num}_Y");
+                    MapMarkMemo mark = Instantiate(mapMark, mapImage.transform);
+                    mark.SetNum(num);
+                    float x = PlayerPrefs.GetFloat($"{numPath}_{num}_X");
+                    float y = PlayerPrefs.GetFloat($"{numPath}_{num}_Y");
                     mark.transform.localPosition = new Vector2(x, y);
                 }
             }
