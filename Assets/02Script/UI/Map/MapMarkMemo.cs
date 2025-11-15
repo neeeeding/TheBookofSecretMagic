@@ -9,15 +9,11 @@ namespace _02Script.UI.Map
         private bool isMemo;
         private string savePath = "mapMemo_";
 
-        private void Awake()
+        public void SetNum(int num)
         {
             memo = GetComponentInChildren<TMP_InputField>();
             isMemo = true;
             ClickMark();
-        }
-
-        public void SetNum(int num)
-        {
             savePath +=  num.ToString();
             memo.text = PlayerPrefs.GetString(savePath);
         }
