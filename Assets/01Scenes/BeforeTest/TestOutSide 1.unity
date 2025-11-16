@@ -17311,7 +17311,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1426621095}
         m_TargetAssemblyTypeName: MapMarkInGame, Assembly-CSharp
-        m_MethodName: ClcikMapMark
+        m_MethodName: ClickMapMark
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
